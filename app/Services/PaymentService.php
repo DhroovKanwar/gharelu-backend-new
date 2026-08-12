@@ -23,6 +23,14 @@ class PaymentService
     {
         $this->assertCanPay($order, $user);
 
+        // COD must never go through Razorpay — enforced server-side, not
+        // just by the frontend choosing not to call this endpoint.
+        if ($order->payment_method === 'cod') {
+            throw ValidationException::withMessages([
+                'payment_method' => ['Cash on Delivery orders cannot be paid via Razorpay.'],
+            ]);
+        }
+
         return DB::transaction(function () use ($order) {
             // Lock the order row for the duration of this check+create so two
             // near-simultaneous requests for the same order can't both call

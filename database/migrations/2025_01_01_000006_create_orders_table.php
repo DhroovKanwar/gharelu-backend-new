@@ -41,13 +41,20 @@ return new class extends Migration
             $table->decimal('delivery_fee', 10, 2)->default(0);
             $table->decimal('total', 10, 2);
             $table->string('currency', 3)->default('INR');
-
-            $table->enum('payment_method', ['card', 'upi', 'netbanking', 'cod']);
+            $table->enum('payment_method', [
+                'online',
+                'cod',
+            ]);
             $table->enum('payment_status', ['pending', 'paid', 'failed', 'refunded'])
                 ->default('pending');
             $table->enum('order_status', [
-                'new', 'confirmed', 'preparing', 'ready',
-                'out_for_delivery', 'completed', 'cancelled',
+                'new',
+                'confirmed',
+                'preparing',
+                'ready',
+                'out_for_delivery',
+                'completed',
+                'cancelled',
             ])->default('new');
 
             // Prevents duplicate order creation from double-submits/retries.

@@ -25,6 +25,13 @@ class AppServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->ip());
         });
 
+        // Applied via `throttle:admin-auth` on the admin login endpoint —
+        // same shape as 'auth' above, kept separate so tightening one
+        // never accidentally affects the other.
+        RateLimiter::for('admin-auth', function ($request) {
+            return Limit::perMinute(5)->by($request->ip());
+        });
+
         // Applied via `throttle:orders` on POST /orders. This is on top of
         // the default 'api' throttle (60/min) that every /api route already
         // gets from bootstrap/app.php's withRouting(api: ...) — tighter here

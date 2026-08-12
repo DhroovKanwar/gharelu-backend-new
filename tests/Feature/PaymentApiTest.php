@@ -54,7 +54,7 @@ class PaymentApiTest extends TestCase
             'delivery_fee' => 0,
             'total' => 499,
             'currency' => 'INR',
-            'payment_method' => 'card',
+            'payment_method' => 'online',
             'payment_status' => 'pending',
             'order_status' => 'new',
         ], $attrs));
@@ -146,6 +146,20 @@ class PaymentApiTest extends TestCase
         );
         Http::assertSentCount(1);
         $this->assertDatabaseCount('payments', 1);
+    }
+
+    public function test_cod_order_cannot_create_razorpay_payment(): void
+    {
+        $order = $this->makeOrder(['payment_method' => 'cod']);
+        $this->fakeRazorpayOrder();
+
+        $response = $this->postJson('/api/v1/payments/create-order', [
+            'order_number' => $order->order_number,
+        ]);
+
+        $response->assertStatus(422)->assertJsonValidationErrors(['payment_method']);
+        $this->assertDatabaseCount('payments', 0);
+        Http::assertNothingSent();
     }
 
     public function test_legacy_alias_path_works_identically(): void

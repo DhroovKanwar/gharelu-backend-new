@@ -1,5 +1,15 @@
 <?php
 
+use App\Http\Controllers\Api\V1\Admin\AdminCategoryController;
+use App\Http\Controllers\Api\V1\Admin\AdminCustomCakeRequestController;
+use App\Http\Controllers\Api\V1\Admin\AdminDashboardController;
+use App\Http\Controllers\Api\V1\Admin\AdminEnquiryController;
+use App\Http\Controllers\Api\V1\Admin\AdminNewsletterSubscriberController;
+use App\Http\Controllers\Api\V1\Admin\AdminOrderController;
+use App\Http\Controllers\Api\V1\Admin\AdminProductController;
+use App\Http\Controllers\Api\V1\Admin\AdminProductImageController;
+use App\Http\Controllers\Api\V1\Admin\AdminProductSizeController;
+use App\Http\Controllers\Api\V1\Admin\Auth\AdminAuthController;
 use App\Http\Controllers\Api\V1\Auth\AuthController;
 use App\Http\Controllers\Api\V1\CartController;
 use App\Http\Controllers\Api\V1\CategoryController;
@@ -70,6 +80,65 @@ Route::prefix('v1')->group(function () {
         Route::post('/verify', [PaymentController::class, 'verify'])
             ->middleware('throttle:payments');
         Route::post('/webhook', [PaymentController::class, 'webhook']);
+    });
+
+    /*
+    |----------------------------------------------------------------------
+    | Admin — Phase 7
+    |----------------------------------------------------------------------
+    |
+    | Reuses the existing `users` table + Sanctum guard: an admin is just a
+    | User row with a non-null `role`. Every route below (other than login)
+    | requires auth:sanctum AND the `admin.role` middleware, which checks
+    | the authenticated user's `role` column directly — so a normal
+    | customer token can never pass, regardless of which endpoint issued it.
+    */
+    Route::prefix('admin')->group(function () {
+        Route::post('/auth/login', [AdminAuthController::class, 'login'])
+            ->middleware('throttle:admin-auth');
+
+        Route::middleware('auth:sanctum')->group(function () {
+            // Accessible to every admin role.
+            Route::middleware('admin.role:super_admin,manager,staff')->group(function () {
+                Route::post('/auth/logout', [AdminAuthController::class, 'logout']);
+                Route::get('/auth/me', [AdminAuthController::class, 'me']);
+
+                // Orders — staff can view and manage (update status).
+                Route::get('/orders', [AdminOrderController::class, 'index']);
+                Route::get('/orders/{order}', [AdminOrderController::class, 'show']);
+                Route::patch('/orders/{order}/status', [AdminOrderController::class, 'updateStatus']);
+
+                // Custom cake requests — staff: view only.
+                Route::get('/custom-cake-requests', [AdminCustomCakeRequestController::class, 'index']);
+                Route::get('/custom-cake-requests/{customCakeRequest}', [AdminCustomCakeRequestController::class, 'show']);
+
+                // Enquiries — staff: view only.
+                Route::get('/enquiries', [AdminEnquiryController::class, 'index']);
+                Route::get('/enquiries/{enquiry}', [AdminEnquiryController::class, 'show']);
+            });
+
+            // manager + super_admin only.
+            Route::middleware('admin.role:super_admin,manager')->group(function () {
+                Route::get('/dashboard', [AdminDashboardController::class, 'index']);
+
+                Route::apiResource('products', AdminProductController::class);
+                Route::post('/products/{product}/images', [AdminProductImageController::class, 'store']);
+                Route::patch('/products/{product}/images/reorder', [AdminProductImageController::class, 'reorder']);
+                Route::delete('/products/{product}/images/{image}', [AdminProductImageController::class, 'destroy']);
+
+                Route::post('/products/{product}/sizes', [AdminProductSizeController::class, 'store']);
+                Route::patch('/products/{product}/sizes/reorder', [AdminProductSizeController::class, 'reorder']);
+                Route::patch('/products/{product}/sizes/{size}', [AdminProductSizeController::class, 'update']);
+                Route::delete('/products/{product}/sizes/{size}', [AdminProductSizeController::class, 'destroy']);
+
+                Route::apiResource('categories', AdminCategoryController::class);
+
+                Route::patch('/custom-cake-requests/{customCakeRequest}/status', [AdminCustomCakeRequestController::class, 'updateStatus']);
+                Route::patch('/enquiries/{enquiry}/status', [AdminEnquiryController::class, 'updateStatus']);
+
+                Route::get('/newsletter-subscribers', [AdminNewsletterSubscriberController::class, 'index']);
+            });
+        });
     });
 });
 

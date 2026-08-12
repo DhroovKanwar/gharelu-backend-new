@@ -36,7 +36,7 @@ class StoreOrderRequest extends FormRequest
             'scheduled_date' => ['required', 'date', 'after_or_equal:today'],
             'scheduled_time' => ['required', 'date_format:H:i'],
 
-            'payment_method' => ['required', 'in:card,upi,netbanking,cod'],
+          'payment_method' => ['required', 'in:online,cod'],
 
             'notes' => ['nullable', 'string', 'max:1000'],
 

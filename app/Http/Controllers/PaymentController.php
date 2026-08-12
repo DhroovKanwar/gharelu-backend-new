@@ -46,6 +46,7 @@ class PaymentController extends Controller
             'id' => $razorpayOrder->id,
             'amount' => $order->total,
             'currency' => 'INR',
+            'local_order_id' => $order->id,
         ]);
     }
 

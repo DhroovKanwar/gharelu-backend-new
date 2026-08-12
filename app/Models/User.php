@@ -17,6 +17,7 @@ class User extends Authenticatable
         'email',
         'phone',
         'password',
+        'role',
     ];
 
     protected $hidden = [
@@ -37,5 +38,18 @@ class User extends Authenticatable
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
+    }
+
+    // `role` is null for every ordinary customer — any non-null value is an
+    // admin. Kept as a single column rather than a separate admins table/guard
+    // so admin auth can reuse the existing Sanctum setup.
+    public function isAdmin(): bool
+    {
+        return $this->role !== null;
+    }
+
+    public function hasAnyRole(string ...$roles): bool
+    {
+        return $this->role !== null && in_array($this->role, $roles, true);
     }
 }

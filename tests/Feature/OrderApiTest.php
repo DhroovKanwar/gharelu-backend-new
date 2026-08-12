@@ -76,6 +76,21 @@ class OrderApiTest extends TestCase
         ]);
     }
 
+    public function test_guest_can_create_order_with_online_payment_method(): void
+    {
+        $product = $this->makeProduct();
+
+        $response = $this->postJson('/api/v1/orders', $this->basePayload($product, [
+            'payment_method' => 'online',
+        ]));
+
+        $response->assertStatus(201)
+            ->assertJsonPath('data.paymentMethod', 'online')
+            ->assertJsonPath('data.paymentStatus', 'pending');
+
+        $this->assertDatabaseHas('orders', ['payment_method' => 'online']);
+    }
+
     public function test_authenticated_user_can_create_order(): void
     {
         $product = $this->makeProduct();

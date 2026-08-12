@@ -1,0 +1,7 @@
+[
+  { "id": "signature-cakes", "name": "Signature Cakes", "count": 24, "image": "https://images.pexels.com/photos/29051739/pexels-photo-29051739.jpeg?auto=compress&cs=tinysrgb&w=1200", "span": "lg:col-span-2 lg:row-span-2" },
+  { "id": "cupcakes", "name": "Cupcakes", "count": 18, "image": "https://images.unsplash.com/photo-1622995706580-a332aed41cdf?auto=format&fit=crop&w=1200&q=80", "span": "" },
+  { "id": "macarons", "name": "Macarons", "count": 12, "image": "https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=1200", "span": "" },
+  { "id": "artisan-breads", "name": "Artisan Breads", "count": 9, "image": "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=1200&q=80", "span": "lg:col-span-2" },
+  { "id": "cookies", "name": "Cookies", "count": 1, "image": "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200", "span": "" }
+]

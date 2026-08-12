@@ -1,0 +1,466 @@
+[
+  {
+    "id": "belgian-dark-truffle",
+    "name": "Belgian Dark Truffle",
+    "category": "Signature",
+    "collection": "Signature Cakes",
+    "price": 1499,
+    "oldPrice": 1699,
+    "image": "https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=1200&q=80",
+      "https://images.pexels.com/photos/1055272/pexels-photo-1055272.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": "Bestseller",
+    "rating": 4.9,
+    "reviews": 218,
+    "featured": true,
+    "bestseller": true,
+    "description": "Silken 70% Belgian ganache layered over cloud-soft sponge.",
+    "longDescription": "Our most-loved creation — deep 70% Belgian couverture whipped into a silken ganache, layered between pillow-soft eggless sponge and finished with a mirror glaze. Rich, refined and unmistakably premium.",
+    "flavour": "Dark Chocolate",
+    "sizes": [
+      { "label": "0.5 kg", "price": 1499 },
+      { "label": "1 kg", "price": 2499 },
+      { "label": "1.5 kg", "price": 3399 }
+    ],
+    "ingredients": ["Belgian couverture", "Fresh cream", "Cocoa", "Cane sugar", "Wheat flour"],
+    "allergens": ["Gluten", "Dairy", "Soy"]
+  },
+  {
+    "id": "rose-pistachio",
+    "name": "Rose & Pistachio",
+    "category": "Celebration",
+    "collection": "Signature Cakes",
+    "price": 1699,
+    "image": "https://images.pexels.com/photos/1055272/pexels-photo-1055272.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/1055272/pexels-photo-1055272.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.pexels.com/photos/29051739/pexels-photo-29051739.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "tag": "New",
+    "rating": 4.8,
+    "reviews": 96,
+    "featured": true,
+    "bestseller": false,
+    "description": "Persian rose cream, slow-roasted pistachio, gold leaf finish.",
+    "longDescription": "A love letter to Persian patisserie — delicate rose-infused cream folded with slow-roasted pistachio, crowned with edible gold leaf. Floral, nutty and quietly luxurious.",
+    "flavour": "Rose & Pistachio",
+    "sizes": [
+      { "label": "0.5 kg", "price": 1699 },
+      { "label": "1 kg", "price": 2799 },
+      { "label": "1.5 kg", "price": 3799 }
+    ],
+    "ingredients": ["Rose essence", "Pistachio", "Fresh cream", "Cane sugar", "Wheat flour"],
+    "allergens": ["Gluten", "Dairy", "Nuts"]
+  },
+  {
+    "id": "strawberry-cloud",
+    "name": "Strawberry Cloud",
+    "category": "Fresh Fruit",
+    "collection": "Signature Cakes",
+    "price": 1299,
+    "image": "https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.pexels.com/photos/1721932/pexels-photo-1721932.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": "Seasonal",
+    "rating": 4.7,
+    "reviews": 142,
+    "featured": true,
+    "bestseller": false,
+    "description": "Whipped vanilla chantilly folded with hand-picked berries.",
+    "longDescription": "Light as air — whipped vanilla chantilly folded through layers of hand-picked strawberries and airy eggless sponge. The taste of summer, all year round.",
+    "flavour": "Strawberry & Vanilla",
+    "sizes": [
+      { "label": "0.5 kg", "price": 1299 },
+      { "label": "1 kg", "price": 2199 },
+      { "label": "1.5 kg", "price": 2999 }
+    ],
+    "ingredients": ["Fresh strawberries", "Vanilla", "Fresh cream", "Cane sugar", "Wheat flour"],
+    "allergens": ["Gluten", "Dairy"]
+  },
+  {
+    "id": "salted-caramel-gateau",
+    "name": "Salted Caramel Gateau",
+    "category": "Signature",
+    "collection": "Signature Cakes",
+    "price": 1599,
+    "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=80",
+      "https://images.pexels.com/photos/1055272/pexels-photo-1055272.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "tag": "Loved",
+    "rating": 4.9,
+    "reviews": 176,
+    "featured": true,
+    "bestseller": true,
+    "description": "Burnt-butter caramel, sea salt flakes, honeycomb shards.",
+    "longDescription": "Indulgence, balanced — burnt-butter caramel ribboned through soft sponge, finished with flaky sea salt and shards of golden honeycomb. Sweet, salty, sublime.",
+    "flavour": "Salted Caramel",
+    "sizes": [
+      { "label": "0.5 kg", "price": 1599 },
+      { "label": "1 kg", "price": 2599 },
+      { "label": "1.5 kg", "price": 3499 }
+    ],
+    "ingredients": ["Caramel", "Sea salt", "Honeycomb", "Fresh cream", "Wheat flour"],
+    "allergens": ["Gluten", "Dairy"]
+  },
+  {
+    "id": "vanilla-bean-cupcakes",
+    "name": "Vanilla Bean Cupcakes",
+    "category": "Box of 6",
+    "collection": "Cupcakes",
+    "price": 649,
+    "image": "https://images.unsplash.com/photo-1622995706580-a332aed41cdf?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1622995706580-a332aed41cdf?auto=format&fit=crop&w=1200&q=80",
+      "https://images.pexels.com/photos/1721932/pexels-photo-1721932.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": "Bestseller",
+    "rating": 4.8,
+    "reviews": 204,
+    "featured": false,
+    "bestseller": true,
+    "description": "Madagascar vanilla sponge crowned with silky buttercream.",
+    "longDescription": "Everyday joy — single-origin Madagascar vanilla baked into a tender crumb and swirled with silky Swiss buttercream. Impossible to stop at one.",
+    "flavour": "Vanilla",
+    "sizes": [
+      { "label": "Box of 6", "price": 649 },
+      { "label": "Box of 12", "price": 1199 }
+    ],
+    "ingredients": ["Madagascar vanilla", "Butter", "Cane sugar", "Wheat flour"],
+    "allergens": ["Gluten", "Dairy"]
+  },
+  {
+    "id": "red-velvet-cupcakes",
+    "name": "Red Velvet Cupcakes",
+    "category": "Box of 6",
+    "collection": "Cupcakes",
+    "price": 699,
+    "image": "https://images.pexels.com/photos/1721932/pexels-photo-1721932.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/1721932/pexels-photo-1721932.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.unsplash.com/photo-1622995706580-a332aed41cdf?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": "Loved",
+    "rating": 4.7,
+    "reviews": 133,
+    "featured": false,
+    "bestseller": false,
+    "description": "Classic red velvet with tangy cream-cheese frosting.",
+    "longDescription": "A timeless favourite — velvety cocoa-kissed sponge topped with tangy, luscious cream-cheese frosting. Bold in colour, gentle in taste.",
+    "flavour": "Red Velvet",
+    "sizes": [
+      { "label": "Box of 6", "price": 699 },
+      { "label": "Box of 12", "price": 1299 }
+    ],
+    "ingredients": ["Cocoa", "Cream cheese", "Butter", "Cane sugar", "Wheat flour"],
+    "allergens": ["Gluten", "Dairy"]
+  },
+  {
+    "id": "frosted-berry-cupcakes",
+    "name": "Frosted Berry Cupcakes",
+    "category": "Box of 6",
+    "collection": "Cupcakes",
+    "price": 749,
+    "image": "https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=1200&q=80",
+      "https://images.pexels.com/photos/1721932/pexels-photo-1721932.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.unsplash.com/photo-1622995706580-a332aed41cdf?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": "Seasonal",
+    "rating": 4.6,
+    "reviews": 71,
+    "featured": false,
+    "bestseller": false,
+    "description": "Mixed-berry compote centre with vanilla cream swirl.",
+    "longDescription": "A burst of summer — soft cupcakes with a hidden mixed-berry compote centre, finished with an airy vanilla cream swirl and freeze-dried berries.",
+    "flavour": "Mixed Berry",
+    "sizes": [
+      { "label": "Box of 6", "price": 749 },
+      { "label": "Box of 12", "price": 1399 }
+    ],
+    "ingredients": ["Mixed berries", "Vanilla", "Butter", "Cane sugar", "Wheat flour"],
+    "allergens": ["Gluten", "Dairy"]
+  },
+  {
+    "id": "french-macaron-box",
+    "name": "French Macaron Box",
+    "category": "Box of 12",
+    "collection": "Macarons",
+    "price": 899,
+    "image": "https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.pexels.com/photos/29647512/pexels-photo-29647512.png?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.unsplash.com/photo-1558326567-98ae2405596b?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": "Bestseller",
+    "rating": 4.9,
+    "reviews": 188,
+    "featured": false,
+    "bestseller": true,
+    "description": "Twelve delicate shells in an assortment of seasonal flavours.",
+    "longDescription": "Parisian elegance in a box — twelve delicate almond shells with crisp edges and chewy centres, in an ever-changing assortment of seasonal flavours.",
+    "flavour": "Assorted",
+    "sizes": [
+      { "label": "Box of 6", "price": 499 },
+      { "label": "Box of 12", "price": 899 }
+    ],
+    "ingredients": ["Almond flour", "Icing sugar", "Fruit purée", "Cocoa butter"],
+    "allergens": ["Nuts", "Dairy"]
+  },
+  {
+    "id": "chocolate-macarons",
+    "name": "Chocolate Macarons",
+    "category": "Box of 12",
+    "collection": "Macarons",
+    "price": 849,
+    "image": "https://images.pexels.com/photos/29647512/pexels-photo-29647512.png?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/29647512/pexels-photo-29647512.png?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.unsplash.com/photo-1569864358642-9d1684040f43?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": "New",
+    "rating": 4.8,
+    "reviews": 64,
+    "featured": false,
+    "bestseller": false,
+    "description": "Rich cocoa shells filled with dark chocolate ganache.",
+    "longDescription": "For the chocolate devotee — deep cocoa macaron shells sandwiching a velvety dark chocolate ganache. Intense and indulgent.",
+    "flavour": "Dark Chocolate",
+    "sizes": [
+      { "label": "Box of 6", "price": 469 },
+      { "label": "Box of 12", "price": 849 }
+    ],
+    "ingredients": ["Almond flour", "Cocoa", "Belgian chocolate", "Icing sugar"],
+    "allergens": ["Nuts", "Dairy"]
+  },
+  {
+    "id": "sourdough-loaf",
+    "name": "Sourdough Artisan Loaf",
+    "category": "Fresh Baked",
+    "collection": "Artisan Breads",
+    "price": 399,
+    "image": "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80",
+      "https://images.pexels.com/photos/37798966/pexels-photo-37798966.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "tag": "Fresh Daily",
+    "rating": 4.7,
+    "reviews": 89,
+    "featured": false,
+    "bestseller": false,
+    "description": "Slow-fermented 24-hour sourdough with a crackling crust.",
+    "longDescription": "Patience, baked in — a naturally leavened loaf fermented over 24 hours for an open, tangy crumb and a deeply caramelised, crackling crust.",
+    "flavour": "Classic Sourdough",
+    "sizes": [
+      { "label": "400 g", "price": 399 },
+      { "label": "800 g", "price": 699 }
+    ],
+    "ingredients": ["Sourdough starter", "Wheat flour", "Water", "Sea salt"],
+    "allergens": ["Gluten"]
+  },
+  {
+    "id": "cinnamon-swirl-rolls",
+    "name": "Cinnamon Swirl Rolls",
+    "category": "Box of 4",
+    "collection": "Artisan Breads",
+    "price": 499,
+    "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": "Loved",
+    "rating": 4.8,
+    "reviews": 117,
+    "featured": false,
+    "bestseller": false,
+    "description": "Pillowy rolls swirled with cinnamon and vanilla glaze.",
+    "longDescription": "Weekend comfort — pillowy soft rolls swirled with fragrant cinnamon sugar and finished with a warm vanilla glaze. Best enjoyed gently warmed.",
+    "flavour": "Cinnamon",
+    "sizes": [
+      { "label": "Box of 4", "price": 499 },
+      { "label": "Box of 8", "price": 899 }
+    ],
+    "ingredients": ["Cinnamon", "Vanilla", "Butter", "Cane sugar", "Wheat flour"],
+    "allergens": ["Gluten", "Dairy"]
+  },
+  {
+    "id": "new-york-cheesecake",
+    "name": "New York Cheesecake",
+    "category": "Signature",
+    "collection": "Cheesecakes",
+    "price": 1199,
+    "image": "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80",
+      "https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "tag": "Bestseller",
+    "rating": 4.9,
+    "reviews": 201,
+    "featured": false,
+    "bestseller": true,
+    "description": "Dense, creamy baked cheesecake on a buttery biscuit base.",
+    "longDescription": "The gold standard — a dense, ultra-creamy baked cheesecake set on a buttery biscuit base, finished with a whisper of vanilla. Eggless, yet impossibly rich.",
+    "flavour": "Classic Vanilla",
+    "sizes": [
+      { "label": "0.5 kg", "price": 1199 },
+      { "label": "1 kg", "price": 2099 }
+    ],
+    "ingredients": ["Cream cheese", "Biscuit base", "Vanilla", "Cane sugar"],
+    "allergens": ["Gluten", "Dairy"]
+  },
+  {
+    "id": "blueberry-cheesecake",
+    "name": "Blueberry Cheesecake",
+    "category": "Fresh Fruit",
+    "collection": "Cheesecakes",
+    "price": 1249,
+    "image": "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=80",
+      "https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "tag": "Seasonal",
+    "rating": 4.7,
+    "reviews": 82,
+    "featured": false,
+    "bestseller": false,
+    "description": "Creamy cheesecake crowned with wild blueberry compote.",
+    "longDescription": "Tart meets creamy — our signature baked cheesecake crowned with a glossy wild blueberry compote. A perfect balance of sweet and bright.",
+    "flavour": "Blueberry",
+    "sizes": [
+      { "label": "0.5 kg", "price": 1249 },
+      { "label": "1 kg", "price": 2199 }
+    ],
+    "ingredients": ["Cream cheese", "Blueberries", "Biscuit base", "Cane sugar"],
+    "allergens": ["Gluten", "Dairy"]
+  },
+  {
+    "id": "glazed-doughnut-dozen",
+    "name": "Glazed Doughnut Dozen",
+    "category": "Box of 12",
+    "collection": "Pastries",
+    "price": 549,
+    "image": "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1557925923-cd4648e211a0?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": "Loved",
+    "rating": 4.6,
+    "reviews": 95,
+    "featured": false,
+    "bestseller": false,
+    "description": "A dozen soft, fluffy doughnuts with a classic sugar glaze.",
+    "longDescription": "Simple pleasures — a dozen soft, fluffy ring doughnuts dipped in a glossy classic sugar glaze. Best shared, though we won't judge.",
+    "flavour": "Classic Glaze",
+    "sizes": [
+      { "label": "Box of 6", "price": 299 },
+      { "label": "Box of 12", "price": 549 }
+    ],
+    "ingredients": ["Wheat flour", "Cane sugar", "Butter", "Vanilla"],
+    "allergens": ["Gluten", "Dairy"]
+  },
+  {
+    "id": "pink-velvet-doughnuts",
+    "name": "Pink Velvet Doughnuts",
+    "category": "Box of 6",
+    "collection": "Pastries",
+    "price": 599,
+    "image": "https://images.unsplash.com/photo-1557925923-cd4648e211a0?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1557925923-cd4648e211a0?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1622995706580-a332aed41cdf?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": "New",
+    "rating": 4.7,
+    "reviews": 58,
+    "featured": false,
+    "bestseller": false,
+    "description": "Rose-glazed doughnuts finished with delicate sprinkles.",
+    "longDescription": "As pretty as they are moreish — soft doughnuts dipped in a delicate rose glaze and finished with a scatter of pastel sprinkles.",
+    "flavour": "Rose",
+    "sizes": [
+      { "label": "Box of 6", "price": 599 },
+      { "label": "Box of 12", "price": 1099 }
+    ],
+    "ingredients": ["Rose glaze", "Wheat flour", "Cane sugar", "Butter"],
+    "allergens": ["Gluten", "Dairy"]
+  },
+  {
+    "id": "assorted-pastry-platter",
+    "name": "Assorted Pastry Platter",
+    "category": "Sharing Box",
+    "collection": "Pastries",
+    "price": 799,
+    "image": "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": "Bestseller",
+    "rating": 4.8,
+    "reviews": 124,
+    "featured": false,
+    "bestseller": true,
+    "description": "A curated sharing platter of our finest daily pastries.",
+    "longDescription": "The best of the bakery in one box — a curated sharing platter of our finest daily pastries, hand-selected each morning. Perfect for gatherings.",
+    "flavour": "Assorted",
+    "sizes": [
+      { "label": "Platter of 8", "price": 799 },
+      { "label": "Platter of 16", "price": 1499 }
+    ],
+    "ingredients": ["Seasonal selection", "Wheat flour", "Butter", "Fresh cream"],
+    "allergens": ["Gluten", "Dairy", "Nuts"]
+  },
+  {
+    "id": "choco-chip-cookie",
+    "name": "Choco Chip Cookie",
+    "category": "Cookies",
+    "collection": "Cookies",
+    "price": 249,
+    "oldPrice": 299,
+    "image": "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.pexels.com/photos/2372537/pexels-photo-2372537.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "tag": "New",
+    "rating": 4.7,
+    "reviews": 32,
+    "featured": false,
+    "bestseller": false,
+    "description": "Crisp-edged, gooey-centre choco chip cookies, baked fresh daily.",
+    "longDescription": "Loaded with Belgian chocolate chunks and baked to that perfect crisp-outside, chewy-inside finish.",
+    "flavour": "Chocolate Chip",
+    "sizes": [
+      { "label": "Box of 6", "price": 249 },
+      { "label": "Box of 12", "price": 449 }
+    ],
+    "ingredients": ["Wheat flour", "Butter", "Chocolate chunks", "Cane sugar"],
+    "allergens": ["Gluten", "Dairy"]
+  }
+]

@@ -7,36 +7,20 @@ use App\Http\Requests\Admin\Order\AdminOrderIndexRequest;
 use App\Http\Requests\Admin\Order\UpdateOrderStatusRequest;
 use App\Http\Resources\Admin\AdminOrderResource;
 use App\Models\Order;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 
 class AdminOrderController extends Controller
 {
+    /** Hard ceiling on export() so a filterless export can't pull the whole table into memory. */
+    private const EXPORT_LIMIT = 5000;
+
     public function index(AdminOrderIndexRequest $request): JsonResponse
     {
         $data = $request->validated();
         $perPage = $data['per_page'] ?? 20;
 
-        $query = Order::query()->with(['items', 'address']);
-
-        if (! empty($data['order_status'])) {
-            $query->where('order_status', $data['order_status']);
-        }
-        if (! empty($data['payment_status'])) {
-            $query->where('payment_status', $data['payment_status']);
-        }
-        if (! empty($data['payment_method'])) {
-            $query->where('payment_method', $data['payment_method']);
-        }
-        if (! empty($data['delivery_mode'])) {
-            $query->where('delivery_mode', $data['delivery_mode']);
-        }
-        if (! empty($data['date'])) {
-            $query->whereDate('scheduled_date', $data['date']);
-        }
-        if (! empty($data['search'])) {
-            $query->where('order_number', 'like', '%'.$data['search'].'%');
-        }
-
+        $query = $this->filteredQuery($data);
         $orders = $query->latest()->paginate($perPage);
 
         return response()->json([
@@ -76,5 +60,55 @@ class AdminOrderController extends Controller
             'message' => 'Order status updated successfully.',
             'data' => new AdminOrderResource($order),
         ]);
+    }
+
+    /**
+     * Same filters as index(), but unpaginated — for the admin frontend's
+     * Excel export, which needs the full matching set in one response
+     * rather than looping through pages itself.
+     */
+    public function export(AdminOrderIndexRequest $request): JsonResponse
+    {
+        $data = $request->validated();
+
+        $orders = $this->filteredQuery($data)
+            ->latest()
+            ->limit(self::EXPORT_LIMIT)
+            ->get();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Orders exported successfully.',
+            'data' => AdminOrderResource::collection($orders)->collection,
+            'meta' => [
+                'total' => $orders->count(),
+            ],
+        ]);
+    }
+
+    private function filteredQuery(array $data): Builder
+    {
+        $query = Order::query()->with(['items', 'address']);
+
+        if (! empty($data['order_status'])) {
+            $query->where('order_status', $data['order_status']);
+        }
+        if (! empty($data['payment_status'])) {
+            $query->where('payment_status', $data['payment_status']);
+        }
+        if (! empty($data['payment_method'])) {
+            $query->where('payment_method', $data['payment_method']);
+        }
+        if (! empty($data['delivery_mode'])) {
+            $query->where('delivery_mode', $data['delivery_mode']);
+        }
+        if (! empty($data['date'])) {
+            $query->whereDate('scheduled_date', $data['date']);
+        }
+        if (! empty($data['search'])) {
+            $query->where('order_number', 'like', '%'.$data['search'].'%');
+        }
+
+        return $query;
     }
 }

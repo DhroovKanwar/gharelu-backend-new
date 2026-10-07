@@ -34,17 +34,8 @@ class CategorySeeder extends Seeder
             );
         }
 
-        $extra = ['Cheesecakes', 'Pastries'];
-        foreach ($extra as $index => $name) {
-            Category::updateOrCreate(
-                ['slug' => Str::slug($name)],
-                [
-                    'name' => $name,
-                    'image_path' => null,
-                    'sort_order' => count($categories) + $index,
-                    'is_active' => true,
-                ]
-            );
-        }
+        // Menu replaced: deactivate any category no longer on the menu.
+        Category::whereNotIn('slug', array_column($categories, 'id'))
+            ->update(['is_active' => false]);
     }
 }

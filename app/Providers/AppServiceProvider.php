@@ -40,6 +40,13 @@ class AppServiceProvider extends ServiceProvider
             return Limit::perMinute(10)->by($request->ip());
         });
 
+        // Applied via `throttle:order-lookup` on POST /orders/lookup —
+        // keyed by IP like 'auth' above, tight enough that brute-forcing
+        // phone numbers to find someone else's orders isn't practical.
+        RateLimiter::for('order-lookup', function ($request) {
+            return Limit::perMinute(10)->by($request->ip());
+        });
+
         // Applied via `throttle:payments` on create-order/verify (both the
         // /v1 and legacy alias routes). The webhook is deliberately NOT
         // under this limiter — it's server-to-server from Razorpay, and an

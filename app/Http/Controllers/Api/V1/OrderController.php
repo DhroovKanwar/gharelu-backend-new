@@ -36,6 +36,46 @@ class OrderController extends Controller
         ], 201);
     }
 
+    /**
+     * Public guest order lookup by phone number — no auth required, since
+     * guest checkout means most orders have no account to log into. Matches
+     * on the last 10 digits of guest_phone so "+91 98765 43210", "98765
+     * 43210" and "9876543210" all resolve to the same number regardless of
+     * how it was formatted when the order was placed or is typed here.
+     */
+    public function lookup(Request $request): JsonResponse
+    {
+        $request->validate([
+            'phone' => ['required', 'string', 'max:20'],
+        ]);
+
+        $digits = preg_replace('/\D+/', '', $request->input('phone'));
+        $last10 = substr($digits, -10);
+
+        if (strlen($last10) < 10) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Please enter a valid 10-digit mobile number.',
+                'data' => [],
+            ], 422);
+        }
+
+        $orders = Order::query()
+            ->whereRaw("REGEXP_REPLACE(guest_phone, '[^0-9]', '') LIKE ?", ['%'.$last10])
+            ->with(['items', 'address'])
+            ->latest()
+            ->limit(20)
+            ->get();
+
+        return response()->json([
+            'success' => true,
+            'message' => $orders->isEmpty()
+                ? 'No orders found for this number.'
+                : 'Orders retrieved successfully.',
+            'data' => OrderResource::collection($orders),
+        ]);
+    }
+
     public function index(Request $request): JsonResponse
     {
         $orders = $request->user()

@@ -51,6 +51,12 @@ Route::prefix('v1')->group(function () {
     // never blocked. index()/show() require authentication.
     Route::post('/orders', [OrderController::class, 'store'])
         ->middleware('throttle:orders');
+
+    // Guest order lookup by phone — public, rate-limited per IP to make
+    // phone-number enumeration impractical (see 'order-lookup' limiter).
+    Route::post('/orders/lookup', [OrderController::class, 'lookup'])
+        ->middleware('throttle:order-lookup');
+
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/orders', [OrderController::class, 'index']);
         Route::get('/orders/{order_number}', [OrderController::class, 'show']);
@@ -104,7 +110,11 @@ Route::prefix('v1')->group(function () {
                 Route::get('/auth/me', [AdminAuthController::class, 'me']);
 
                 // Orders — staff can view and manage (update status).
+                // /orders/export must stay above /orders/{order} or the
+                // {order} implicit binding would try to resolve "export" as
+                // an order id.
                 Route::get('/orders', [AdminOrderController::class, 'index']);
+                Route::get('/orders/export', [AdminOrderController::class, 'export']);
                 Route::get('/orders/{order}', [AdminOrderController::class, 'show']);
                 Route::patch('/orders/{order}/status', [AdminOrderController::class, 'updateStatus']);
 

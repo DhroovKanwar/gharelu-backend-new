@@ -22,6 +22,11 @@ class ProductSeeder extends Seeder
         $path = database_path('seeders/data/products.json');
         $products = json_decode(file_get_contents($path), true);
 
+        // Menu replaced: deactivate products that are no longer in the file
+        // (kept, not deleted, so past order_items still reference them).
+        Product::whereNotIn('slug', array_column($products, 'id'))
+            ->update(['is_active' => false]);
+
         foreach ($products as $item) {
             $categorySlug = Str::slug($item['collection'] ?? $item['category']);
             $category = Category::where('slug', $categorySlug)->first();

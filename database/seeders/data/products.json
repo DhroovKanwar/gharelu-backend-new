@@ -1,466 +1,1582 @@
 [
   {
-    "id": "belgian-dark-truffle",
-    "name": "Belgian Dark Truffle",
-    "category": "Signature",
-    "collection": "Signature Cakes",
-    "price": 1499,
-    "oldPrice": 1699,
+    "id": "cake-pineapple",
+    "name": "Pineapple",
+    "category": "Cakes",
+    "collection": "Cakes",
+    "price": 900,
+    "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless 500 gm cakes — 100% eggless.",
+    "longDescription": "Pineapple, from the Gharelu menu. Eggless 500 gm cakes, 100% eggless and made fresh in small batches.",
+    "flavour": "Pineapple",
+    "sizes": [
+      {
+        "label": "500 gm",
+        "price": 900
+      }
+    ],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "cake-fresh-fruit",
+    "name": "Fresh Fruit",
+    "category": "Cakes",
+    "collection": "Cakes",
+    "price": 900,
+    "image": "https://images.pexels.com/photos/1055272/pexels-photo-1055272.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/1055272/pexels-photo-1055272.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless 500 gm cakes — 100% eggless.",
+    "longDescription": "Fresh Fruit, from the Gharelu menu. Eggless 500 gm cakes, 100% eggless and made fresh in small batches.",
+    "flavour": "Fresh Fruit",
+    "sizes": [
+      {
+        "label": "500 gm",
+        "price": 900
+      }
+    ],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "cake-black-forest",
+    "name": "Black Forest",
+    "category": "Cakes",
+    "collection": "Cakes",
+    "price": 900,
+    "image": "https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": true,
+    "bestseller": false,
+    "description": "Eggless 500 gm cakes — 100% eggless.",
+    "longDescription": "Black Forest, from the Gharelu menu. Eggless 500 gm cakes, 100% eggless and made fresh in small batches.",
+    "flavour": "Black Forest",
+    "sizes": [
+      {
+        "label": "500 gm",
+        "price": 900
+      }
+    ],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "cake-tiramisu",
+    "name": "Tiramisu",
+    "category": "Cakes",
+    "collection": "Cakes",
+    "price": 1200,
     "image": "https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=1200&q=80",
     "gallery": [
-      "https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=1200&q=80",
-      "https://images.pexels.com/photos/1055272/pexels-photo-1055272.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": true,
+    "bestseller": false,
+    "description": "Eggless 500 gm cakes — 100% eggless.",
+    "longDescription": "Tiramisu, from the Gharelu menu. Eggless 500 gm cakes, 100% eggless and made fresh in small batches.",
+    "flavour": "Tiramisu",
+    "sizes": [
+      {
+        "label": "500 gm",
+        "price": 1200
+      }
+    ],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "cake-belgian-chocolate",
+    "name": "Belgian Chocolate",
+    "category": "Cakes",
+    "collection": "Cakes",
+    "price": 1500,
+    "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
       "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80"
     ],
     "tag": "Bestseller",
-    "rating": 4.9,
-    "reviews": 218,
+    "rating": 0,
+    "reviews": 0,
     "featured": true,
     "bestseller": true,
-    "description": "Silken 70% Belgian ganache layered over cloud-soft sponge.",
-    "longDescription": "Our most-loved creation — deep 70% Belgian couverture whipped into a silken ganache, layered between pillow-soft eggless sponge and finished with a mirror glaze. Rich, refined and unmistakably premium.",
-    "flavour": "Dark Chocolate",
+    "description": "Eggless 500 gm cakes — 100% eggless.",
+    "longDescription": "Belgian Chocolate, from the Gharelu menu. Eggless 500 gm cakes, 100% eggless and made fresh in small batches.",
+    "flavour": "Belgian Chocolate",
     "sizes": [
-      { "label": "0.5 kg", "price": 1499 },
-      { "label": "1 kg", "price": 2499 },
-      { "label": "1.5 kg", "price": 3399 }
+      {
+        "label": "500 gm",
+        "price": 1500
+      }
     ],
-    "ingredients": ["Belgian couverture", "Fresh cream", "Cocoa", "Cane sugar", "Wheat flour"],
-    "allergens": ["Gluten", "Dairy", "Soy"]
+    "ingredients": [],
+    "allergens": []
   },
   {
-    "id": "rose-pistachio",
-    "name": "Rose & Pistachio",
-    "category": "Celebration",
-    "collection": "Signature Cakes",
-    "price": 1699,
+    "id": "cake-red-velvet",
+    "name": "Red Velvet",
+    "category": "Cakes",
+    "collection": "Cakes",
+    "price": 900,
     "image": "https://images.pexels.com/photos/1055272/pexels-photo-1055272.jpeg?auto=compress&cs=tinysrgb&w=1200",
     "gallery": [
-      "https://images.pexels.com/photos/1055272/pexels-photo-1055272.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      "https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      "https://images.pexels.com/photos/29051739/pexels-photo-29051739.jpeg?auto=compress&cs=tinysrgb&w=1200"
-    ],
-    "tag": "New",
-    "rating": 4.8,
-    "reviews": 96,
-    "featured": true,
-    "bestseller": false,
-    "description": "Persian rose cream, slow-roasted pistachio, gold leaf finish.",
-    "longDescription": "A love letter to Persian patisserie — delicate rose-infused cream folded with slow-roasted pistachio, crowned with edible gold leaf. Floral, nutty and quietly luxurious.",
-    "flavour": "Rose & Pistachio",
-    "sizes": [
-      { "label": "0.5 kg", "price": 1699 },
-      { "label": "1 kg", "price": 2799 },
-      { "label": "1.5 kg", "price": 3799 }
-    ],
-    "ingredients": ["Rose essence", "Pistachio", "Fresh cream", "Cane sugar", "Wheat flour"],
-    "allergens": ["Gluten", "Dairy", "Nuts"]
-  },
-  {
-    "id": "strawberry-cloud",
-    "name": "Strawberry Cloud",
-    "category": "Fresh Fruit",
-    "collection": "Signature Cakes",
-    "price": 1299,
-    "image": "https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    "gallery": [
-      "https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      "https://images.pexels.com/photos/1721932/pexels-photo-1721932.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      "https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=1200&q=80"
-    ],
-    "tag": "Seasonal",
-    "rating": 4.7,
-    "reviews": 142,
-    "featured": true,
-    "bestseller": false,
-    "description": "Whipped vanilla chantilly folded with hand-picked berries.",
-    "longDescription": "Light as air — whipped vanilla chantilly folded through layers of hand-picked strawberries and airy eggless sponge. The taste of summer, all year round.",
-    "flavour": "Strawberry & Vanilla",
-    "sizes": [
-      { "label": "0.5 kg", "price": 1299 },
-      { "label": "1 kg", "price": 2199 },
-      { "label": "1.5 kg", "price": 2999 }
-    ],
-    "ingredients": ["Fresh strawberries", "Vanilla", "Fresh cream", "Cane sugar", "Wheat flour"],
-    "allergens": ["Gluten", "Dairy"]
-  },
-  {
-    "id": "salted-caramel-gateau",
-    "name": "Salted Caramel Gateau",
-    "category": "Signature",
-    "collection": "Signature Cakes",
-    "price": 1599,
-    "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80",
-    "gallery": [
-      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=80",
       "https://images.pexels.com/photos/1055272/pexels-photo-1055272.jpeg?auto=compress&cs=tinysrgb&w=1200"
     ],
-    "tag": "Loved",
-    "rating": 4.9,
-    "reviews": 176,
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
     "featured": true,
-    "bestseller": true,
-    "description": "Burnt-butter caramel, sea salt flakes, honeycomb shards.",
-    "longDescription": "Indulgence, balanced — burnt-butter caramel ribboned through soft sponge, finished with flaky sea salt and shards of golden honeycomb. Sweet, salty, sublime.",
-    "flavour": "Salted Caramel",
-    "sizes": [
-      { "label": "0.5 kg", "price": 1599 },
-      { "label": "1 kg", "price": 2599 },
-      { "label": "1.5 kg", "price": 3499 }
-    ],
-    "ingredients": ["Caramel", "Sea salt", "Honeycomb", "Fresh cream", "Wheat flour"],
-    "allergens": ["Gluten", "Dairy"]
-  },
-  {
-    "id": "vanilla-bean-cupcakes",
-    "name": "Vanilla Bean Cupcakes",
-    "category": "Box of 6",
-    "collection": "Cupcakes",
-    "price": 649,
-    "image": "https://images.unsplash.com/photo-1622995706580-a332aed41cdf?auto=format&fit=crop&w=1200&q=80",
-    "gallery": [
-      "https://images.unsplash.com/photo-1622995706580-a332aed41cdf?auto=format&fit=crop&w=1200&q=80",
-      "https://images.pexels.com/photos/1721932/pexels-photo-1721932.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      "https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=1200&q=80"
-    ],
-    "tag": "Bestseller",
-    "rating": 4.8,
-    "reviews": 204,
-    "featured": false,
-    "bestseller": true,
-    "description": "Madagascar vanilla sponge crowned with silky buttercream.",
-    "longDescription": "Everyday joy — single-origin Madagascar vanilla baked into a tender crumb and swirled with silky Swiss buttercream. Impossible to stop at one.",
-    "flavour": "Vanilla",
-    "sizes": [
-      { "label": "Box of 6", "price": 649 },
-      { "label": "Box of 12", "price": 1199 }
-    ],
-    "ingredients": ["Madagascar vanilla", "Butter", "Cane sugar", "Wheat flour"],
-    "allergens": ["Gluten", "Dairy"]
-  },
-  {
-    "id": "red-velvet-cupcakes",
-    "name": "Red Velvet Cupcakes",
-    "category": "Box of 6",
-    "collection": "Cupcakes",
-    "price": 699,
-    "image": "https://images.pexels.com/photos/1721932/pexels-photo-1721932.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    "gallery": [
-      "https://images.pexels.com/photos/1721932/pexels-photo-1721932.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      "https://images.unsplash.com/photo-1622995706580-a332aed41cdf?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80"
-    ],
-    "tag": "Loved",
-    "rating": 4.7,
-    "reviews": 133,
-    "featured": false,
     "bestseller": false,
-    "description": "Classic red velvet with tangy cream-cheese frosting.",
-    "longDescription": "A timeless favourite — velvety cocoa-kissed sponge topped with tangy, luscious cream-cheese frosting. Bold in colour, gentle in taste.",
+    "description": "Eggless 500 gm cakes — 100% eggless.",
+    "longDescription": "Red Velvet, from the Gharelu menu. Eggless 500 gm cakes, 100% eggless and made fresh in small batches.",
     "flavour": "Red Velvet",
     "sizes": [
-      { "label": "Box of 6", "price": 699 },
-      { "label": "Box of 12", "price": 1299 }
+      {
+        "label": "500 gm",
+        "price": 900
+      }
     ],
-    "ingredients": ["Cocoa", "Cream cheese", "Butter", "Cane sugar", "Wheat flour"],
-    "allergens": ["Gluten", "Dairy"]
+    "ingredients": [],
+    "allergens": []
   },
   {
-    "id": "frosted-berry-cupcakes",
-    "name": "Frosted Berry Cupcakes",
-    "category": "Box of 6",
+    "id": "cake-rainbow",
+    "name": "Rainbow",
+    "category": "Cakes",
+    "collection": "Cakes",
+    "price": 900,
+    "image": "https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless 500 gm cakes — 100% eggless.",
+    "longDescription": "Rainbow, from the Gharelu menu. Eggless 500 gm cakes, 100% eggless and made fresh in small batches.",
+    "flavour": "Rainbow",
+    "sizes": [
+      {
+        "label": "500 gm",
+        "price": 900
+      }
+    ],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "cake-coconut",
+    "name": "Coconut",
+    "category": "Cakes",
+    "collection": "Cakes",
+    "price": 900,
+    "image": "https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless 500 gm cakes — 100% eggless.",
+    "longDescription": "Coconut, from the Gharelu menu. Eggless 500 gm cakes, 100% eggless and made fresh in small batches.",
+    "flavour": "Coconut",
+    "sizes": [
+      {
+        "label": "500 gm",
+        "price": 900
+      }
+    ],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "cake-german-truffle",
+    "name": "German Truffle",
+    "category": "Cakes",
+    "collection": "Cakes",
+    "price": 900,
+    "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless 500 gm cakes — 100% eggless.",
+    "longDescription": "German Truffle, from the Gharelu menu. Eggless 500 gm cakes, 100% eggless and made fresh in small batches.",
+    "flavour": "German Truffle",
+    "sizes": [
+      {
+        "label": "500 gm",
+        "price": 900
+      }
+    ],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "cupcakes-vanilla",
+    "name": "Vanilla",
+    "category": "Cupcakes",
     "collection": "Cupcakes",
-    "price": 749,
+    "price": 120,
+    "image": "https://images.unsplash.com/photo-1622995706580-a332aed41cdf?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1622995706580-a332aed41cdf?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Soft eggless cupcake — 100% eggless.",
+    "longDescription": "Vanilla, from the Gharelu menu. Soft eggless cupcake, 100% eggless and made fresh in small batches.",
+    "flavour": "Vanilla",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "cupcakes-belgian-chocolate",
+    "name": "Belgian Chocolate",
+    "category": "Cupcakes",
+    "collection": "Cupcakes",
+    "price": 120,
+    "image": "https://images.pexels.com/photos/1721932/pexels-photo-1721932.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/1721932/pexels-photo-1721932.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Soft eggless cupcake — 100% eggless.",
+    "longDescription": "Belgian Chocolate, from the Gharelu menu. Soft eggless cupcake, 100% eggless and made fresh in small batches.",
+    "flavour": "Belgian Chocolate",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "cupcakes-red-velvet",
+    "name": "Red Velvet",
+    "category": "Cupcakes",
+    "collection": "Cupcakes",
+    "price": 120,
     "image": "https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=1200&q=80",
     "gallery": [
-      "https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=1200&q=80",
-      "https://images.pexels.com/photos/1721932/pexels-photo-1721932.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      "https://images.unsplash.com/photo-1622995706580-a332aed41cdf?auto=format&fit=crop&w=1200&q=80"
+      "https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=1200&q=80"
     ],
-    "tag": "Seasonal",
-    "rating": 4.6,
-    "reviews": 71,
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
     "featured": false,
     "bestseller": false,
-    "description": "Mixed-berry compote centre with vanilla cream swirl.",
-    "longDescription": "A burst of summer — soft cupcakes with a hidden mixed-berry compote centre, finished with an airy vanilla cream swirl and freeze-dried berries.",
-    "flavour": "Mixed Berry",
-    "sizes": [
-      { "label": "Box of 6", "price": 749 },
-      { "label": "Box of 12", "price": 1399 }
-    ],
-    "ingredients": ["Mixed berries", "Vanilla", "Butter", "Cane sugar", "Wheat flour"],
-    "allergens": ["Gluten", "Dairy"]
+    "description": "Soft eggless cupcake — 100% eggless.",
+    "longDescription": "Red Velvet, from the Gharelu menu. Soft eggless cupcake, 100% eggless and made fresh in small batches.",
+    "flavour": "Red Velvet",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
   },
   {
-    "id": "french-macaron-box",
-    "name": "French Macaron Box",
-    "category": "Box of 12",
-    "collection": "Macarons",
-    "price": 899,
-    "image": "https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "id": "pastries-pineapple",
+    "name": "Pineapple",
+    "category": "Pastries",
+    "collection": "Pastries",
+    "price": 150,
+    "image": "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=1200&q=80",
     "gallery": [
-      "https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      "https://images.pexels.com/photos/29647512/pexels-photo-29647512.png?auto=compress&cs=tinysrgb&w=1200",
-      "https://images.unsplash.com/photo-1558326567-98ae2405596b?auto=format&fit=crop&w=1200&q=80"
-    ],
-    "tag": "Bestseller",
-    "rating": 4.9,
-    "reviews": 188,
-    "featured": false,
-    "bestseller": true,
-    "description": "Twelve delicate shells in an assortment of seasonal flavours.",
-    "longDescription": "Parisian elegance in a box — twelve delicate almond shells with crisp edges and chewy centres, in an ever-changing assortment of seasonal flavours.",
-    "flavour": "Assorted",
-    "sizes": [
-      { "label": "Box of 6", "price": 499 },
-      { "label": "Box of 12", "price": 899 }
-    ],
-    "ingredients": ["Almond flour", "Icing sugar", "Fruit purée", "Cocoa butter"],
-    "allergens": ["Nuts", "Dairy"]
-  },
-  {
-    "id": "chocolate-macarons",
-    "name": "Chocolate Macarons",
-    "category": "Box of 12",
-    "collection": "Macarons",
-    "price": 849,
-    "image": "https://images.pexels.com/photos/29647512/pexels-photo-29647512.png?auto=compress&cs=tinysrgb&w=1200",
-    "gallery": [
-      "https://images.pexels.com/photos/29647512/pexels-photo-29647512.png?auto=compress&cs=tinysrgb&w=1200",
-      "https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      "https://images.unsplash.com/photo-1569864358642-9d1684040f43?auto=format&fit=crop&w=1200&q=80"
-    ],
-    "tag": "New",
-    "rating": 4.8,
-    "reviews": 64,
-    "featured": false,
-    "bestseller": false,
-    "description": "Rich cocoa shells filled with dark chocolate ganache.",
-    "longDescription": "For the chocolate devotee — deep cocoa macaron shells sandwiching a velvety dark chocolate ganache. Intense and indulgent.",
-    "flavour": "Dark Chocolate",
-    "sizes": [
-      { "label": "Box of 6", "price": 469 },
-      { "label": "Box of 12", "price": 849 }
-    ],
-    "ingredients": ["Almond flour", "Cocoa", "Belgian chocolate", "Icing sugar"],
-    "allergens": ["Nuts", "Dairy"]
-  },
-  {
-    "id": "sourdough-loaf",
-    "name": "Sourdough Artisan Loaf",
-    "category": "Fresh Baked",
-    "collection": "Artisan Breads",
-    "price": 399,
-    "image": "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=1200&q=80",
-    "gallery": [
-      "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80",
-      "https://images.pexels.com/photos/37798966/pexels-photo-37798966.jpeg?auto=compress&cs=tinysrgb&w=1200"
-    ],
-    "tag": "Fresh Daily",
-    "rating": 4.7,
-    "reviews": 89,
-    "featured": false,
-    "bestseller": false,
-    "description": "Slow-fermented 24-hour sourdough with a crackling crust.",
-    "longDescription": "Patience, baked in — a naturally leavened loaf fermented over 24 hours for an open, tangy crumb and a deeply caramelised, crackling crust.",
-    "flavour": "Classic Sourdough",
-    "sizes": [
-      { "label": "400 g", "price": 399 },
-      { "label": "800 g", "price": 699 }
-    ],
-    "ingredients": ["Sourdough starter", "Wheat flour", "Water", "Sea salt"],
-    "allergens": ["Gluten"]
-  },
-  {
-    "id": "cinnamon-swirl-rolls",
-    "name": "Cinnamon Swirl Rolls",
-    "category": "Box of 4",
-    "collection": "Artisan Breads",
-    "price": 499,
-    "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80",
-    "gallery": [
-      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=1200&q=80"
     ],
-    "tag": "Loved",
-    "rating": 4.8,
-    "reviews": 117,
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
     "featured": false,
     "bestseller": false,
-    "description": "Pillowy rolls swirled with cinnamon and vanilla glaze.",
-    "longDescription": "Weekend comfort — pillowy soft rolls swirled with fragrant cinnamon sugar and finished with a warm vanilla glaze. Best enjoyed gently warmed.",
-    "flavour": "Cinnamon",
-    "sizes": [
-      { "label": "Box of 4", "price": 499 },
-      { "label": "Box of 8", "price": 899 }
-    ],
-    "ingredients": ["Cinnamon", "Vanilla", "Butter", "Cane sugar", "Wheat flour"],
-    "allergens": ["Gluten", "Dairy"]
+    "description": "Eggless pastry slice — 100% eggless.",
+    "longDescription": "Pineapple, from the Gharelu menu. Eggless pastry slice, 100% eggless and made fresh in small batches.",
+    "flavour": "Pineapple",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
   },
   {
-    "id": "new-york-cheesecake",
-    "name": "New York Cheesecake",
-    "category": "Signature",
-    "collection": "Cheesecakes",
-    "price": 1199,
+    "id": "pastries-black-forest",
+    "name": "Black Forest",
+    "category": "Pastries",
+    "collection": "Pastries",
+    "price": 150,
     "image": "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=80",
     "gallery": [
-      "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80",
-      "https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg?auto=compress&cs=tinysrgb&w=1200"
+      "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=80"
     ],
-    "tag": "Bestseller",
-    "rating": 4.9,
-    "reviews": 201,
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
     "featured": false,
-    "bestseller": true,
-    "description": "Dense, creamy baked cheesecake on a buttery biscuit base.",
-    "longDescription": "The gold standard — a dense, ultra-creamy baked cheesecake set on a buttery biscuit base, finished with a whisper of vanilla. Eggless, yet impossibly rich.",
-    "flavour": "Classic Vanilla",
-    "sizes": [
-      { "label": "0.5 kg", "price": 1199 },
-      { "label": "1 kg", "price": 2099 }
-    ],
-    "ingredients": ["Cream cheese", "Biscuit base", "Vanilla", "Cane sugar"],
-    "allergens": ["Gluten", "Dairy"]
+    "bestseller": false,
+    "description": "Eggless pastry slice — 100% eggless.",
+    "longDescription": "Black Forest, from the Gharelu menu. Eggless pastry slice, 100% eggless and made fresh in small batches.",
+    "flavour": "Black Forest",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
   },
   {
-    "id": "blueberry-cheesecake",
-    "name": "Blueberry Cheesecake",
-    "category": "Fresh Fruit",
-    "collection": "Cheesecakes",
-    "price": 1249,
+    "id": "pastries-chocolate-tiramisu",
+    "name": "Chocolate Tiramisu",
+    "category": "Pastries",
+    "collection": "Pastries",
+    "price": 190,
     "image": "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=1200&q=80",
     "gallery": [
-      "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=80",
-      "https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg?auto=compress&cs=tinysrgb&w=1200"
+      "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=1200&q=80"
     ],
-    "tag": "Seasonal",
-    "rating": 4.7,
-    "reviews": 82,
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
     "featured": false,
     "bestseller": false,
-    "description": "Creamy cheesecake crowned with wild blueberry compote.",
-    "longDescription": "Tart meets creamy — our signature baked cheesecake crowned with a glossy wild blueberry compote. A perfect balance of sweet and bright.",
-    "flavour": "Blueberry",
-    "sizes": [
-      { "label": "0.5 kg", "price": 1249 },
-      { "label": "1 kg", "price": 2199 }
-    ],
-    "ingredients": ["Cream cheese", "Blueberries", "Biscuit base", "Cane sugar"],
-    "allergens": ["Gluten", "Dairy"]
+    "description": "Eggless pastry slice — 100% eggless.",
+    "longDescription": "Chocolate Tiramisu, from the Gharelu menu. Eggless pastry slice, 100% eggless and made fresh in small batches.",
+    "flavour": "Chocolate Tiramisu",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
   },
   {
-    "id": "glazed-doughnut-dozen",
-    "name": "Glazed Doughnut Dozen",
-    "category": "Box of 12",
+    "id": "pastries-belgian-chocolate",
+    "name": "Belgian Chocolate",
+    "category": "Pastries",
     "collection": "Pastries",
-    "price": 549,
-    "image": "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=1200&q=80",
+    "price": 230,
+    "image": "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=1200&q=80",
     "gallery": [
-      "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1557925923-cd4648e211a0?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=1200&q=80"
     ],
-    "tag": "Loved",
-    "rating": 4.6,
-    "reviews": 95,
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
     "featured": false,
     "bestseller": false,
-    "description": "A dozen soft, fluffy doughnuts with a classic sugar glaze.",
-    "longDescription": "Simple pleasures — a dozen soft, fluffy ring doughnuts dipped in a glossy classic sugar glaze. Best shared, though we won't judge.",
-    "flavour": "Classic Glaze",
-    "sizes": [
-      { "label": "Box of 6", "price": 299 },
-      { "label": "Box of 12", "price": 549 }
-    ],
-    "ingredients": ["Wheat flour", "Cane sugar", "Butter", "Vanilla"],
-    "allergens": ["Gluten", "Dairy"]
+    "description": "Eggless pastry slice — 100% eggless.",
+    "longDescription": "Belgian Chocolate, from the Gharelu menu. Eggless pastry slice, 100% eggless and made fresh in small batches.",
+    "flavour": "Belgian Chocolate",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
   },
   {
-    "id": "pink-velvet-doughnuts",
-    "name": "Pink Velvet Doughnuts",
-    "category": "Box of 6",
+    "id": "pastries-german-truffle",
+    "name": "German Truffle",
+    "category": "Pastries",
     "collection": "Pastries",
-    "price": 599,
-    "image": "https://images.unsplash.com/photo-1557925923-cd4648e211a0?auto=format&fit=crop&w=1200&q=80",
+    "price": 170,
+    "image": "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=80",
     "gallery": [
-      "https://images.unsplash.com/photo-1557925923-cd4648e211a0?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1622995706580-a332aed41cdf?auto=format&fit=crop&w=1200&q=80"
+      "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=80"
     ],
-    "tag": "New",
-    "rating": 4.7,
-    "reviews": 58,
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
     "featured": false,
     "bestseller": false,
-    "description": "Rose-glazed doughnuts finished with delicate sprinkles.",
-    "longDescription": "As pretty as they are moreish — soft doughnuts dipped in a delicate rose glaze and finished with a scatter of pastel sprinkles.",
-    "flavour": "Rose",
-    "sizes": [
-      { "label": "Box of 6", "price": 599 },
-      { "label": "Box of 12", "price": 1099 }
-    ],
-    "ingredients": ["Rose glaze", "Wheat flour", "Cane sugar", "Butter"],
-    "allergens": ["Gluten", "Dairy"]
+    "description": "Eggless pastry slice — 100% eggless.",
+    "longDescription": "German Truffle, from the Gharelu menu. Eggless pastry slice, 100% eggless and made fresh in small batches.",
+    "flavour": "German Truffle",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
   },
   {
-    "id": "assorted-pastry-platter",
-    "name": "Assorted Pastry Platter",
-    "category": "Sharing Box",
+    "id": "pastries-rainbow",
+    "name": "Rainbow",
+    "category": "Pastries",
     "collection": "Pastries",
+    "price": 150,
+    "image": "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless pastry slice — 100% eggless.",
+    "longDescription": "Rainbow, from the Gharelu menu. Eggless pastry slice, 100% eggless and made fresh in small batches.",
+    "flavour": "Rainbow",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "pastries-trio-slice",
+    "name": "Trio Slice",
+    "category": "Pastries",
+    "collection": "Pastries",
+    "price": 170,
+    "image": "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless pastry slice — 100% eggless.",
+    "longDescription": "Trio Slice, from the Gharelu menu. Eggless pastry slice, 100% eggless and made fresh in small batches.",
+    "flavour": "Trio Slice",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "pastries-ny-cheesecake",
+    "name": "NY Cheesecake",
+    "category": "Pastries",
+    "collection": "Pastries",
+    "price": 190,
+    "image": "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless pastry slice — 100% eggless.",
+    "longDescription": "NY Cheesecake, from the Gharelu menu. Eggless pastry slice, 100% eggless and made fresh in small batches.",
+    "flavour": "NY Cheesecake",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "pastries-lotus-biscoff",
+    "name": "Lotus Biscoff",
+    "category": "Pastries",
+    "collection": "Pastries",
+    "price": 210,
+    "image": "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": true,
+    "bestseller": false,
+    "description": "Eggless pastry slice — 100% eggless.",
+    "longDescription": "Lotus Biscoff, from the Gharelu menu. Eggless pastry slice, 100% eggless and made fresh in small batches.",
+    "flavour": "Lotus Biscoff",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "pastries-oreo-nutella",
+    "name": "Oreo Nutella",
+    "category": "Pastries",
+    "collection": "Pastries",
+    "price": 190,
+    "image": "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless pastry slice — 100% eggless.",
+    "longDescription": "Oreo Nutella, from the Gharelu menu. Eggless pastry slice, 100% eggless and made fresh in small batches.",
+    "flavour": "Oreo Nutella",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "pastries-opera",
+    "name": "Opera",
+    "category": "Pastries",
+    "collection": "Pastries",
+    "price": 190,
+    "image": "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless pastry slice — 100% eggless.",
+    "longDescription": "Opera, from the Gharelu menu. Eggless pastry slice, 100% eggless and made fresh in small batches.",
+    "flavour": "Opera",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "pastries-tiramisu",
+    "name": "Tiramisu",
+    "category": "Pastries",
+    "collection": "Pastries",
+    "price": 170,
+    "image": "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless pastry slice — 100% eggless.",
+    "longDescription": "Tiramisu, from the Gharelu menu. Eggless pastry slice, 100% eggless and made fresh in small batches.",
+    "flavour": "Tiramisu",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "pastries-fresh-fruit-slice",
+    "name": "Fresh Fruit Slice",
+    "category": "Pastries",
+    "collection": "Pastries",
+    "price": 150,
+    "image": "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless pastry slice — 100% eggless.",
+    "longDescription": "Fresh Fruit Slice, from the Gharelu menu. Eggless pastry slice, 100% eggless and made fresh in small batches.",
+    "flavour": "Fresh Fruit Slice",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "pastries-blueberry-cheesecake",
+    "name": "Blueberry Cheesecake",
+    "category": "Pastries",
+    "collection": "Pastries",
+    "price": 190,
+    "image": "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless pastry slice — 100% eggless.",
+    "longDescription": "Blueberry Cheesecake, from the Gharelu menu. Eggless pastry slice, 100% eggless and made fresh in small batches.",
+    "flavour": "Blueberry Cheesecake",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "dry-cakes-banana-walnut",
+    "name": "Banana Walnut",
+    "category": "Dry Cakes",
+    "collection": "Dry Cakes",
+    "price": 800,
+    "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless bakes — 100% eggless.",
+    "longDescription": "Banana Walnut, from the Gharelu menu. Eggless bakes, 100% eggless and made fresh in small batches.",
+    "flavour": "Banana Walnut",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "dry-cakes-honey-almond",
+    "name": "Honey Almond",
+    "category": "Dry Cakes",
+    "collection": "Dry Cakes",
+    "price": 800,
+    "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless bakes — 100% eggless.",
+    "longDescription": "Honey Almond, from the Gharelu menu. Eggless bakes, 100% eggless and made fresh in small batches.",
+    "flavour": "Honey Almond",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "dry-cakes-fudgy-brownie",
+    "name": "Fudgy Brownie",
+    "category": "Dry Cakes",
+    "collection": "Dry Cakes",
+    "price": 150,
+    "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": true,
+    "bestseller": false,
+    "description": "Eggless bakes — 100% eggless.",
+    "longDescription": "Fudgy Brownie, from the Gharelu menu. Eggless bakes, 100% eggless and made fresh in small batches.",
+    "flavour": "Fudgy Brownie",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "dry-cakes-carrot-cake",
+    "name": "Carrot Cake",
+    "category": "Dry Cakes",
+    "collection": "Dry Cakes",
+    "price": 800,
+    "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless bakes — 100% eggless.",
+    "longDescription": "Carrot Cake, from the Gharelu menu. Eggless bakes, 100% eggless and made fresh in small batches.",
+    "flavour": "Carrot Cake",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "dry-cakes-lemon-tea-cake",
+    "name": "Lemon Tea Cake",
+    "category": "Dry Cakes",
+    "collection": "Dry Cakes",
+    "price": 800,
+    "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless bakes — 100% eggless.",
+    "longDescription": "Lemon Tea Cake, from the Gharelu menu. Eggless bakes, 100% eggless and made fresh in small batches.",
+    "flavour": "Lemon Tea Cake",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "dry-cakes-brookie",
+    "name": "Brookie",
+    "category": "Dry Cakes",
+    "collection": "Dry Cakes",
+    "price": 150,
+    "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless bakes — 100% eggless.",
+    "longDescription": "Brookie, from the Gharelu menu. Eggless bakes, 100% eggless and made fresh in small batches.",
+    "flavour": "Brookie",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "dry-cakes-blueberry-muffin",
+    "name": "Blueberry Muffin",
+    "category": "Dry Cakes",
+    "collection": "Dry Cakes",
+    "price": 150,
+    "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless bakes — 100% eggless.",
+    "longDescription": "Blueberry Muffin, from the Gharelu menu. Eggless bakes, 100% eggless and made fresh in small batches.",
+    "flavour": "Blueberry Muffin",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "dry-cakes-chocochip-muffin",
+    "name": "Chocochip Muffin",
+    "category": "Dry Cakes",
+    "collection": "Dry Cakes",
+    "price": 150,
+    "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless bakes — 100% eggless.",
+    "longDescription": "Chocochip Muffin, from the Gharelu menu. Eggless bakes, 100% eggless and made fresh in small batches.",
+    "flavour": "Chocochip Muffin",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "dry-cakes-chocolava",
+    "name": "Chocolava",
+    "category": "Dry Cakes",
+    "collection": "Dry Cakes",
+    "price": 150,
+    "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless bakes — 100% eggless.",
+    "longDescription": "Chocolava, from the Gharelu menu. Eggless bakes, 100% eggless and made fresh in small batches.",
+    "flavour": "Chocolava",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "chocolates-almond-rocks",
+    "name": "Almond Rocks",
+    "category": "Chocolates",
+    "collection": "Chocolates",
+    "price": 40,
+    "image": "https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Handmade chocolate — 100% eggless.",
+    "longDescription": "Almond Rocks, from the Gharelu menu. Handmade chocolate, 100% eggless and made fresh in small batches.",
+    "flavour": "Almond Rocks",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "chocolates-gharelu-special-chocolate-sf",
+    "name": "Gharelu Special Chocolate - SF",
+    "category": "Sugar Free",
+    "collection": "Chocolates",
+    "price": 50,
+    "image": "https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": "Sugar Free",
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Handmade chocolate — 100% eggless.",
+    "longDescription": "Gharelu Special Chocolate - SF, from the Gharelu menu. Handmade chocolate, 100% eggless and made fresh in small batches.",
+    "flavour": "Gharelu Special Chocolate - SF",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "chocolates-snicker-stuffed-dates",
+    "name": "Snicker Stuffed Dates",
+    "category": "Chocolates",
+    "collection": "Chocolates",
+    "price": 50,
+    "image": "https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Handmade chocolate — 100% eggless.",
+    "longDescription": "Snicker Stuffed Dates, from the Gharelu menu. Handmade chocolate, 100% eggless and made fresh in small batches.",
+    "flavour": "Snicker Stuffed Dates",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "chocolates-chocolate-bar",
+    "name": "Chocolate Bar",
+    "category": "Chocolates",
+    "collection": "Chocolates",
+    "price": 150,
+    "image": "https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Handmade chocolate — 100% eggless.",
+    "longDescription": "Chocolate Bar, from the Gharelu menu. Handmade chocolate, 100% eggless and made fresh in small batches.",
+    "flavour": "Chocolate Bar",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "cookies-double-chocolate-dotted-cookies",
+    "name": "Double Chocolate Dotted Cookies",
+    "category": "Cookies",
+    "collection": "Cookies",
+    "price": 60,
+    "image": "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless cookie — 100% eggless.",
+    "longDescription": "Double Chocolate Dotted Cookies, from the Gharelu menu. Eggless cookie, 100% eggless and made fresh in small batches.",
+    "flavour": "Double Chocolate Dotted Cookies",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "cookies-centre-filled-dark-chocolate-cookies",
+    "name": "Centre Filled Dark Chocolate Cookies",
+    "category": "Cookies",
+    "collection": "Cookies",
+    "price": 60,
+    "image": "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless cookie — 100% eggless.",
+    "longDescription": "Centre Filled Dark Chocolate Cookies, from the Gharelu menu. Eggless cookie, 100% eggless and made fresh in small batches.",
+    "flavour": "Centre Filled Dark Chocolate Cookies",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "cookies-almond-cookies",
+    "name": "Almond Cookies",
+    "category": "Cookies",
+    "collection": "Cookies",
+    "price": 60,
+    "image": "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless cookie — 100% eggless.",
+    "longDescription": "Almond Cookies, from the Gharelu menu. Eggless cookie, 100% eggless and made fresh in small batches.",
+    "flavour": "Almond Cookies",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "cookies-red-velvet-cookies",
+    "name": "Red Velvet Cookies",
+    "category": "Cookies",
+    "collection": "Cookies",
+    "price": 60,
+    "image": "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless cookie — 100% eggless.",
+    "longDescription": "Red Velvet Cookies, from the Gharelu menu. Eggless cookie, 100% eggless and made fresh in small batches.",
+    "flavour": "Red Velvet Cookies",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "cookies-coconut-cookies",
+    "name": "Coconut Cookies",
+    "category": "Cookies",
+    "collection": "Cookies",
+    "price": 50,
+    "image": "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless cookie — 100% eggless.",
+    "longDescription": "Coconut Cookies, from the Gharelu menu. Eggless cookie, 100% eggless and made fresh in small batches.",
+    "flavour": "Coconut Cookies",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "cookies-coffee-walnut-cookies",
+    "name": "Coffee Walnut Cookies",
+    "category": "Cookies",
+    "collection": "Cookies",
+    "price": 50,
+    "image": "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless cookie — 100% eggless.",
+    "longDescription": "Coffee Walnut Cookies, from the Gharelu menu. Eggless cookie, 100% eggless and made fresh in small batches.",
+    "flavour": "Coffee Walnut Cookies",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "cookies-butter-cookies",
+    "name": "Butter Cookies",
+    "category": "Cookies",
+    "collection": "Cookies",
+    "price": 50,
+    "image": "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless cookie — 100% eggless.",
+    "longDescription": "Butter Cookies, from the Gharelu menu. Eggless cookie, 100% eggless and made fresh in small batches.",
+    "flavour": "Butter Cookies",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "cookies-nan-khatai-cookies",
+    "name": "Nan Khatai Cookies",
+    "category": "Cookies",
+    "collection": "Cookies",
+    "price": 50,
+    "image": "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless cookie — 100% eggless.",
+    "longDescription": "Nan Khatai Cookies, from the Gharelu menu. Eggless cookie, 100% eggless and made fresh in small batches.",
+    "flavour": "Nan Khatai Cookies",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "cookies-oatmeal-cookies",
+    "name": "Oatmeal Cookies",
+    "category": "Sugar Free",
+    "collection": "Cookies",
+    "price": 60,
+    "image": "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "tag": "Sugar Free",
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless cookie — 100% eggless.",
+    "longDescription": "Oatmeal Cookies, from the Gharelu menu. Eggless cookie, 100% eggless and made fresh in small batches.",
+    "flavour": "Oatmeal Cookies",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "cookies-whole-wheat-cookies",
+    "name": "Whole Wheat Cookies",
+    "category": "Sugar Free",
+    "collection": "Cookies",
+    "price": 60,
+    "image": "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "tag": "Sugar Free",
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless cookie — 100% eggless.",
+    "longDescription": "Whole Wheat Cookies, from the Gharelu menu. Eggless cookie, 100% eggless and made fresh in small batches.",
+    "flavour": "Whole Wheat Cookies",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "cookies-ajwain-cookies-sf",
+    "name": "Ajwain Cookies - SF",
+    "category": "Sugar Free",
+    "collection": "Cookies",
+    "price": 60,
+    "image": "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "tag": "Sugar Free",
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless cookie — 100% eggless.",
+    "longDescription": "Ajwain Cookies - SF, from the Gharelu menu. Eggless cookie, 100% eggless and made fresh in small batches.",
+    "flavour": "Ajwain Cookies - SF",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "cookies-almond-cookies-sf",
+    "name": "Almond Cookies - SF",
+    "category": "Sugar Free",
+    "collection": "Cookies",
+    "price": 60,
+    "image": "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "tag": "Sugar Free",
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Eggless cookie — 100% eggless.",
+    "longDescription": "Almond Cookies - SF, from the Gharelu menu. Eggless cookie, 100% eggless and made fresh in small batches.",
+    "flavour": "Almond Cookies - SF",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "savoury-gharelu-special-sandwich",
+    "name": "Gharelu Special Sandwich",
+    "category": "Savoury",
+    "collection": "Savoury",
+    "price": 200,
+    "image": "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Freshly made savoury — 100% eggless.",
+    "longDescription": "Gharelu Special Sandwich, from the Gharelu menu. Freshly made savoury, 100% eggless and made fresh in small batches.",
+    "flavour": "Gharelu Special Sandwich",
+    "sizes": [
+      {
+        "label": "Half",
+        "price": 200
+      },
+      {
+        "label": "Full",
+        "price": 380
+      }
+    ],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "savoury-genuine-paneer-sandwich",
+    "name": "Genuine Paneer Sandwich",
+    "category": "Savoury",
+    "collection": "Savoury",
+    "price": 200,
+    "image": "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Freshly made savoury — 100% eggless.",
+    "longDescription": "Genuine Paneer Sandwich, from the Gharelu menu. Freshly made savoury, 100% eggless and made fresh in small batches.",
+    "flavour": "Genuine Paneer Sandwich",
+    "sizes": [
+      {
+        "label": "Half",
+        "price": 200
+      },
+      {
+        "label": "Full",
+        "price": 380
+      }
+    ],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "savoury-hung-curd-sandwich",
+    "name": "Hung Curd Sandwich",
+    "category": "Savoury",
+    "collection": "Savoury",
+    "price": 200,
+    "image": "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Freshly made savoury — 100% eggless.",
+    "longDescription": "Hung Curd Sandwich, from the Gharelu menu. Freshly made savoury, 100% eggless and made fresh in small batches.",
+    "flavour": "Hung Curd Sandwich",
+    "sizes": [
+      {
+        "label": "Half",
+        "price": 200
+      },
+      {
+        "label": "Full",
+        "price": 340
+      }
+    ],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "savoury-gharelu-special-hot-dog",
+    "name": "Gharelu Special Hot Dog",
+    "category": "Savoury",
+    "collection": "Savoury",
+    "price": 150,
+    "image": "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Freshly made savoury — 100% eggless.",
+    "longDescription": "Gharelu Special Hot Dog, from the Gharelu menu. Freshly made savoury, 100% eggless and made fresh in small batches.",
+    "flavour": "Gharelu Special Hot Dog",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "savoury-avocado-toast",
+    "name": "Avocado Toast",
+    "category": "Savoury",
+    "collection": "Savoury",
+    "price": 180,
+    "image": "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Freshly made savoury — 100% eggless.",
+    "longDescription": "Avocado Toast, from the Gharelu menu. Freshly made savoury, 100% eggless and made fresh in small batches.",
+    "flavour": "Avocado Toast",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "jars-fruit-custard",
+    "name": "Fruit Custard",
+    "category": "Jars",
+    "collection": "Jars",
+    "price": 170,
+    "image": "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Dessert jar — 100% eggless.",
+    "longDescription": "Fruit Custard, from the Gharelu menu. Dessert jar, 100% eggless and made fresh in small batches.",
+    "flavour": "Fruit Custard",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "jars-tiramisu",
+    "name": "Tiramisu",
+    "category": "Jars",
+    "collection": "Jars",
+    "price": 170,
+    "image": "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Dessert jar — 100% eggless.",
+    "longDescription": "Tiramisu, from the Gharelu menu. Dessert jar, 100% eggless and made fresh in small batches.",
+    "flavour": "Tiramisu",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "jars-red-velvet",
+    "name": "Red Velvet",
+    "category": "Jars",
+    "collection": "Jars",
+    "price": 170,
+    "image": "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Dessert jar — 100% eggless.",
+    "longDescription": "Red Velvet, from the Gharelu menu. Dessert jar, 100% eggless and made fresh in small batches.",
+    "flavour": "Red Velvet",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "drinks-coffee",
+    "name": "Coffee",
+    "category": "Drinks",
+    "collection": "Drinks",
+    "price": 180,
+    "image": "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Refreshing drink — 100% eggless.",
+    "longDescription": "Coffee, from the Gharelu menu. Refreshing drink, 100% eggless and made fresh in small batches.",
+    "flavour": "Coffee",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "drinks-peach-ice-tea",
+    "name": "Peach Ice Tea",
+    "category": "Drinks",
+    "collection": "Drinks",
+    "price": 150,
+    "image": "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Refreshing drink — 100% eggless.",
+    "longDescription": "Peach Ice Tea, from the Gharelu menu. Refreshing drink, 100% eggless and made fresh in small batches.",
+    "flavour": "Peach Ice Tea",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "drinks-lemon-ice-tea",
+    "name": "Lemon Ice Tea",
+    "category": "Drinks",
+    "collection": "Drinks",
+    "price": 150,
+    "image": "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": null,
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Refreshing drink — 100% eggless.",
+    "longDescription": "Lemon Ice Tea, from the Gharelu menu. Refreshing drink, 100% eggless and made fresh in small batches.",
+    "flavour": "Lemon Ice Tea",
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "classic-hamper",
+    "name": "Classic Hamper",
+    "category": "Hampers",
+    "collection": "Hampers",
     "price": 799,
+    "image": "https://images.pexels.com/photos/31266998/pexels-photo-31266998.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "gallery": [
+      "https://images.pexels.com/photos/31266998/pexels-photo-31266998.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.pexels.com/photos/29051739/pexels-photo-29051739.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.pexels.com/photos/1721932/pexels-photo-1721932.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    ],
+    "tag": "Classic",
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "A box of six handpicked eggless bakes — the perfect everyday gift.",
+    "longDescription": "A box of six handpicked eggless bakes — the perfect everyday gift. Includes: Almond Cookies, Butter Cookies, Fudgy Brownie, Chocolate Bar, Blueberry Muffin, Banana Walnut Cake.",
+    "flavour": null,
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "classic-hamper-max",
+    "name": "Classic Hamper Max",
+    "category": "Hampers",
+    "collection": "Hampers",
+    "price": 1199,
     "image": "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=1200&q=80",
     "gallery": [
       "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80"
+      "https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80"
     ],
-    "tag": "Bestseller",
-    "rating": 4.8,
-    "reviews": 124,
-    "featured": false,
-    "bestseller": true,
-    "description": "A curated sharing platter of our finest daily pastries.",
-    "longDescription": "The best of the bakery in one box — a curated sharing platter of our finest daily pastries, hand-selected each morning. Perfect for gatherings.",
-    "flavour": "Assorted",
-    "sizes": [
-      { "label": "Platter of 8", "price": 799 },
-      { "label": "Platter of 16", "price": 1499 }
-    ],
-    "ingredients": ["Seasonal selection", "Wheat flour", "Butter", "Fresh cream"],
-    "allergens": ["Gluten", "Dairy", "Nuts"]
-  },
-  {
-    "id": "choco-chip-cookie",
-    "name": "Choco Chip Cookie",
-    "category": "Cookies",
-    "collection": "Cookies",
-    "price": 249,
-    "oldPrice": 299,
-    "image": "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    "gallery": [
-      "https://images.pexels.com/photos/1626668/pexels-photo-1626668.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      "https://images.pexels.com/photos/2372537/pexels-photo-2372537.jpeg?auto=compress&cs=tinysrgb&w=1200"
-    ],
-    "tag": "New",
-    "rating": 4.7,
-    "reviews": 32,
+    "tag": "Bigger Box",
+    "rating": 0,
+    "reviews": 0,
     "featured": false,
     "bestseller": false,
-    "description": "Crisp-edged, gooey-centre choco chip cookies, baked fresh daily.",
-    "longDescription": "Loaded with Belgian chocolate chunks and baked to that perfect crisp-outside, chewy-inside finish.",
-    "flavour": "Chocolate Chip",
-    "sizes": [
-      { "label": "Box of 6", "price": 249 },
-      { "label": "Box of 12", "price": 449 }
+    "description": "The Classic selection in a bigger, more generous box.",
+    "longDescription": "The Classic selection in a bigger, more generous box. Includes: Nan Khatai Cookies, Coconut Cookies, Fudgy Brownie, Brookie, Chocolava, Honey Almond Cake.",
+    "flavour": null,
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "signature-hamper",
+    "name": "Signature Hamper",
+    "category": "Hampers",
+    "collection": "Hampers",
+    "price": 1499,
+    "image": "https://images.pexels.com/photos/29051739/pexels-photo-29051739.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/29051739/pexels-photo-29051739.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.pexels.com/photos/1721932/pexels-photo-1721932.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1200&q=80"
     ],
-    "ingredients": ["Wheat flour", "Butter", "Chocolate chunks", "Cane sugar"],
-    "allergens": ["Gluten", "Dairy"]
+    "tag": "Most Popular",
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Our signature bakes, beautifully boxed and ready to gift.",
+    "longDescription": "Our signature bakes, beautifully boxed and ready to gift. Includes: Red Velvet Cookies, Double Chocolate Cookies, Snicker Stuffed Dates, Gharelu Special Chocolate, Carrot Cake, Chocochip Muffin.",
+    "flavour": null,
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "signature-hamper-max",
+    "name": "Signature Hamper Max",
+    "category": "Hampers",
+    "collection": "Hampers",
+    "price": 1999,
+    "image": "https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": "Bigger Box",
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "The Signature selection, bigger — made for sharing.",
+    "longDescription": "The Signature selection, bigger — made for sharing. Includes: Coffee Walnut Cookies, Centre Filled Dark Chocolate Cookies, Almond Rocks, Lemon Tea Cake, Brookie, Chocolava.",
+    "flavour": null,
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "luxe-hamper",
+    "name": "Luxe Hamper",
+    "category": "Hampers",
+    "collection": "Hampers",
+    "price": 2499,
+    "image": "https://images.pexels.com/photos/1721932/pexels-photo-1721932.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "gallery": [
+      "https://images.pexels.com/photos/1721932/pexels-photo-1721932.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": "Premium",
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "A premium box of our finest eggless treats for special moments.",
+    "longDescription": "A premium box of our finest eggless treats for special moments. Includes: Belgian Chocolate Cupcake, Red Velvet Cupcake, Lotus Biscoff Pastry, NY Cheesecake Slice, Almond Rocks, Snicker Stuffed Dates.",
+    "flavour": null,
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
+  },
+  {
+    "id": "luxe-hamper-max",
+    "name": "Luxe Hamper Max",
+    "category": "Hampers",
+    "collection": "Hampers",
+    "price": 3299,
+    "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "tag": "Premium · Bigger",
+    "rating": 0,
+    "reviews": 0,
+    "featured": false,
+    "bestseller": false,
+    "description": "Our most indulgent hamper — the Luxe selection, bigger.",
+    "longDescription": "Our most indulgent hamper — the Luxe selection, bigger. Includes: Belgian Chocolate Pastry, Tiramisu Pastry, Opera Pastry, Blueberry Cheesecake, Lotus Biscoff Pastry, Gharelu Special Chocolate.",
+    "flavour": null,
+    "sizes": [],
+    "ingredients": [],
+    "allergens": []
   }
 ]

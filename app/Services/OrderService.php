@@ -33,7 +33,11 @@ class OrderService
             return DB::transaction(function () use ($data, $user, $idempotencyKey) {
                 [$lineItems, $subtotal] = $this->buildLineItems($data['items']);
 
-                $deliveryFee = $this->deliveryFeeService->calculate($data['delivery_mode'], $subtotal);
+                $deliveryFee = $this->deliveryFeeService->calculate(
+                    $data['delivery_mode'],
+                    $data['pincode'] ?? null,
+                    $this->totalWeightKg($lineItems),
+                );
                 $total = $subtotal + $deliveryFee;
 
                 $addressId = null;
@@ -102,10 +106,10 @@ class OrderService
      *
      * @return array{items: array<int, array>, subtotal: float, deliveryFee: float, total: float}
      */
-    public function calculateCart(array $items, string $deliveryMode = 'pickup'): array
+    public function calculateCart(array $items, string $deliveryMode = 'pickup', ?string $pincode = null): array
     {
         [$lineItems, $subtotal] = $this->buildLineItems($items);
-        $deliveryFee = $this->deliveryFeeService->calculate($deliveryMode, $subtotal);
+        $deliveryFee = $this->deliveryFeeService->calculate($deliveryMode, $pincode, $this->totalWeightKg($lineItems));
 
         return [
             'items' => $lineItems,
@@ -172,6 +176,7 @@ class OrderService
                 // createOrder(), and needed for the cart endpoint's response.
                 'product_slug' => $product->slug,
                 'product_name' => $product->name,
+                'weight_grams' => $product->weight_grams,
                 'product_image' => $primaryImage?->path,
                 'size_label' => $sizeLabel,
                 'unit_price' => $unitPrice,
@@ -181,6 +186,19 @@ class OrderService
         }
 
         return [$lineItems, round($subtotal, 2)];
+    }
+
+    /** Net product weight in kg; products without a weight use the configured default. */
+    private function totalWeightKg(array $lineItems): float
+    {
+        $defaultGrams = (int) round(config('services.shiprocket.default_item_weight_kg') * 1000);
+
+        $grams = 0;
+        foreach ($lineItems as $item) {
+            $grams += ($item['weight_grams'] ?? $defaultGrams) * $item['quantity'];
+        }
+
+        return $grams / 1000;
     }
 
     private function generateUniqueOrderNumber(): string

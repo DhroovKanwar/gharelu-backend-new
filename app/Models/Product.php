@@ -21,6 +21,7 @@ class Product extends Model
         'long_description',
         'flavour',
         'base_price',
+        'weight_grams',
         'old_price',
         'ingredients',
         'allergens',

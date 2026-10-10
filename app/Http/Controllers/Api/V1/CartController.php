@@ -20,6 +20,7 @@ class CartController extends Controller
         $result = $this->orderService->calculateCart(
             $data['items'],
             $data['delivery_mode'] ?? 'pickup',
+            $data['pincode'] ?? null,
         );
 
         return response()->json([

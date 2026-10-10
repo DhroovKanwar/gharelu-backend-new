@@ -28,6 +28,18 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'shiprocket' => [
+        'email' => env('SHIPROCKET_EMAIL'),
+        'password' => env('SHIPROCKET_PASSWORD'),
+        'pickup_pincode' => env('SHIPROCKET_PICKUP_PINCODE'),
+        // No per-product weight in the catalog yet, so each unit is assumed
+        // to ship at this weight (kg). Packaging weight is added once.
+        'default_item_weight_kg' => (float) env('SHIPROCKET_ITEM_WEIGHT_KG', 0.5),
+        'packaging_weight_kg' => (float) env('SHIPROCKET_PACKAGING_WEIGHT_KG', 0.3),
+        // Used when Shiprocket is unreachable or has no courier quote.
+        'fallback_fee' => (float) env('SHIPROCKET_FALLBACK_FEE', 99),
+    ],
+
     'slack' => [
         'notifications' => [
             'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),

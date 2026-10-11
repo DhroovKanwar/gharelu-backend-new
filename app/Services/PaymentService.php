@@ -13,6 +13,7 @@ class PaymentService
 {
     public function __construct(
         private readonly RazorpayService $razorpay,
+        private readonly ShiprocketOrderSync $shiprocketSync,
     ) {}
 
     /**
@@ -109,7 +110,7 @@ class PaymentService
             ]);
         }
 
-        return DB::transaction(function () use ($payment, $razorpayPaymentId, $signature) {
+        $order = DB::transaction(function () use ($payment, $razorpayPaymentId, $signature) {
             $lockedPayment = Payment::where('id', $payment->id)->lockForUpdate()->first();
             $order = Order::where('id', $lockedPayment->order_id)->lockForUpdate()->first();
 
@@ -142,6 +143,12 @@ class PaymentService
 
             return $order->refresh();
         });
+
+        // Outside the transaction, and never throws: a Shiprocket problem
+        // must not fail a payment that has already been captured.
+        $this->shiprocketSync->push($order);
+
+        return $order;
     }
 
     /**
@@ -208,7 +215,9 @@ class PaymentService
             return;
         }
 
-        DB::transaction(function () use ($entity) {
+        $paidOrderId = null;
+
+        DB::transaction(function () use ($entity, &$paidOrderId) {
             $payment = Payment::where('razorpay_order_id', $entity['order_id'])->lockForUpdate()->first();
             if (! $payment) {
                 return;
@@ -223,7 +232,13 @@ class PaymentService
             if ($order && $order->payment_status !== 'paid') {
                 $order->update(['payment_status' => 'paid']);
             }
+
+            $paidOrderId = $order?->id;
         });
+
+        if ($paidOrderId && ($order = Order::find($paidOrderId))) {
+            $this->shiprocketSync->push($order);
+        }
     }
 
     private function applyFailed(array $payload): void

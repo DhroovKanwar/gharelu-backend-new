@@ -21,7 +21,7 @@ class UpdateProductSizeRequest extends FormRequest
                     ->where('product_id', $this->route('product')->id)
                     ->ignore($this->route('size')),
             ],
-            'price' => ['sometimes', 'required', 'numeric', 'min:0'],
+            'price' => ['sometimes', 'required', 'numeric', 'decimal:0,2', 'min:'.config('shop.min_price'), 'max:'.config('shop.max_price')],
         ];
     }
 }

@@ -19,7 +19,7 @@ class StoreProductSizeRequest extends FormRequest
                 'required', 'string', 'max:50',
                 Rule::unique('product_sizes', 'label')->where('product_id', $this->route('product')->id),
             ],
-            'price' => ['required', 'numeric', 'min:0'],
+            'price' => ['required', 'numeric', 'decimal:0,2', 'min:'.config('shop.min_price'), 'max:'.config('shop.max_price')],
         ];
     }
 }

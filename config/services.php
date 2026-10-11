@@ -35,9 +35,20 @@ return [
         // No per-product weight in the catalog yet, so each unit is assumed
         // to ship at this weight (kg). Packaging weight is added once.
         'default_item_weight_kg' => (float) env('SHIPROCKET_ITEM_WEIGHT_KG', 0.5),
+        // Name of the pickup address in Shiprocket (Settings > Pickup Addresses).
+        'pickup_location' => env('SHIPROCKET_PICKUP_LOCATION', 'Primary'),
+        // Parcel size (cm) sent with each order. Adjust to the real hamper box.
+        'parcel_length_cm' => (int) env('SHIPROCKET_PARCEL_LENGTH_CM', 25),
+        'parcel_breadth_cm' => (int) env('SHIPROCKET_PARCEL_BREADTH_CM', 20),
+        'parcel_height_cm' => (int) env('SHIPROCKET_PARCEL_HEIGHT_CM', 12),
         'packaging_weight_kg' => (float) env('SHIPROCKET_PACKAGING_WEIGHT_KG', 0.3),
-        // Used when Shiprocket is unreachable or has no courier quote.
-        'fallback_fee' => (float) env('SHIPROCKET_FALLBACK_FEE', 99),
+    ],
+
+    // Own-rider delivery for nearby pincodes: a flat fee instead of a courier
+    // quote. Comma-separated 6-digit pincodes, or prefixes ending in * (e.g. 1406*).
+    'local_delivery' => [
+        'pincodes' => array_filter(array_map('trim', explode(',', (string) env('LOCAL_DELIVERY_PINCODES', '')))),
+        'fee' => (float) env('LOCAL_DELIVERY_FEE', 49),
     ],
 
     'slack' => [

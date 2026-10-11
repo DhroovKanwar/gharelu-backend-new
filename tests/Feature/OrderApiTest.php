@@ -13,6 +13,7 @@ use Tests\TestCase;
 
 class OrderApiTest extends TestCase
 {
+    use \Tests\Concerns\FakesShiprocket;
     use RefreshDatabase;
 
     private function makeProduct(array $attrs = [], array $sizes = [['label' => '0.5 kg', 'price' => 499]]): Product
@@ -213,13 +214,16 @@ class OrderApiTest extends TestCase
             ],
         ]);
 
+        // Delivery orders must be prepaid (no COD) and use the courier rate.
+        $payload['payment_method'] = 'online';
+        $this->fakeShiprocket(rate: 120);
+
         $response = $this->postJson('/api/v1/orders', $payload);
 
-        // subtotal 250 < 999 free-delivery threshold -> flat fee 49
         $response->assertStatus(201)
             ->assertJsonPath('data.subtotal', 250)
-            ->assertJsonPath('data.deliveryFee', 49)
-            ->assertJsonPath('data.total', 299);
+            ->assertJsonPath('data.deliveryFee', 120)
+            ->assertJsonPath('data.total', 370);
     }
 
     public function test_delivery_address_is_required_for_delivery_mode(): void

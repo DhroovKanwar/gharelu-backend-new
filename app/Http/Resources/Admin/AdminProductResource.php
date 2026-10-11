@@ -29,6 +29,7 @@ class AdminProductResource extends JsonResource
             'longDescription' => $this->long_description,
             'flavour' => $this->flavour,
             'basePrice' => (float) $this->base_price,
+            'weightGrams' => $this->weight_grams,
             'oldPrice' => $this->old_price !== null ? (float) $this->old_price : null,
             'ingredients' => $this->ingredients ?? [],
             'allergens' => $this->allergens ?? [],

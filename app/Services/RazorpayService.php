@@ -37,18 +37,28 @@ class RazorpayService
 
     public function verifySignature(string $razorpayOrderId, string $razorpayPaymentId, string $signature): bool
     {
-        $expected = hash_hmac(
-            'sha256',
-            $razorpayOrderId.'|'.$razorpayPaymentId,
-            (string) config('razorpay.key_secret'),
-        );
+        $secret = (string) config('razorpay.key_secret');
+
+        if ($secret === '') {
+            return false;
+        }
+
+        $expected = hash_hmac('sha256', $razorpayOrderId.'|'.$razorpayPaymentId, $secret);
 
         return hash_equals($expected, $signature);
     }
 
     public function verifyWebhookSignature(string $rawPayload, string $signature): bool
     {
-        $expected = hash_hmac('sha256', $rawPayload, (string) config('razorpay.webhook_secret'));
+        $secret = (string) config('razorpay.webhook_secret');
+
+        // Fail closed: with no secret configured, anyone can compute a valid
+        // HMAC (the key would be empty), so every webhook must be rejected.
+        if ($secret === '') {
+            return false;
+        }
+
+        $expected = hash_hmac('sha256', $rawPayload, $secret);
 
         return hash_equals($expected, $signature);
     }

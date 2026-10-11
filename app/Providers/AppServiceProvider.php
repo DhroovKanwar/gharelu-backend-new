@@ -22,14 +22,23 @@ class AppServiceProvider extends ServiceProvider
         // Keyed by IP (not email) so it can't be used to enumerate whether
         // an email is registered, and so one IP can't hammer many accounts.
         RateLimiter::for('auth', function ($request) {
-            return Limit::perMinute(5)->by($request->ip());
+            return [
+                Limit::perMinute(5)->by($request->ip()),
+                // Per target account too, so one account can't be brute-forced
+                // from many IPs. Applies whether or not the email exists, so
+                // it can't be used to enumerate accounts.
+                Limit::perMinute(10)->by('email:'.strtolower((string) $request->input('email'))),
+            ];
         });
 
         // Applied via `throttle:admin-auth` on the admin login endpoint —
         // same shape as 'auth' above, kept separate so tightening one
         // never accidentally affects the other.
         RateLimiter::for('admin-auth', function ($request) {
-            return Limit::perMinute(5)->by($request->ip());
+            return [
+                Limit::perMinute(5)->by($request->ip()),
+                Limit::perMinute(10)->by('admin-email:'.strtolower((string) $request->input('email'))),
+            ];
         });
 
         // Applied via `throttle:orders` on POST /orders. This is on top of

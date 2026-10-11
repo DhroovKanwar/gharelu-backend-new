@@ -19,6 +19,7 @@ class AdminProductTest extends TestCase
             'category_id' => $category->id,
             'name' => 'Chocolate Truffle Cake',
             'base_price' => 599,
+            'weight_grams' => 750,
             'is_active' => true,
         ], $overrides);
     }

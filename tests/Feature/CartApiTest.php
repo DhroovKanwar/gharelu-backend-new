@@ -11,6 +11,7 @@ use Tests\TestCase;
 
 class CartApiTest extends TestCase
 {
+    use \Tests\Concerns\FakesShiprocket;
     use RefreshDatabase;
 
     private function makeProduct(array $attrs = [], array $sizes = [['label' => '0.5 kg', 'price' => 499]]): Product
@@ -66,17 +67,21 @@ class CartApiTest extends TestCase
     {
         $product = $this->makeProduct(sizes: [['label' => '0.5 kg', 'price' => 250]]);
 
+        $this->fakeShiprocket(rate: 120);
+
         $response = $this->postJson('/api/v1/cart/validate', [
             'delivery_mode' => 'delivery',
+            'pincode' => '400001',
             'items' => [
                 ['product_slug' => $product->slug, 'size_label' => '0.5 kg', 'quantity' => 1],
             ],
         ]);
 
+        // Fee is the courier rate for the pincode (no flat fee, no free threshold).
         $response->assertOk()
             ->assertJsonPath('data.subtotal', 250)
-            ->assertJsonPath('data.deliveryFee', 49)
-            ->assertJsonPath('data.total', 299);
+            ->assertJsonPath('data.deliveryFee', 120)
+            ->assertJsonPath('data.total', 370);
     }
 
     public function test_cart_validate_ignores_client_supplied_price(): void

@@ -25,8 +25,10 @@ class UpdateProductRequest extends FormRequest
             'description' => ['sometimes', 'nullable', 'string', 'max:2000'],
             'long_description' => ['sometimes', 'nullable', 'string'],
             'flavour' => ['sometimes', 'nullable', 'string', 'max:255'],
-            'base_price' => ['sometimes', 'required', 'numeric', 'min:0'],
-            'old_price' => ['sometimes', 'nullable', 'numeric', 'min:0'],
+            'base_price' => ['sometimes', 'required', 'numeric', 'decimal:0,2', 'min:'.config('shop.min_price'), 'max:'.config('shop.max_price')],
+            // Not nullable: an edit can set or change the weight but never clear it.
+            'weight_grams' => ['sometimes', 'required', 'integer', 'min:'.config('shop.min_weight_grams'), 'max:'.config('shop.max_weight_grams')],
+            'old_price' => ['sometimes', 'nullable', 'numeric', 'decimal:0,2', 'min:'.config('shop.min_price'), 'max:'.config('shop.max_price')],
             'ingredients' => ['sometimes', 'nullable', 'array'],
             'ingredients.*' => ['string', 'max:100'],
             'allergens' => ['sometimes', 'nullable', 'array'],

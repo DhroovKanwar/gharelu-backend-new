@@ -81,7 +81,7 @@ class ShiprocketService
         return $quote;
     }
 
-    private function token(): string
+    public function token(): string
     {
         $cached = Cache::get('shiprocket.token');
         if ($cached) {

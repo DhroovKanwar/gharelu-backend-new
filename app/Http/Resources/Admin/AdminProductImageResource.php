@@ -13,7 +13,11 @@ class AdminProductImageResource extends JsonResource
         return [
             'id' => $this->id,
             'path' => $this->path,
-            'url' => Storage::disk('public')->url($this->path),
+            // Seeded products store a full external URL; uploads store a
+            // path on the public disk.
+            'url' => preg_match('#^https?://#i', $this->path)
+                ? $this->path
+                : Storage::disk('public')->url($this->path),
             'alt' => $this->alt,
             'sortOrder' => $this->sort_order,
             'isPrimary' => $this->is_primary,

@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
 class OrderService
@@ -188,14 +189,35 @@ class OrderService
         return [$lineItems, round($subtotal, 2)];
     }
 
+    private function randomToken(int $length): string
+    {
+        $alphabet = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'; // no 0/O/1/I/L
+        $token = '';
+        for ($i = 0; $i < $length; $i++) {
+            $token .= $alphabet[random_int(0, strlen($alphabet) - 1)];
+        }
+
+        return $token;
+    }
+
     /** Net product weight in kg; products without a weight use the configured default. */
     private function totalWeightKg(array $lineItems): float
     {
         $defaultGrams = (int) round(config('services.shiprocket.default_item_weight_kg') * 1000);
 
         $grams = 0;
+        $guessed = [];
         foreach ($lineItems as $item) {
+            if (($item['weight_grams'] ?? null) === null) {
+                $guessed[] = $item['product_slug'] ?? $item['product_id'];
+            }
             $grams += ($item['weight_grams'] ?? $defaultGrams) * $item['quantity'];
+        }
+
+        // A guessed weight can under-quote shipping; make that visible so the
+        // missing product weights get filled in (admin product form).
+        if ($guessed !== []) {
+            Log::warning('Shipping weight guessed for products without weight_grams', ['products' => array_values(array_unique($guessed))]);
         }
 
         return $grams / 1000;
@@ -204,7 +226,9 @@ class OrderService
     private function generateUniqueOrderNumber(): string
     {
         do {
-            $candidate = 'GB'.random_int(100000, 999999);
+            // Not guessable: the order number alone authorises guest payment
+            // creation, so it must not be enumerable like GB + 6 digits.
+            $candidate = 'GB'.$this->randomToken(10);
         } while (Order::where('order_number', $candidate)->exists());
 
         return $candidate;

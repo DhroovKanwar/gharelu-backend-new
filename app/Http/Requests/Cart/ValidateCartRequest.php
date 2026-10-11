@@ -19,7 +19,7 @@ class ValidateCartRequest extends FormRequest
     {
         return array_merge($this->cartItemRules(), [
             'delivery_mode' => ['sometimes', 'in:delivery,pickup'],
-            'pincode' => ['sometimes', 'nullable', 'regex:/^[1-9][0-9]{5}$/'],
+            'pincode' => ['required_if:delivery_mode,delivery', 'nullable', 'regex:/^[1-9][0-9]{5}$/'],
         ]);
     }
 }

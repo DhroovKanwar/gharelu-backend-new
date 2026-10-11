@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Order\StoreOrderRequest;
 use App\Http\Resources\OrderResource;
+use App\Http\Resources\OrderTrackingResource;
 use App\Models\Order;
 use App\Services\OrderService;
 use Illuminate\Http\JsonResponse;
@@ -72,7 +73,8 @@ class OrderController extends Controller
             'message' => $orders->isEmpty()
                 ? 'No orders found for this number.'
                 : 'Orders retrieved successfully.',
-            'data' => OrderResource::collection($orders),
+            // Redacted: phone is the only credential here, so no personal details.
+            'data' => OrderTrackingResource::collection($orders),
         ]);
     }
 

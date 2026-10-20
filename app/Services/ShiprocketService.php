@@ -56,6 +56,10 @@ class ShiprocketService
                 Cache::forget('shiprocket.token');
             }
 
+            if (! $response->successful()) {
+                Log::warning('Shiprocket serviceability error', ['status' => $response->status(), 'pincode' => $deliveryPincode, 'body' => mb_substr($response->body(), 0, 300)]);
+            }
+
             $couriers = $response->json('data.available_courier_companies') ?? [];
         } catch (Throwable $e) {
             Log::warning('Shiprocket rate lookup failed', ['error' => $e->getMessage()]);
@@ -103,6 +107,7 @@ class ShiprocketService
 
         if (! $response->successful() || ! $token) {
             Cache::put('shiprocket.login_failed', true, now()->addMinutes(30));
+            Log::error('Shiprocket login failed', ['status' => $response->status(), 'body' => $response->json('message') ?? mb_substr($response->body(), 0, 300)]);
             throw new \RuntimeException('Shiprocket login failed: HTTP '.$response->status());
         }
 

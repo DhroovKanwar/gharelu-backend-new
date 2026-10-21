@@ -5,9 +5,13 @@ return [
 
     'allowed_methods' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
 
-    // Set FRONTEND_URL in .env, e.g. https://gharelubake.com or
-    // http://localhost:3000 for local dev. No wildcard in production.
-    'allowed_origins' => [env('FRONTEND_URL', 'http://localhost:3000')],
+    // Set FRONTEND_URL (storefront) and ADMIN_URL (admin panel, when it is served
+    // from its own origin) in .env, e.g. https://gharelubake.in and
+    // https://admin.gharelubake.in. No wildcard in production.
+    'allowed_origins' => array_values(array_filter([
+        env('FRONTEND_URL', 'http://localhost:3000'),
+        env('ADMIN_URL'),
+    ])),
 
     'allowed_origins_patterns' => [],
 

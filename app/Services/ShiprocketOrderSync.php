@@ -95,7 +95,8 @@ class ShiprocketOrderSync
             'billing_state' => $address->state,
             'billing_country' => 'India',
             'billing_email' => $order->guest_email,
-            'billing_phone' => $order->guest_phone,
+            // Shiprocket wants a bare 10-digit number (no +91, spaces or dashes).
+            'billing_phone' => substr(preg_replace('/\D+/', '', (string) $order->guest_phone), -10),
             'shipping_is_billing' => true,
             'order_items' => $order->items->map(fn ($i) => [
                 'name' => $i->product_name,

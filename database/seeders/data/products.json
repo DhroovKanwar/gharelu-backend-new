@@ -1479,11 +1479,11 @@
     "allergens": []
   },
   {
-    "id": "classic-hamper-max",
+    "id": "classic-hamper-pro",
     "name": "Classic Hamper",
     "category": "Hampers",
     "collection": "Hampers",
-    "price": 1199,
+    "price": 1290,
     "image": "/images/hampers/classic-1.jpg",
     "gallery": [
       "/images/hampers/classic-1.jpg",
@@ -1503,14 +1503,15 @@
     "flavour": null,
     "sizes": [],
     "ingredients": [],
-    "allergens": []
+    "allergens": [],
+    "weight_grams": 750
   },
   {
-    "id": "signature-hamper-max",
+    "id": "signature-hamper-pro",
     "name": "Signature Hamper",
     "category": "Hampers",
     "collection": "Hampers",
-    "price": 1999,
+    "price": 1690,
     "image": "/images/hampers/signature-1.jpg",
     "gallery": [
       "/images/hampers/signature-1.jpg",
@@ -1531,14 +1532,15 @@
     "flavour": null,
     "sizes": [],
     "ingredients": [],
-    "allergens": []
+    "allergens": [],
+    "weight_grams": 500
   },
   {
     "id": "luxe-hamper",
     "name": "Evergreen Hamper",
     "category": "Hampers",
     "collection": "Hampers",
-    "price": 2499,
+    "price": 1390,
     "image": "/images/hampers/evergreen-1.jpg",
     "gallery": [
       "/images/hampers/evergreen-1.jpg",
@@ -1558,14 +1560,15 @@
     "flavour": null,
     "sizes": [],
     "ingredients": [],
-    "allergens": []
+    "allergens": [],
+    "weight_grams": 500
   },
   {
-    "id": "luxe-hamper-max",
+    "id": "luxe-hamper-pro",
     "name": "Luxe Hamper",
     "category": "Hampers",
     "collection": "Hampers",
-    "price": 3299,
+    "price": 2290,
     "image": "/images/hampers/luxe-1.jpg",
     "gallery": [
       "/images/hampers/luxe-1.jpg",
@@ -1583,7 +1586,8 @@
     "flavour": null,
     "sizes": [],
     "ingredients": [],
-    "allergens": []
+    "allergens": [],
+    "weight_grams": 950
   },
   {
     "id": "cake-2-in-1",

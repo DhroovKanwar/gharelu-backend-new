@@ -48,6 +48,7 @@ class ProductSeeder extends Seeder
                     'long_description' => $item['longDescription'] ?? null,
                     'flavour' => $item['flavour'] ?? null,
                     'base_price' => $item['price'],
+                    'weight_grams' => $item['weight_grams'] ?? null,
                     'old_price' => $item['oldPrice'] ?? null,
                     'ingredients' => $item['ingredients'] ?? [],
                     'allergens' => $item['allergens'] ?? [],

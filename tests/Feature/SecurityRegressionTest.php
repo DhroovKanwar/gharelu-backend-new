@@ -13,6 +13,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
 use Tests\Concerns\CreatesAdminUsers;
 use Tests\Concerns\FakesShiprocket;
+use Tests\Concerns\MakesHampers;
 use Tests\TestCase;
 
 /**
@@ -23,6 +24,7 @@ class SecurityRegressionTest extends TestCase
 {
     use CreatesAdminUsers;
     use FakesShiprocket;
+    use MakesHampers;
     use RefreshDatabase;
 
     protected function setUp(): void
@@ -443,7 +445,7 @@ class SecurityRegressionTest extends TestCase
     public function test_delivery_fee_is_the_courier_rate_even_for_large_carts(): void
     {
         $this->fakeShiprocket(rate: 180.5);
-        $product = $this->makeProduct(5000);
+        $product = $this->asHamper($this->makeProduct(5000));
 
         $response = $this->postJson('/api/v1/orders', $this->deliveryPayload($product))->assertCreated();
 
@@ -464,7 +466,7 @@ class SecurityRegressionTest extends TestCase
             '*/auth/login' => Http::response(['token' => 'fake-token']),
             '*/courier/serviceability/*' => Http::response(['data' => ['available_courier_companies' => []]]),
         ]);
-        $product = $this->makeProduct();
+        $product = $this->asHamper($this->makeProduct());
 
         $this->postJson('/api/v1/orders', $this->deliveryPayload($product))
             ->assertStatus(422)

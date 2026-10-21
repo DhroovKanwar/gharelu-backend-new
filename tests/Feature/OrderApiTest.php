@@ -14,6 +14,7 @@ use Tests\TestCase;
 class OrderApiTest extends TestCase
 {
     use \Tests\Concerns\FakesShiprocket;
+    use \Tests\Concerns\MakesHampers;
     use RefreshDatabase;
 
     private function makeProduct(array $attrs = [], array $sizes = [['label' => '0.5 kg', 'price' => 499]]): Product
@@ -200,7 +201,7 @@ class OrderApiTest extends TestCase
 
     public function test_server_calculates_correct_total_including_delivery_fee(): void
     {
-        $product = $this->makeProduct(sizes: [['label' => '0.5 kg', 'price' => 250]]);
+        $product = $this->asHamper($this->makeProduct(sizes: [['label' => '0.5 kg', 'price' => 250]]));
 
         $payload = $this->basePayload($product, [
             'delivery_mode' => 'delivery',
@@ -224,6 +225,50 @@ class OrderApiTest extends TestCase
             ->assertJsonPath('data.subtotal', 250)
             ->assertJsonPath('data.deliveryFee', 120)
             ->assertJsonPath('data.total', 370);
+    }
+
+    public function test_menu_items_cannot_be_delivered(): void
+    {
+        $product = $this->makeProduct(sizes: [['label' => '0.5 kg', 'price' => 250]]);
+
+        $payload = $this->basePayload($product, [
+            'delivery_mode' => 'delivery',
+            'pickup_type' => null,
+            'address_line_1' => '221B Baker Street',
+            'city' => 'Mohali',
+            'state' => 'Punjab',
+            'pincode' => '140603',
+            'payment_method' => 'online',
+            'items' => [['product_slug' => $product->slug, 'size_label' => '0.5 kg', 'quantity' => 1]],
+        ]);
+
+        $this->postJson('/api/v1/orders', $payload)
+            ->assertStatus(422)
+            ->assertJsonValidationErrors('delivery_mode');
+        $this->assertDatabaseCount('orders', 0);
+    }
+
+    public function test_hampers_can_be_picked_up(): void
+    {
+        $hamper = $this->asHamper($this->makeProduct(sizes: [['label' => '0.5 kg', 'price' => 250]]));
+
+        $this->postJson('/api/v1/orders', $this->basePayload($hamper, [
+            'items' => [['product_slug' => $hamper->slug, 'size_label' => '0.5 kg', 'quantity' => 1]],
+        ]))->assertCreated();
+    }
+
+    public function test_hampers_cannot_be_mixed_with_other_menu_items(): void
+    {
+        $hamper = $this->asHamper($this->makeProduct(sizes: [['label' => '0.5 kg', 'price' => 250]]));
+        $cake = $this->makeProduct(sizes: [['label' => '0.5 kg', 'price' => 250]]);
+
+        $this->postJson('/api/v1/orders', $this->basePayload($hamper, [
+            'items' => [
+                ['product_slug' => $hamper->slug, 'size_label' => '0.5 kg', 'quantity' => 1],
+                ['product_slug' => $cake->slug, 'size_label' => '0.5 kg', 'quantity' => 1],
+            ],
+        ]))->assertStatus(422)->assertJsonValidationErrors('items');
+        $this->assertDatabaseCount('orders', 0);
     }
 
     public function test_delivery_address_is_required_for_delivery_mode(): void

@@ -13,6 +13,8 @@ use Illuminate\Validation\ValidationException;
 
 class OrderService
 {
+    private const HAMPER_CATEGORY_SLUG = 'hampers';
+
     public function __construct(
         private readonly DeliveryFeeService $deliveryFeeService,
     ) {}
@@ -33,6 +35,7 @@ class OrderService
         try {
             return DB::transaction(function () use ($data, $user, $idempotencyKey) {
                 [$lineItems, $subtotal] = $this->buildLineItems($data['items']);
+                $this->assertDeliveryModeAllowed($lineItems, $data['delivery_mode']);
 
                 $deliveryFee = $this->deliveryFeeService->calculate(
                     $data['delivery_mode'],
@@ -110,6 +113,7 @@ class OrderService
     public function calculateCart(array $items, string $deliveryMode = 'pickup', ?string $pincode = null): array
     {
         [$lineItems, $subtotal] = $this->buildLineItems($items);
+        $this->assertDeliveryModeAllowed($lineItems, $deliveryMode);
         $deliveryFee = $this->deliveryFeeService->calculate($deliveryMode, $pincode, $this->totalWeightKg($lineItems));
 
         return [
@@ -118,6 +122,31 @@ class OrderService
             'deliveryFee' => $deliveryFee,
             'total' => round($subtotal + $deliveryFee, 2),
         ];
+    }
+
+    /**
+     * Delivery is for hampers only: every other menu item is pickup only, and
+     * hampers cannot share an order with other items.
+     */
+    private function assertDeliveryModeAllowed(array $lineItems, string $deliveryMode): void
+    {
+        $productIds = array_values(array_unique(array_column($lineItems, 'product_id')));
+        $hampers = Product::query()
+            ->whereIn('id', $productIds)
+            ->whereHas('category', fn ($q) => $q->where('slug', self::HAMPER_CATEGORY_SLUG))
+            ->count();
+
+        if ($hampers > 0 && $hampers < count($productIds)) {
+            throw ValidationException::withMessages([
+                'items' => ['Hampers must be ordered separately from other menu items.'],
+            ]);
+        }
+
+        if ($hampers === 0 && $deliveryMode === 'delivery') {
+            throw ValidationException::withMessages([
+                'delivery_mode' => ['Delivery is available for hampers only. Other menu items are pickup only.'],
+            ]);
+        }
     }
 
     /**

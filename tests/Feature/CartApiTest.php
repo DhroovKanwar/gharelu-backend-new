@@ -12,6 +12,7 @@ use Tests\TestCase;
 class CartApiTest extends TestCase
 {
     use \Tests\Concerns\FakesShiprocket;
+    use \Tests\Concerns\MakesHampers;
     use RefreshDatabase;
 
     private function makeProduct(array $attrs = [], array $sizes = [['label' => '0.5 kg', 'price' => 499]]): Product
@@ -65,7 +66,7 @@ class CartApiTest extends TestCase
 
     public function test_cart_validate_applies_delivery_fee_when_requested(): void
     {
-        $product = $this->makeProduct(sizes: [['label' => '0.5 kg', 'price' => 250]]);
+        $product = $this->asHamper($this->makeProduct(sizes: [['label' => '0.5 kg', 'price' => 250]]));
 
         $this->fakeShiprocket(rate: 120);
 

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Tests\Concerns\CreatesAdminUsers;
 use Tests\Concerns\FakesShiprocket;
+use Tests\Concerns\MakesHampers;
 use Tests\TestCase;
 
 /**
@@ -23,6 +24,7 @@ class AdminProductBoundsTest extends TestCase
 {
     use CreatesAdminUsers;
     use FakesShiprocket;
+    use MakesHampers;
     use RefreshDatabase;
 
     private function createProduct(array $overrides = [])
@@ -193,7 +195,7 @@ class AdminProductBoundsTest extends TestCase
     {
         $this->fakeShiprocket(rate: 150);
         config(['services.shiprocket.packaging_weight_kg' => 0.3, 'services.shiprocket.default_item_weight_kg' => 0.5]);
-        $product = $this->existingProduct(['weight_grams' => 500]);
+        $product = $this->asHamper($this->existingProduct(['weight_grams' => 500]));
         ProductImage::factory()->create(['product_id' => $product->id, 'is_primary' => true]);
 
         $this->postJson('/api/v1/orders', $this->deliveryOrderFor($product, 2))->assertCreated();
@@ -217,7 +219,7 @@ class AdminProductBoundsTest extends TestCase
     {
         $this->fakeShiprocket(rate: 150);
         config(['services.shiprocket.packaging_weight_kg' => 0.3, 'services.shiprocket.default_item_weight_kg' => 0.5]);
-        $product = $this->existingProduct(['weight_grams' => null]);
+        $product = $this->asHamper($this->existingProduct(['weight_grams' => null]));
 
         Log::spy();
 

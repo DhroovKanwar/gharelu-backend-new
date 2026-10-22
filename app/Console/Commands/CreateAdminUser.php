@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class CreateAdminUser extends Command
 {
-    protected $signature = 'admin:create {--name=} {--email=} {--role=super_admin : super_admin, manager or staff}';
+    protected $signature = 'admin:create {--name=} {--email=} {--password=} {--role=super_admin : super_admin, manager or staff}';
 
     protected $description = 'Create an admin panel user. The password is asked for interactively, so it never lands in shell history.';
 
@@ -26,8 +26,18 @@ class CreateAdminUser extends Command
             return self::FAILURE;
         }
 
-        $password = $this->secret('Password (min 12 characters)');
-        if ($password !== $this->secret('Confirm password')) {
+        // --password exists for hosts with no interactive shell (e.g. Forge's Commands page).
+        // It is visible in that host's command history, so use a throwaway value and change
+        // it from the admin panel straight after the first login.
+        $password = $this->option('password');
+        if ($password === null) {
+            $password = $this->secret('Password (min 12 characters)');
+            $confirmation = $this->secret('Confirm password');
+        } else {
+            $confirmation = $password;
+        }
+
+        if ($password !== $confirmation) {
             $this->error('The passwords do not match.');
 
             return self::FAILURE;

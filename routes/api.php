@@ -108,6 +108,8 @@ Route::prefix('v1')->group(function () {
             Route::middleware('admin.role:super_admin,manager,staff')->group(function () {
                 Route::post('/auth/logout', [AdminAuthController::class, 'logout']);
                 Route::get('/auth/me', [AdminAuthController::class, 'me']);
+                Route::post('/auth/password', [AdminAuthController::class, 'changePassword'])
+                    ->middleware('throttle:admin-auth');
 
                 // Orders — staff can view and manage (update status).
                 // /orders/export must stay above /orders/{order} or the

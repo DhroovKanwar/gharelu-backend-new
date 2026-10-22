@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Admin\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Auth\AdminChangePasswordRequest;
 use App\Http\Requests\Admin\Auth\AdminLoginRequest;
 use App\Http\Resources\Admin\AdminUserResource;
 use App\Models\User;
@@ -46,6 +47,21 @@ class AdminAuthController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Logged out successfully.',
+            'data' => null,
+        ]);
+    }
+
+    public function changePassword(AdminChangePasswordRequest $request): JsonResponse
+    {
+        $user = $request->user();
+        $user->forceFill(['password' => $request->validated('password')])->save();
+
+        // Sign out every other session; only the one that made the change survives.
+        $user->tokens()->where('id', '!=', $user->currentAccessToken()->id)->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Password changed successfully.',
             'data' => null,
         ]);
     }

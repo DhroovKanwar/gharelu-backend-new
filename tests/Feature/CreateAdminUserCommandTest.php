@@ -24,6 +24,18 @@ class CreateAdminUserCommandTest extends TestCase
         $this->assertTrue(Hash::check('a-long-test-password', $user->password));
     }
 
+    public function test_it_accepts_the_password_as_an_option_for_hosts_without_a_tty(): void
+    {
+        $this->artisan('admin:create', ['--name' => 'Owner', '--email' => 'owner@example.test', '--password' => 'a-long-test-password'])
+            ->expectsOutput('Created super_admin owner@example.test.')
+            ->assertSuccessful();
+
+        $this->assertTrue(Hash::check('a-long-test-password', User::firstOrFail()->password));
+
+        $this->artisan('admin:create', ['--name' => 'B', '--email' => 'b@example.test', '--password' => 'short'])->assertFailed();
+        $this->assertDatabaseCount('users', 1);
+    }
+
     public function test_it_rejects_short_or_mismatched_passwords_and_bad_roles(): void
     {
         $this->artisan('admin:create', ['--name' => 'A', '--email' => 'a@example.test'])

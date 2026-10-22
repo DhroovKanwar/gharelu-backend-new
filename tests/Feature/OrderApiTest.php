@@ -61,6 +61,18 @@ class OrderApiTest extends TestCase
         ], $overrides);
     }
 
+    public function test_orders_get_sequential_invoice_numbers_for_the_year(): void
+    {
+        $product = $this->makeProduct();
+        $year = now('Asia/Kolkata')->format('Y');
+
+        $first = $this->postJson('/api/v1/orders', $this->basePayload($product, ['idempotency_key' => 'inv-key-0001']))->assertCreated();
+        $second = $this->postJson('/api/v1/orders', $this->basePayload($product, ['idempotency_key' => 'inv-key-0002']))->assertCreated();
+
+        $this->assertSame("GB001/{$year}", Order::where('order_number', $first->json('data.orderNumber'))->value('invoice_number'));
+        $this->assertSame("GB002/{$year}", Order::where('order_number', $second->json('data.orderNumber'))->value('invoice_number'));
+    }
+
     public function test_guest_can_create_order(): void
     {
         $product = $this->makeProduct();

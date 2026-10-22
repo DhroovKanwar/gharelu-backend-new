@@ -16,7 +16,10 @@ class AdminAnalyticsController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Analytics retrieved successfully.',
-            'data' => $this->analytics->forDay($request->validated('date')),
+            'data' => $this->analytics->forRange(
+                $request->validated('from') ?? $request->validated('date'),
+                $request->validated('to') ?? $request->validated('date'),
+            ),
         ]);
     }
 }

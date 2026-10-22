@@ -12,13 +12,24 @@ class AdminAnalyticsService
     // The shop is in India, so "today" means the Indian calendar day, not UTC.
     private const TIMEZONE = 'Asia/Kolkata';
 
-    private const MAX_EVENTS = 20000;
+    private const MAX_EVENTS = 100000;
+
+    public const MAX_RANGE_DAYS = 92;
 
     public function forDay(?string $date): array
     {
-        $day = $date ? Carbon::parse($date, self::TIMEZONE) : Carbon::now(self::TIMEZONE);
-        $from = $day->copy()->startOfDay()->utc();
-        $to = $day->copy()->endOfDay()->utc();
+        return $this->forRange($date, $date);
+    }
+
+    /**
+     * Totals for the Indian calendar days from..to (inclusive); either missing means "today".
+     */
+    public function forRange(?string $fromDate, ?string $toDate): array
+    {
+        $first = $fromDate ? Carbon::parse($fromDate, self::TIMEZONE) : Carbon::now(self::TIMEZONE);
+        $last = $toDate ? Carbon::parse($toDate, self::TIMEZONE) : $first->copy();
+        $from = $first->copy()->startOfDay()->utc();
+        $to = $last->copy()->endOfDay()->utc();
 
         $events = AnalyticsEvent::whereBetween('created_at', [$from, $to])
             ->orderBy('created_at')
@@ -32,7 +43,10 @@ class AdminAnalyticsService
         $visitors = $events->pluck('visitor_id')->unique()->count();
 
         return [
-            'date' => $day->toDateString(),
+            'date' => $first->toDateString(),
+            'from' => $first->toDateString(),
+            'to' => $last->toDateString(),
+            'truncated' => $events->count() >= self::MAX_EVENTS,
             'visitors' => $visitors,
             'pageviews' => $events->where('type', 'pageview')->count(),
             'clicks' => $events->where('type', 'click')->count(),
@@ -40,8 +54,39 @@ class AdminAnalyticsService
             'conversionRate' => $visitors > 0 ? round($placed / $visitors * 100, 1) : 0.0,
             'topPages' => $this->top($events->where('type', 'pageview'), 'views'),
             'topClicks' => $this->top($events->where('type', 'click'), 'clicks'),
+            'daily' => $this->daily($events, $first, $last),
             'visitorActivity' => $this->visitorActivity($events),
         ];
+    }
+
+    /**
+     * One row per Indian calendar day in the range (days with no traffic included).
+     */
+    private function daily(Collection $events, Carbon $first, Carbon $last): array
+    {
+        $byDay = $events->groupBy(fn ($e) => $e->created_at->copy()->setTimezone(self::TIMEZONE)->toDateString());
+
+        $orders = Order::whereBetween('created_at', [$first->copy()->startOfDay()->utc(), $last->copy()->endOfDay()->utc()])
+            ->get(['created_at', 'payment_status'])
+            ->groupBy(fn ($o) => $o->created_at->copy()->setTimezone(self::TIMEZONE)->toDateString());
+
+        $rows = [];
+        for ($day = $first->copy()->startOfDay(); $day->lte($last); $day->addDay()) {
+            $key = $day->toDateString();
+            $dayEvents = $byDay->get($key, collect());
+            $dayOrders = $orders->get($key, collect());
+
+            $rows[] = [
+                'date' => $key,
+                'visitors' => $dayEvents->pluck('visitor_id')->unique()->count(),
+                'pageviews' => $dayEvents->where('type', 'pageview')->count(),
+                'clicks' => $dayEvents->where('type', 'click')->count(),
+                'ordersPlaced' => $dayOrders->count(),
+                'ordersPaid' => $dayOrders->where('payment_status', 'paid')->count(),
+            ];
+        }
+
+        return $rows;
     }
 
     private function top(Collection $events, string $countKey): array
@@ -77,7 +122,7 @@ class AdminAnalyticsService
                 ];
             })
             ->sortByDesc('lastSeen')
-            ->take(50)
+            ->take(200)
             ->values()
             ->all();
     }

@@ -63,6 +63,34 @@ class AnalyticsTest extends TestCase
             ->assertJsonCount(2, 'data.visitorActivity');
     }
 
+    public function test_admin_can_query_a_date_range_with_a_daily_breakdown(): void
+    {
+        $this->track('aaaaaaaa-one', [['type' => 'pageview', 'label' => '/', 'path' => '/']])->assertNoContent();
+
+        [, $token] = $this->actingAsAdmin('manager');
+        $today = now('Asia/Kolkata')->toDateString();
+        $weekAgo = now('Asia/Kolkata')->subDays(6)->toDateString();
+
+        $response = $this->withToken($token)
+            ->getJson("/api/v1/admin/analytics?from={$weekAgo}&to={$today}")
+            ->assertOk()
+            ->assertJsonPath('data.from', $weekAgo)
+            ->assertJsonPath('data.to', $today)
+            ->assertJsonPath('data.visitors', 1)
+            ->assertJsonCount(7, 'data.daily')
+            ->assertJsonPath('data.daily.6.date', $today)
+            ->assertJsonPath('data.daily.6.pageviews', 1)
+            ->assertJsonPath('data.daily.0.pageviews', 0);
+    }
+
+    public function test_date_range_is_validated(): void
+    {
+        [, $token] = $this->actingAsAdmin('manager');
+
+        $this->withToken($token)->getJson('/api/v1/admin/analytics?from=2026-10-10&to=2026-10-01')->assertUnprocessable();
+        $this->withToken($token)->getJson('/api/v1/admin/analytics?from=2026-01-01&to=2026-10-01')->assertUnprocessable();
+    }
+
     public function test_other_days_are_excluded_and_staff_are_blocked(): void
     {
         AnalyticsEvent::create([

@@ -61,6 +61,7 @@ class OrderService
 
                 $order = Order::create([
                     'order_number' => $this->generateUniqueOrderNumber(),
+                    'invoice_number' => $this->nextInvoiceNumber(),
                     'user_id' => $user?->id,
                     'guest_name' => trim($data['first_name'].' '.($data['last_name'] ?? '')),
                     'guest_email' => $data['email'] ?? null,
@@ -260,6 +261,22 @@ class OrderService
         }
 
         return $grams / 1000;
+    }
+
+    /**
+     * Next invoice number for this (Indian) calendar year, e.g. GB001/2026. Must run inside the
+     * order transaction: the counter row is locked so two orders never share a number.
+     */
+    private function nextInvoiceNumber(): string
+    {
+        $year = (int) now('Asia/Kolkata')->format('Y');
+
+        DB::table('invoice_sequences')->insertOrIgnore(['year' => $year, 'last_number' => 0]);
+        DB::table('invoice_sequences')->where('year', $year)->lockForUpdate()->first();
+        DB::table('invoice_sequences')->where('year', $year)->increment('last_number');
+        $number = (int) DB::table('invoice_sequences')->where('year', $year)->value('last_number');
+
+        return sprintf('GB%03d/%d', $number, $year);
     }
 
     private function generateUniqueOrderNumber(): string

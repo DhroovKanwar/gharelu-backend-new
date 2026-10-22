@@ -12,6 +12,7 @@ class AdminOrderResource extends JsonResource
         return [
             'id' => $this->id,
             'orderNumber' => $this->order_number,
+            'invoiceNumber' => $this->invoice_number,
             'userId' => $this->user_id,
             'status' => $this->order_status,
             'paymentStatus' => $this->payment_status,

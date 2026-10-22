@@ -35,6 +35,17 @@ class AdminProductImageTest extends TestCase
         return new UploadedFile($path, $name, 'image/png', null, true);
     }
 
+    public function test_storefront_paths_are_returned_as_is_so_the_admin_app_can_load_them_from_the_storefront(): void
+    {
+        [, $token] = $this->actingAsAdmin('manager');
+        $product = $this->makeProduct();
+        ProductImage::factory()->create(['product_id' => $product->id, 'path' => '/images/products/cake-1.jpg', 'is_primary' => true]);
+
+        $this->withToken($token)->getJson("/api/v1/admin/products/{$product->id}")
+            ->assertOk()
+            ->assertJsonPath('data.images.0.url', '/images/products/cake-1.jpg');
+    }
+
     public function test_admin_can_upload_product_image(): void
     {
         Storage::fake('public');

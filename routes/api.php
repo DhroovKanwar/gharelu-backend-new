@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\Admin\AdminAnalyticsController;
 use App\Http\Controllers\Api\V1\Admin\AdminCategoryController;
 use App\Http\Controllers\Api\V1\Admin\AdminCustomCakeRequestController;
 use App\Http\Controllers\Api\V1\Admin\AdminDashboardController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\OrderController;
 use App\Http\Controllers\Api\V1\PaymentController;
 use App\Http\Controllers\Api\V1\ProductController;
+use App\Http\Controllers\Api\V1\TrackController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,6 +51,10 @@ Route::prefix('v1')->group(function () {
     // the authenticated user itself via $request->user('sanctum') rather
     // than requiring the auth:sanctum middleware, so guest checkout is
     // never blocked. index()/show() require authentication.
+    // Anonymous storefront analytics beacon (pageviews + clicks).
+    Route::post('/track', [TrackController::class, 'store'])
+        ->middleware('throttle:track');
+
     Route::post('/orders', [OrderController::class, 'store'])
         ->middleware('throttle:orders');
 
@@ -132,6 +138,7 @@ Route::prefix('v1')->group(function () {
             // manager + super_admin only.
             Route::middleware('admin.role:super_admin,manager')->group(function () {
                 Route::get('/dashboard', [AdminDashboardController::class, 'index']);
+                Route::get('/analytics', [AdminAnalyticsController::class, 'index']);
 
                 Route::apiResource('products', AdminProductController::class);
                 Route::post('/products/{product}/images', [AdminProductImageController::class, 'store']);

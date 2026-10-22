@@ -64,6 +64,11 @@ class AppServiceProvider extends ServiceProvider
             return Limit::perMinute(20)->by($request->ip());
         });
 
+        // Analytics beacon: generous for one browsing session, tight enough that it can't flood the table.
+        RateLimiter::for('track', function ($request) {
+            return Limit::perMinute(60)->by($request->ip());
+        });
+
         // Explicit over relying on naming-convention auto-discovery.
         Gate::policy(Order::class, OrderPolicy::class);
     }

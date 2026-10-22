@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\OrderController;
 use App\Http\Controllers\Api\V1\PaymentController;
 use App\Http\Controllers\Api\V1\ProductController;
+use App\Http\Controllers\Api\V1\LeadController;
 use App\Http\Controllers\Api\V1\TrackController;
 use Illuminate\Support\Facades\Route;
 
@@ -54,6 +55,10 @@ Route::prefix('v1')->group(function () {
     // Anonymous storefront analytics beacon (pageviews + clicks).
     Route::post('/track', [TrackController::class, 'store'])
         ->middleware('throttle:track');
+
+    // Contact form and newsletter signup: public, rate-limited per IP.
+    Route::post('/enquiries', [LeadController::class, 'enquiry'])->middleware('throttle:leads');
+    Route::post('/newsletter/subscribe', [LeadController::class, 'subscribe'])->middleware('throttle:leads');
 
     Route::post('/orders', [OrderController::class, 'store'])
         ->middleware('throttle:orders');

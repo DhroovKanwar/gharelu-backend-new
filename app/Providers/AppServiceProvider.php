@@ -69,6 +69,11 @@ class AppServiceProvider extends ServiceProvider
             return Limit::perMinute(60)->by($request->ip());
         });
 
+        // Contact form / newsletter: a few per minute is plenty for a person, too few for a spam bot.
+        RateLimiter::for('leads', function ($request) {
+            return Limit::perMinute(5)->by($request->ip());
+        });
+
         // Explicit over relying on naming-convention auto-discovery.
         Gate::policy(Order::class, OrderPolicy::class);
     }

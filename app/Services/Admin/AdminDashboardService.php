@@ -98,7 +98,7 @@ class AdminDashboardService
         $rows = $query->get();
 
         $products = Product::query()
-            ->with(['images' => fn ($q) => $q->where('is_primary', true)])
+            ->with('images')
             ->whereIn('id', $rows->pluck('product_id'))
             ->get()
             ->keyBy('id');
@@ -111,7 +111,7 @@ class AdminDashboardService
                     'productId' => $row->product_id,
                     'name' => $product?->name ?? 'Deleted product',
                     'slug' => $product?->slug,
-                    'image' => $this->imageUrl($product?->images->first()?->path),
+                    'image' => $this->imageUrl(($product?->images->firstWhere('is_primary', true) ?? $product?->images->first())?->path),
                     'quantitySold' => (int) $row->quantity_sold,
                     'revenue' => (float) $row->revenue,
                 ];
@@ -131,7 +131,8 @@ class AdminDashboardService
             return null;
         }
 
-        return str_starts_with($path, 'http://') || str_starts_with($path, 'https://')
+        // Storefront paths (/images/...) are served by the storefront; the admin app prefixes them.
+        return str_starts_with($path, 'http://') || str_starts_with($path, 'https://') || str_starts_with($path, '/images/')
             ? $path
             : Storage::disk('public')->url($path);
     }

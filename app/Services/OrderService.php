@@ -180,6 +180,12 @@ class OrderService
                 ]);
             }
 
+            if ($product->stock_status === 'out_of_stock') {
+                throw ValidationException::withMessages([
+                    'items' => ["\"{$product->name}\" is out of stock right now."],
+                ]);
+            }
+
             $unitPrice = (float) $product->base_price;
             $sizeLabel = null;
 

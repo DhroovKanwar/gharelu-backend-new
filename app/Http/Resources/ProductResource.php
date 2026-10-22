@@ -33,6 +33,7 @@ class ProductResource extends JsonResource
             'tag' => $this->is_bestseller ? 'Bestseller' : null,
             'rating' => (float) $this->rating_cached,
             'reviews' => $this->reviews_count_cached,
+            'inStock' => $this->stock_status !== 'out_of_stock',
             'featured' => $this->is_featured,
             'bestseller' => $this->is_bestseller,
             'description' => $this->description,

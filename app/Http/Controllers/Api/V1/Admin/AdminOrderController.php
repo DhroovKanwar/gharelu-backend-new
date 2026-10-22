@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Order\AdminOrderIndexRequest;
 use App\Http\Requests\Admin\Order\MarkOrderPaidRequest;
 use App\Http\Requests\Admin\Order\UpdateOrderStatusRequest;
 use App\Http\Resources\Admin\AdminOrderResource;
+use App\Models\Address;
 use App\Models\Order;
 use App\Services\PaymentService;
 use Illuminate\Database\Eloquent\Builder;
@@ -35,6 +36,25 @@ class AdminOrderController extends Controller
                 'per_page' => $orders->perPage(),
                 'total' => $orders->total(),
             ],
+        ]);
+    }
+
+    /** Distinct delivery states on existing orders, for the admin "State" filter. */
+    public function states(): JsonResponse
+    {
+        $states = Address::query()
+            ->whereIn('id', Order::query()->whereNotNull('address_id')->select('address_id'))
+            ->whereNotNull('state')->where('state', '!=', '')
+            ->pluck('state')
+            ->map(fn ($s) => trim($s))
+            ->unique(fn ($s) => mb_strtolower($s))
+            ->sort(SORT_NATURAL | SORT_FLAG_CASE)
+            ->values();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'States retrieved successfully.',
+            'data' => $states,
         ]);
     }
 
@@ -123,6 +143,9 @@ class AdminOrderController extends Controller
         }
         if (! empty($data['date'])) {
             $query->whereDate('scheduled_date', $data['date']);
+        }
+        if (! empty($data['state'])) {
+            $query->whereHas('address', fn (Builder $q) => $q->whereRaw('LOWER(state) = ?', [mb_strtolower($data['state'])]));
         }
         if (! empty($data['search'])) {
             $query->where('order_number', 'like', '%'.$data['search'].'%');

@@ -123,6 +123,7 @@ Route::prefix('v1')->group(function () {
                 // an order id.
                 Route::get('/orders', [AdminOrderController::class, 'index']);
                 Route::get('/orders/export', [AdminOrderController::class, 'export']);
+                Route::get('/orders/states', [AdminOrderController::class, 'states']);
                 Route::get('/orders/{order}', [AdminOrderController::class, 'show']);
                 Route::patch('/orders/{order}/status', [AdminOrderController::class, 'updateStatus']);
 

@@ -19,6 +19,7 @@ class AdminOrderIndexRequest extends FormRequest
             'payment_method' => ['sometimes', 'in:online,cod'],
             'delivery_mode' => ['sometimes', 'in:delivery,pickup'],
             'date' => ['sometimes', 'date'],
+            'state' => ['sometimes', 'string', 'max:100'],
             'search' => ['sometimes', 'string', 'max:255'],
             'per_page' => ['sometimes', 'integer', 'min:1', 'max:100'],
             'page' => ['sometimes', 'integer', 'min:1'],

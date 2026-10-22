@@ -63,6 +63,44 @@ class AdminOrderTest extends TestCase
         $this->assertSame('completed', $response->json('data.0.status'));
     }
 
+    private function orderIn(string $state, array $attrs = []): Order
+    {
+        $address = \App\Models\Address::create([
+            'address_line_1' => '12 Main Road', 'city' => 'Town', 'state' => $state, 'pincode' => '140603',
+        ]);
+
+        return $this->makeOrder(array_merge(['delivery_mode' => 'delivery', 'pickup_type' => null, 'address_id' => $address->id], $attrs));
+    }
+
+    public function test_admin_can_filter_orders_by_state_ignoring_case(): void
+    {
+        [, $token] = $this->actingAsAdmin('staff');
+        $punjab = $this->orderIn('Punjab', ['notes' => 'Please write Happy Birthday']);
+        $this->orderIn('Haryana');
+        $this->makeOrder(); // pickup order, no address
+
+        $response = $this->withToken($token)->getJson('/api/v1/admin/orders?state=punjab');
+
+        $response->assertOk();
+        $this->assertCount(1, $response->json('data'));
+        $this->assertSame($punjab->order_number, $response->json('data.0.orderNumber'));
+        $this->assertSame('Punjab', $response->json('data.0.address.state'));
+        $this->assertSame('Please write Happy Birthday', $response->json('data.0.notes'));
+    }
+
+    public function test_states_endpoint_lists_each_state_once(): void
+    {
+        [, $token] = $this->actingAsAdmin('staff');
+        $this->orderIn('Punjab');
+        $this->orderIn('punjab');
+        $this->orderIn('Haryana');
+        $this->makeOrder();
+
+        $this->withToken($token)->getJson('/api/v1/admin/orders/states')
+            ->assertOk()
+            ->assertJsonPath('data', ['Haryana', 'Punjab']);
+    }
+
     public function test_admin_can_search_orders_by_order_number(): void
     {
         [, $token] = $this->actingAsAdmin('manager');

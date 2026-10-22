@@ -115,4 +115,7 @@ return [
         'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
     ],
 
+    // Shop mailbox(es) that get a "new order" email. Comma-separated.
+    'order_notify' => array_values(array_filter(array_map('trim', explode(',', (string) env('ORDER_NOTIFY_EMAILS', ''))))),
+
 ];

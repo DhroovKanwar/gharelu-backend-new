@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Jobs\SendOrderConfirmationSms;
+use App\Jobs\SendOrderConfirmations;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\PaymentWebhookLog;
@@ -148,7 +148,7 @@ class PaymentService
         // Outside the transaction, and never throws: a Shiprocket problem
         // must not fail a payment that has already been captured.
         $this->shiprocketSync->push($order);
-        SendOrderConfirmationSms::dispatchAfterResponse($order->id);
+        SendOrderConfirmations::dispatchAfterResponse($order->id);
 
         return $order;
     }
@@ -240,7 +240,7 @@ class PaymentService
 
         if ($paidOrderId && ($order = Order::find($paidOrderId))) {
             $this->shiprocketSync->push($order);
-            SendOrderConfirmationSms::dispatchAfterResponse($order->id);
+            SendOrderConfirmations::dispatchAfterResponse($order->id);
         }
     }
 

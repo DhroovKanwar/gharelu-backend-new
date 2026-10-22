@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Models\Order;
 use App\Services\Mail\OrderEmailNotifier;
 use App\Services\Sms\OrderSmsNotifier;
+use App\Services\Telegram\OrderTelegramNotifier;
 use Illuminate\Foundation\Bus\Dispatchable;
 
 /**
@@ -18,11 +19,12 @@ class SendOrderConfirmations
 
     public function __construct(private readonly int $orderId) {}
 
-    public function handle(OrderSmsNotifier $sms, OrderEmailNotifier $email): void
+    public function handle(OrderSmsNotifier $sms, OrderEmailNotifier $email, OrderTelegramNotifier $telegram): void
     {
         if ($order = Order::find($this->orderId)) {
             $sms->confirmed($order);
             $email->confirmed($order);
+            $telegram->confirmed($order);
         }
     }
 }

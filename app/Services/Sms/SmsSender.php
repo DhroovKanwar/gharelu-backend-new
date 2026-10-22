@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Log;
  */
 class SmsSender
 {
+    private const FAST2SMS_URL = 'https://www.fast2sms.com/dev/bulkV2';
+
     private const MSG91_FLOW_URL = 'https://control.msg91.com/api/v5/flow';
 
     /** DLT variables are usually capped at 30 characters. */
@@ -31,10 +33,55 @@ class SmsSender
         $variables = array_map(fn ($v) => mb_substr((string) $v, 0, self::MAX_VARIABLE_LENGTH), $variables);
 
         return match (config('sms.driver')) {
+            'fast2sms' => $this->viaFast2sms($digits, $template, $variables),
             'msg91' => $this->viaMsg91($digits, $template, $variables),
             'log' => $this->viaLog($digits, $template, $variables),
             default => false,
         };
+    }
+
+    /**
+     * Fast2SMS "dlt" route. The template's variables are sent as one pipe-separated
+     * string, so the DLT template must list them in the same order as the notifier
+     * passes them (customer: name, order, total, date; admin: order, name, phone,
+     * total, mode, date).
+     */
+    private function viaFast2sms(string $digits, string $template, array $variables): bool
+    {
+        $apiKey = config('sms.fast2sms.api_key');
+        $senderId = config('sms.fast2sms.sender_id');
+        $messageId = config("sms.fast2sms.{$template}_message_id");
+
+        if (! $apiKey || ! $senderId || ! $messageId) {
+            Log::warning('SMS skipped: Fast2SMS is not fully configured', ['template' => $template]);
+
+            return false;
+        }
+
+        $response = Http::withHeaders(['authorization' => $apiKey])
+            ->acceptJson()
+            ->timeout(8)
+            ->post(self::FAST2SMS_URL, [
+                'route' => 'dlt',
+                'sender_id' => $senderId,
+                'message' => $messageId,
+                // "|" separates values, so it must never appear inside one.
+                'variables_values' => implode('|', array_map(fn ($v) => str_replace('|', ' ', (string) $v), array_values($variables))),
+                'numbers' => $digits,
+                'flash' => 0,
+            ]);
+
+        if (! $response->successful() || $response->json('return') !== true) {
+            Log::warning('Fast2SMS rejected an SMS', [
+                'template' => $template,
+                'status' => $response->status(),
+                'body' => mb_substr($response->body(), 0, 300),
+            ]);
+
+            return false;
+        }
+
+        return true;
     }
 
     private function viaMsg91(string $digits, string $template, array $variables): bool

@@ -97,4 +97,34 @@ class OrderSmsTest extends TestCase
 
         Http::assertNothingSent();
     }
+
+    public function test_fast2sms_driver_sends_variables_in_order_through_the_dlt_route(): void
+    {
+        config([
+            'sms.driver' => 'fast2sms',
+            'sms.fast2sms.api_key' => 'f2s-key',
+            'sms.fast2sms.sender_id' => 'GHRBKE',
+            'sms.fast2sms.customer_message_id' => '1111',
+            'sms.fast2sms.admin_message_id' => '2222',
+        ]);
+        Http::fake(['www.fast2sms.com/*' => Http::response(['return' => true, 'message' => ['SMS sent successfully.']], 200)]);
+
+        $this->postJson('/api/v1/orders', $this->payload('cod'))->assertCreated();
+
+        Http::assertSentCount(2);
+        Http::assertSent(fn ($r) => $r->hasHeader('authorization', 'f2s-key') && $r['route'] === 'dlt'
+            && $r['message'] === '1111' && $r['numbers'] === '9876543210'
+            && preg_match('/^Priya\|GB[A-Z0-9]{10}\|499\|\d{2} \w{3}$/', $r['variables_values']) === 1);
+        Http::assertSent(fn ($r) => $r['message'] === '2222' && $r['numbers'] === '9811111111');
+    }
+
+    public function test_fast2sms_rejection_does_not_break_the_order(): void
+    {
+        config(['sms.driver' => 'fast2sms', 'sms.fast2sms.api_key' => 'k', 'sms.fast2sms.sender_id' => 'S',
+            'sms.fast2sms.customer_message_id' => '1', 'sms.fast2sms.admin_message_id' => '2']);
+        Http::fake(['www.fast2sms.com/*' => Http::response(['return' => false, 'message' => ['Invalid']], 200)]);
+
+        $this->postJson('/api/v1/orders', $this->payload('cod'))->assertCreated();
+        $this->assertDatabaseCount('orders', 1);
+    }
 }

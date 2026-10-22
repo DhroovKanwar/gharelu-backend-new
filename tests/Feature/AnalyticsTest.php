@@ -82,4 +82,18 @@ class AnalyticsTest extends TestCase
     {
         $this->getJson('/api/v1/admin/analytics')->assertUnauthorized();
     }
+
+    public function test_prune_removes_only_events_older_than_the_retention_period(): void
+    {
+        $row = fn (string $when) => ['visitor_id' => 'abcd1234-visitor', 'type' => 'pageview', 'label' => '/', 'path' => '/', 'created_at' => $when];
+        AnalyticsEvent::insert([$row(now()->subDays(120)), $row(now()->subDays(91)), $row(now()->subDays(10)), $row(now())]);
+
+        $this->artisan('analytics:prune')->assertSuccessful();
+
+        $this->assertDatabaseCount('analytics_events', 2);
+
+        $this->artisan('analytics:prune', ['--days' => 5])->assertSuccessful();
+
+        $this->assertDatabaseCount('analytics_events', 1);
+    }
 }

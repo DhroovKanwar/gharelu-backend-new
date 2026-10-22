@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Order\StoreOrderRequest;
 use App\Http\Resources\OrderResource;
 use App\Http\Resources\OrderTrackingResource;
+use App\Jobs\SendOrderConfirmationSms;
 use App\Models\Order;
 use App\Services\OrderService;
 use Illuminate\Http\JsonResponse;
@@ -29,6 +30,12 @@ class OrderController extends Controller
             $user,
             $request->header('Idempotency-Key'),
         );
+
+        // Cash orders are confirmed as soon as they are placed. Online orders
+        // are confirmed once the payment is captured (see PaymentService).
+        if ($order->payment_method === 'cod') {
+            SendOrderConfirmationSms::dispatchAfterResponse($order->id);
+        }
 
         return response()->json([
             'success' => true,

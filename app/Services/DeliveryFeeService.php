@@ -55,6 +55,33 @@ class DeliveryFeeService
         return ['fee' => $rate['rate'], 'courier' => $rate['courier'], 'etd' => $rate['etd'], 'source' => 'shiprocket'];
     }
 
+    /**
+     * Estimated arrival date (Y-m-d) from a quote: the courier's ETD when it gave one,
+     * otherwise a configured number of days for local deliveries. Null for pickup.
+     *
+     * @param  array{etd: ?string, source: string}  $quote
+     */
+    public function estimatedDate(array $quote): ?string
+    {
+        if ($quote['source'] === 'pickup') {
+            return null;
+        }
+
+        if ($quote['source'] === 'local') {
+            return now()->addDays((int) config('services.local_delivery.days', 1))->toDateString();
+        }
+
+        if (! $quote['etd']) {
+            return null;
+        }
+
+        try {
+            return \Carbon\Carbon::parse($quote['etd'])->toDateString();
+        } catch (\Throwable) {
+            return null;
+        }
+    }
+
     private function isLocalPincode(string $pincode): bool
     {
         foreach (config('services.local_delivery.pincodes') as $entry) {

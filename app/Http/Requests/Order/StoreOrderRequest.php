@@ -63,7 +63,7 @@ class StoreOrderRequest extends FormRequest
     {
         return array_merge($this->cartItemRules(), [
             'first_name' => ['required', 'string', 'max:50', "regex:/^[\p{L}\p{M}\s.'-]+$/u"],
-            'last_name' => ['required', 'string', 'max:50', "regex:/^[\p{L}\p{M}\s.'-]+$/u"],
+            'last_name' => ['nullable', 'string', 'max:50', "regex:/^[\p{L}\p{M}\s.'-]+$/u"],
             // Optional: customers can order with just a phone number.
             'email' => ['nullable', 'email:rfc', 'max:255'],
             'phone' => [
@@ -93,7 +93,8 @@ class StoreOrderRequest extends FormRequest
             'landmark' => ['nullable', 'string', 'max:255'],
 
             'scheduled_date' => ['required', 'date', 'after_or_equal:today', 'before_or_equal:'.now()->addDays(90)->toDateString()],
-            'scheduled_time' => ['required', 'date_format:H:i'],
+            // Pickup has a time slot; delivery is scheduled by date only (the courier decides the time).
+            'scheduled_time' => ['required_if:delivery_mode,pickup', 'nullable', 'date_format:H:i'],
 
           'payment_method' => [
                 'required',

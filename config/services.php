@@ -51,6 +51,7 @@ return [
     'local_delivery' => [
         'pincodes' => array_filter(array_map('trim', explode(',', (string) env('LOCAL_DELIVERY_PINCODES', '')))),
         'fee' => (float) env('LOCAL_DELIVERY_FEE', 49),
+        'days' => (int) env('LOCAL_DELIVERY_DAYS', 1),
     ],
 
     'slack' => [

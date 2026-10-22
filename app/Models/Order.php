@@ -22,6 +22,7 @@ class Order extends Model
         'address_id',
         'scheduled_date',
         'scheduled_time',
+        'estimated_delivery_date',
         'subtotal',
         'delivery_fee',
         'total',
@@ -35,6 +36,7 @@ class Order extends Model
 
     protected $casts = [
         'scheduled_date' => 'date',
+        'estimated_delivery_date' => 'date',
         'subtotal' => 'decimal:2',
         'delivery_fee' => 'decimal:2',
         'total' => 'decimal:2',

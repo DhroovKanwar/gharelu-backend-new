@@ -37,11 +37,12 @@ class OrderService
                 [$lineItems, $subtotal] = $this->buildLineItems($data['items']);
                 $this->assertDeliveryModeAllowed($lineItems, $data['delivery_mode']);
 
-                $deliveryFee = $this->deliveryFeeService->calculate(
+                $quote = $this->deliveryFeeService->quote(
                     $data['delivery_mode'],
                     $data['pincode'] ?? null,
                     $this->totalWeightKg($lineItems),
                 );
+                $deliveryFee = $quote['fee'];
                 $total = $subtotal + $deliveryFee;
 
                 $addressId = null;
@@ -61,14 +62,15 @@ class OrderService
                 $order = Order::create([
                     'order_number' => $this->generateUniqueOrderNumber(),
                     'user_id' => $user?->id,
-                    'guest_name' => trim($data['first_name'].' '.$data['last_name']),
+                    'guest_name' => trim($data['first_name'].' '.($data['last_name'] ?? '')),
                     'guest_email' => $data['email'] ?? null,
                     'guest_phone' => $data['phone'],
                     'delivery_mode' => $data['delivery_mode'],
                     'pickup_type' => $data['pickup_type'] ?? null,
                     'address_id' => $addressId,
                     'scheduled_date' => $data['scheduled_date'],
-                    'scheduled_time' => $data['scheduled_time'],
+                    'scheduled_time' => $data['scheduled_time'] ?? null,
+                    'estimated_delivery_date' => $this->deliveryFeeService->estimatedDate($quote),
                     'subtotal' => $subtotal,
                     'delivery_fee' => $deliveryFee,
                     'total' => $total,
@@ -108,18 +110,20 @@ class OrderService
      * Same pricing engine as createOrder(), without persisting anything.
      * Used by the cart validation endpoint so the two never drift apart.
      *
-     * @return array{items: array<int, array>, subtotal: float, deliveryFee: float, total: float}
+     * @return array{items: array<int, array>, subtotal: float, deliveryFee: float, estimatedDelivery: ?string, total: float}
      */
     public function calculateCart(array $items, string $deliveryMode = 'pickup', ?string $pincode = null): array
     {
         [$lineItems, $subtotal] = $this->buildLineItems($items);
         $this->assertDeliveryModeAllowed($lineItems, $deliveryMode);
-        $deliveryFee = $this->deliveryFeeService->calculate($deliveryMode, $pincode, $this->totalWeightKg($lineItems));
+        $quote = $this->deliveryFeeService->quote($deliveryMode, $pincode, $this->totalWeightKg($lineItems));
+        $deliveryFee = $quote['fee'];
 
         return [
             'items' => $lineItems,
             'subtotal' => $subtotal,
             'deliveryFee' => $deliveryFee,
+            'estimatedDelivery' => $this->deliveryFeeService->estimatedDate($quote),
             'total' => round($subtotal + $deliveryFee, 2),
         ];
     }

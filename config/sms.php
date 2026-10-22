@@ -11,7 +11,7 @@ return [
 
     // Plain texts for the no-DLT "quick" route. {name} style placeholders are filled in per order.
     'messages' => [
-        'customer' => 'Hi {name}, your Gharelu Bake order {order} of Rs {total} is confirmed for {date}. Thank you!',
+        'customer' => 'Hi {name}, your Gharelu Bake order {order} is confirmed. {mode}: {when}. Total Rs {total} ({pay}). Thank you!',
         'admin' => 'New order {order} from {name} ({phone}), Rs {total}, {mode} on {date}.',
     ],
 

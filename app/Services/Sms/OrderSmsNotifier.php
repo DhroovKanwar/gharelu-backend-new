@@ -29,12 +29,16 @@ class OrderSmsNotifier
             $total = number_format((float) $order->total, 0, '.', '');
             $mode = $order->delivery_mode === 'delivery' ? 'Delivery' : 'Pickup';
             $date = $order->scheduled_date?->format('d M');
+            $when = trim($date.($order->scheduled_time ? ', '.date('h:i A', strtotime((string) $order->scheduled_time)) : ''));
+            $pay = $order->payment_method === 'cod' ? 'Pay on '.strtolower($mode === 'Delivery' ? 'delivery' : 'pickup') : 'Paid online';
 
             $this->sms->send((string) $order->guest_phone, 'customer', [
                 'name' => strtok((string) $order->guest_name, ' ') ?: 'Customer',
                 'order' => $order->order_number,
                 'total' => $total,
-                'date' => $date,
+                'mode' => $mode,
+                'when' => $when,
+                'pay' => $pay,
             ]);
 
             foreach (config('sms.admin_phones', []) as $adminPhone) {

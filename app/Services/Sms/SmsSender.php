@@ -87,7 +87,7 @@ class SmsSender
     /**
      * Fast2SMS "dlt" route. The template's variables are sent as one pipe-separated
      * string, so the DLT template must list them in the same order as the notifier
-     * passes them (customer: name, order, total, date; admin: order, name, phone,
+     * passes them (customer: name, order, total, mode, when, pay; admin: order, name, phone,
      * total, mode, date).
      */
     private function viaFast2sms(string $digits, string $template, array $variables): bool

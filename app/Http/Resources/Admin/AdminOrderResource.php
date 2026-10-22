@@ -20,6 +20,7 @@ class AdminOrderResource extends JsonResource
             'pickupType' => $this->pickup_type,
             'scheduledDate' => $this->scheduled_date?->format('Y-m-d'),
             'scheduledTime' => $this->scheduled_time,
+            'estimatedDeliveryDate' => $this->estimated_delivery_date?->format('Y-m-d'),
             'customer' => [
                 'name' => $this->guest_name,
                 'email' => $this->guest_email,

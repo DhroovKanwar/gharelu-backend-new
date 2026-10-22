@@ -38,6 +38,8 @@ class CartController extends Controller
                 ], $result['items']),
                 'subtotal' => $result['subtotal'],
                 'deliveryFee' => $result['deliveryFee'],
+                // Y-m-d, or null when there is no estimate (pickup).
+                'estimatedDelivery' => $result['estimatedDelivery'],
                 'total' => $result['total'],
             ],
         ]);

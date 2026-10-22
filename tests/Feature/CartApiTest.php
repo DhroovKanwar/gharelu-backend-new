@@ -78,7 +78,7 @@ class CartApiTest extends TestCase
             ],
         ]);
 
-        // Fee is the courier rate for the pincode (no flat fee, no free threshold).
+        // 400001 is more than 30 km away: the fee is the courier rate (see DeliveryChargeTest for the nearby zones).
         $response->assertOk()
             ->assertJsonPath('data.subtotal', 250)
             ->assertJsonPath('data.deliveryFee', 120)

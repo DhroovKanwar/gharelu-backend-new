@@ -13,7 +13,6 @@ trait FakesShiprocket
             'services.shiprocket.email' => 'api-user@example.test',
             'services.shiprocket.password' => 'not-a-real-password',
             'services.shiprocket.pickup_pincode' => '140603',
-            'services.local_delivery.pincodes' => [],
         ]);
 
         Http::fake([

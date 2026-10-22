@@ -46,12 +46,13 @@ return [
         'packaging_weight_kg' => (float) env('SHIPROCKET_PACKAGING_WEIGHT_KG', 0.3),
     ],
 
-    // Own-rider delivery for nearby pincodes: a flat fee instead of a courier
-    // quote. Comma-separated 6-digit pincodes, or prefixes ending in * (e.g. 1406*).
-    'local_delivery' => [
-        'pincodes' => array_filter(array_map('trim', explode(',', (string) env('LOCAL_DELIVERY_PINCODES', '')))),
-        'fee' => (float) env('LOCAL_DELIVERY_FEE', 49),
-        'days' => (int) env('LOCAL_DELIVERY_DAYS', 1),
+    // Delivery zones (rules in App/Services/DeliveryFeeService, lists in App/Services/PincodeZoneService):
+    //   near_pincodes: within 10 km of the shop; mid_pincodes: 10 to 30 km (empty = the starter list in
+    //   database/data/mid_zone_pincodes.txt); every other real pincode is more than 30 km and uses the
+    //   Shiprocket courier rate. Comma-separated exact pincodes, or a prefix ending in * (e.g. 1406*).
+    'delivery' => [
+        'near_pincodes' => array_values(array_filter(array_map('trim', explode(',', (string) env('DELIVERY_NEAR_PINCODES', '140603,140604,140507'))))),
+        'mid_pincodes' => array_values(array_filter(array_map('trim', explode(',', (string) env('DELIVERY_MID_PINCODES', ''))))),
     ],
 
     'slack' => [

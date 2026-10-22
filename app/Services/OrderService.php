@@ -40,6 +40,7 @@ class OrderService
                 $quote = $this->deliveryFeeService->quote(
                     $data['delivery_mode'],
                     $data['pincode'] ?? null,
+                    $this->hamperCount($lineItems),
                     $this->totalWeightKg($lineItems),
                 );
                 $deliveryFee = $quote['fee'];
@@ -117,7 +118,7 @@ class OrderService
     {
         [$lineItems, $subtotal] = $this->buildLineItems($items);
         $this->assertDeliveryModeAllowed($lineItems, $deliveryMode);
-        $quote = $this->deliveryFeeService->quote($deliveryMode, $pincode, $this->totalWeightKg($lineItems));
+        $quote = $this->deliveryFeeService->quote($deliveryMode, $pincode, $this->hamperCount($lineItems), $this->totalWeightKg($lineItems));
         $deliveryFee = $quote['fee'];
 
         return [
@@ -238,6 +239,15 @@ class OrderService
         }
 
         return $token;
+    }
+
+    /**
+     * Hampers in the order. Hampers can't share an order with other items (see
+     * assertDeliveryModeAllowed), so on a delivery order every unit is a hamper.
+     */
+    private function hamperCount(array $lineItems): int
+    {
+        return (int) array_sum(array_column($lineItems, 'quantity'));
     }
 
     /** Net product weight in kg; products without a weight use the configured default. */

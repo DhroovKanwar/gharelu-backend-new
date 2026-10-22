@@ -447,7 +447,8 @@ class SecurityRegressionTest extends TestCase
         $this->fakeShiprocket(rate: 180.5);
         $product = $this->asHamper($this->makeProduct(5000));
 
-        $response = $this->postJson('/api/v1/orders', $this->deliveryPayload($product))->assertCreated();
+        // 400001 is more than 30 km away: courier rate, no free-delivery threshold.
+        $response = $this->postJson('/api/v1/orders', $this->deliveryPayload($product, ['pincode' => '400001']))->assertCreated();
 
         $this->assertEquals(5000, $response->json('data.subtotal'));
         $this->assertEquals(180.5, $response->json('data.deliveryFee'));
@@ -460,7 +461,6 @@ class SecurityRegressionTest extends TestCase
             'services.shiprocket.email' => 'api-user@example.test',
             'services.shiprocket.password' => 'x',
             'services.shiprocket.pickup_pincode' => '140603',
-            'services.local_delivery.pincodes' => [],
         ]);
         Http::fake([
             '*/auth/login' => Http::response(['token' => 'fake-token']),
@@ -468,7 +468,8 @@ class SecurityRegressionTest extends TestCase
         ]);
         $product = $this->asHamper($this->makeProduct());
 
-        $this->postJson('/api/v1/orders', $this->deliveryPayload($product))
+        // 400001 is more than 30 km away, so it needs a courier quote.
+        $this->postJson('/api/v1/orders', $this->deliveryPayload($product, ['pincode' => '400001']))
             ->assertStatus(422)
             ->assertJsonValidationErrors('pincode');
 

@@ -227,7 +227,7 @@ class OrderApiTest extends TestCase
             ],
         ]);
 
-        // Delivery orders must be prepaid (no COD) and use the courier rate.
+        // Delivery orders must be prepaid (no COD); 400001 is more than 30 km away, so the courier rate applies.
         $payload['payment_method'] = 'online';
         $this->fakeShiprocket(rate: 120);
 

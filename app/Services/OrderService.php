@@ -289,14 +289,20 @@ class OrderService
         return sprintf('GB%03d/%d', $number, $year);
     }
 
+    /**
+     * Next order number: a running count plus a short random code, e.g. GB0000001-K7Q4.
+     * The count keeps numbers easy to say and search; the random code means the number can't be
+     * guessed by counting up (it authorises guest payment creation) and that a test order on another
+     * environment never shares a number with a live one. Must run inside the order transaction: the
+     * counter row is locked so two orders never share a count. Orders placed before this format
+     * existed keep their old random numbers.
+     */
     private function generateUniqueOrderNumber(): string
     {
-        do {
-            // Not guessable: the order number alone authorises guest payment
-            // creation, so it must not be enumerable like GB + 6 digits.
-            $candidate = 'GB'.$this->randomToken(10);
-        } while (Order::where('order_number', $candidate)->exists());
+        DB::table('order_number_sequence')->where('id', 1)->lockForUpdate()->first();
+        DB::table('order_number_sequence')->where('id', 1)->increment('last_number');
+        $number = (int) DB::table('order_number_sequence')->where('id', 1)->value('last_number');
 
-        return $candidate;
+        return sprintf('GB%07d-%s', $number, $this->randomToken(4));
     }
 }

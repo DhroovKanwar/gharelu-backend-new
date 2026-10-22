@@ -114,7 +114,7 @@ class OrderSmsTest extends TestCase
         Http::assertSentCount(2);
         Http::assertSent(fn ($r) => $r->hasHeader('authorization', 'f2s-key') && $r['route'] === 'dlt'
             && $r['message'] === '1111' && $r['numbers'] === '9876543210'
-            && preg_match('/^Priya\|GB[A-Z0-9]{10}\|499\|(Delivery|Pickup)\|\d{2} \w{3}(, \d{2}:\d{2} [AP]M)?\|[A-Za-z ]+$/', $r['variables_values']) === 1);
+            && preg_match('/^Priya\|GB\d{7}-[A-Z0-9]{4}\|499\|(Delivery|Pickup)\|\d{2} \w{3}(, \d{2}:\d{2} [AP]M)?\|[A-Za-z ]+$/', $r['variables_values']) === 1);
         Http::assertSent(fn ($r) => $r['message'] === '2222' && $r['numbers'] === '9811111111');
     }
 

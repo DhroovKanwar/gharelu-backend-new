@@ -223,17 +223,18 @@ class SecurityRegressionTest extends TestCase
         $this->assertSame('new', $response->json('data.0.status'));
     }
 
-    // ── SEC-03 order numbers are not guessable ────────────────────────
+    // ── SEC-03 order numbers can't be guessed by counting up ──────────
+    // Format: a running count (easy to say and search) plus a random code, e.g. GB0000001-K7Q4.
 
-    public function test_new_order_numbers_are_long_and_random(): void
+    public function test_new_order_numbers_count_up_but_carry_a_random_code(): void
     {
         $product = $this->makeProduct();
 
         $a = $this->postJson('/api/v1/orders', $this->orderPayload($product))->assertCreated()->json('data.orderNumber');
         $b = $this->postJson('/api/v1/orders', $this->orderPayload($product))->assertCreated()->json('data.orderNumber');
 
-        $this->assertMatchesRegularExpression('/^GB[A-HJKMNP-Z2-9]{10}$/', $a);
-        $this->assertNotSame($a, $b);
+        $this->assertMatchesRegularExpression('/^GB0000001-[A-HJKMNP-Z2-9]{4}$/', $a);
+        $this->assertMatchesRegularExpression('/^GB0000002-[A-HJKMNP-Z2-9]{4}$/', $b);
     }
 
     // ── SEC-04 token expiry ───────────────────────────────────────────

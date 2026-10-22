@@ -94,7 +94,8 @@ class ShiprocketOrderSync
             'billing_pincode' => $address->pincode,
             'billing_state' => $address->state,
             'billing_country' => 'India',
-            'billing_email' => $order->guest_email,
+            // Shiprocket insists on an email; customers may not have given one.
+            'billing_email' => $order->guest_email ?: config('services.shiprocket.fallback_email'),
             // Shiprocket wants a bare 10-digit number (no +91, spaces or dashes).
             'billing_phone' => substr(preg_replace('/\D+/', '', (string) $order->guest_phone), -10),
             'shipping_is_billing' => true,

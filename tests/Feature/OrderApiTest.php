@@ -498,4 +498,61 @@ class OrderApiTest extends TestCase
         // Internal PK must never be exposed.
         $response->assertJsonMissingPath('data.id');
     }
+
+    // ── optional email, strict phone, input hygiene ───────────────────
+
+    public function test_email_is_optional(): void
+    {
+        $product = $this->makeProduct();
+
+        foreach ([['email' => null], ['email' => ''], ['email' => '   ']] as $overrides) {
+            $this->postJson('/api/v1/orders', $this->basePayload($product, $overrides + ['phone' => '98765'.random_int(10000, 99999)]))
+                ->assertStatus(201)
+                ->assertJsonPath('data.customer.email', null);
+        }
+
+        $this->postJson('/api/v1/orders', $this->basePayload($product, ['email' => 'not-an-email', 'phone' => '9811111111']))
+            ->assertStatus(422)->assertJsonValidationErrors('email');
+    }
+
+    public function test_phone_is_normalised_to_ten_digits_and_bad_numbers_are_rejected(): void
+    {
+        $product = $this->makeProduct();
+
+        $this->postJson('/api/v1/orders', $this->basePayload($product, ['phone' => '+91 98765-43210']))->assertStatus(201);
+        $this->assertDatabaseHas('orders', ['guest_phone' => '9876543210']);
+
+        foreach (['12345', '5876543210', '98765432101234', '987654321', 'abcdefghij', '+1 202 555 0143'] as $bad) {
+            $this->postJson('/api/v1/orders', $this->basePayload($product, ['phone' => $bad]))
+                ->assertStatus(422)->assertJsonValidationErrors('phone');
+        }
+    }
+
+    public function test_one_phone_cannot_flood_orders(): void
+    {
+        $product = $this->makeProduct();
+
+        for ($i = 0; $i < 5; $i++) {
+            $this->postJson('/api/v1/orders', $this->basePayload($product, ['phone' => '9876543210']))->assertStatus(201);
+        }
+
+        $this->postJson('/api/v1/orders', $this->basePayload($product, ['phone' => '9876543210']))
+            ->assertStatus(422)->assertJsonValidationErrors('phone');
+    }
+
+    public function test_names_reject_markup_and_dates_cannot_be_far_in_the_future(): void
+    {
+        $product = $this->makeProduct();
+
+        $this->postJson('/api/v1/orders', $this->basePayload($product, ['first_name' => '=HYPERLINK("x")']))
+            ->assertStatus(422)->assertJsonValidationErrors('first_name');
+
+        $this->postJson('/api/v1/orders', $this->basePayload($product, ['scheduled_date' => now()->addDays(200)->format('Y-m-d')]))
+            ->assertStatus(422)->assertJsonValidationErrors('scheduled_date');
+
+        $this->postJson('/api/v1/orders', $this->basePayload($product, ['notes' => '<script>alert(1)</script>Please add candles']))
+            ->assertStatus(201);
+        $this->assertDatabaseHas('orders', ['id' => 1]);
+        $this->assertStringNotContainsString('<script>', (string) \App\Models\Order::first()->notes);
+    }
 }

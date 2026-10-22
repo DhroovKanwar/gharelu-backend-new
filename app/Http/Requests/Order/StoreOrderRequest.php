@@ -3,11 +3,14 @@
 namespace App\Http\Requests\Order;
 
 use App\Http\Requests\Concerns\ValidatesCartItems;
+use App\Models\Order;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreOrderRequest extends FormRequest
 {
     use ValidatesCartItems;
+
+    private const MAX_ORDERS_PER_PHONE_PER_HOUR = 5;
 
     public function authorize(): bool
     {
@@ -15,22 +18,66 @@ class StoreOrderRequest extends FormRequest
         return true;
     }
 
+    /**
+     * Clean input before the rules run: strip HTML from free text, collapse the
+     * phone to bare digits (so "+91 98765 43210" and "098765-43210" both become
+     * 9876543210) and treat a blank email as "not given".
+     */
+    protected function prepareForValidation(): void
+    {
+        $clean = [];
+
+        foreach (['first_name', 'last_name', 'address_line_1', 'address_line_2', 'city', 'state', 'landmark', 'notes'] as $field) {
+            if (is_string($this->input($field))) {
+                $clean[$field] = trim(strip_tags($this->input($field)));
+            }
+        }
+
+        if (is_string($this->input('phone'))) {
+            $digits = preg_replace('/\D/', '', $this->input('phone'));
+            if (strlen($digits) === 12 && str_starts_with($digits, '91')) {
+                $digits = substr($digits, 2);
+            } elseif (strlen($digits) === 11 && $digits[0] === '0') {
+                $digits = substr($digits, 1);
+            }
+            $clean['phone'] = $digits;
+        }
+
+        if (is_string($this->input('email'))) {
+            $clean['email'] = trim($this->input('email')) ?: null;
+        }
+
+        $this->merge($clean);
+    }
+
+    public function messages(): array
+    {
+        return [
+            'phone.regex' => 'Enter a valid 10-digit Indian mobile number.',
+            'first_name.regex' => 'Names can only contain letters, spaces, dots, apostrophes and hyphens.',
+            'last_name.regex' => 'Names can only contain letters, spaces, dots, apostrophes and hyphens.',
+        ];
+    }
+
     public function rules(): array
     {
         return array_merge($this->cartItemRules(), [
-            'first_name' => ['required', 'string', 'max:100'],
-            'last_name' => ['required', 'string', 'max:100'],
-            'email' => ['required', 'email', 'max:255'],
+            'first_name' => ['required', 'string', 'max:50', "regex:/^[\p{L}\p{M}\s.'-]+$/u"],
+            'last_name' => ['required', 'string', 'max:50', "regex:/^[\p{L}\p{M}\s.'-]+$/u"],
+            // Optional: customers can order with just a phone number.
+            'email' => ['nullable', 'email:rfc', 'max:255'],
             'phone' => [
                 'required',
                 'string',
-                'max:20',
-                // Same rule as the React checkout: the last 10 digits must be
-                // a valid Indian mobile number (starts 6-9).
+                // Exactly 10 digits, starting 6-9 (prepareForValidation already removed +91, 0 and punctuation).
+                'regex:/^[6-9][0-9]{9}$/',
+                // Anti-spam: a single number can't flood the shop with orders.
                 function (string $attribute, mixed $value, \Closure $fail) {
-                    $digits = preg_replace('/\D/', '', $value);
-                    if (strlen($digits) < 10 || ! preg_match('/^[6-9][0-9]{9}$/', substr($digits, -10))) {
-                        $fail('Enter a valid 10-digit Indian mobile number.');
+                    $recent = Order::where('guest_phone', 'like', '%'.$value)
+                        ->where('created_at', '>=', now()->subHour())
+                        ->count();
+                    if ($recent >= self::MAX_ORDERS_PER_PHONE_PER_HOUR) {
+                        $fail('Too many orders from this number. Please call us to place more orders.');
                     }
                 },
             ],
@@ -45,7 +92,7 @@ class StoreOrderRequest extends FormRequest
             'pincode' => ['required_if:delivery_mode,delivery', 'nullable', 'regex:/^[1-9][0-9]{5}$/'],
             'landmark' => ['nullable', 'string', 'max:255'],
 
-            'scheduled_date' => ['required', 'date', 'after_or_equal:today'],
+            'scheduled_date' => ['required', 'date', 'after_or_equal:today', 'before_or_equal:'.now()->addDays(90)->toDateString()],
             'scheduled_time' => ['required', 'date_format:H:i'],
 
           'payment_method' => [

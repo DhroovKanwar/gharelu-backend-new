@@ -31,6 +31,8 @@ return [
     'shiprocket' => [
         'email' => env('SHIPROCKET_EMAIL'),
         'password' => env('SHIPROCKET_PASSWORD'),
+        // Sent to Shiprocket when the customer left the email blank.
+        'fallback_email' => env('SHIPROCKET_FALLBACK_EMAIL', 'orders@gharelubake.in'),
         'pickup_pincode' => env('SHIPROCKET_PICKUP_PINCODE'),
         // No per-product weight in the catalog yet, so each unit is assumed
         // to ship at this weight (kg). Packaging weight is added once.

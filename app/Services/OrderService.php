@@ -62,7 +62,7 @@ class OrderService
                     'order_number' => $this->generateUniqueOrderNumber(),
                     'user_id' => $user?->id,
                     'guest_name' => trim($data['first_name'].' '.$data['last_name']),
-                    'guest_email' => $data['email'],
+                    'guest_email' => $data['email'] ?? null,
                     'guest_phone' => $data['phone'],
                     'delivery_mode' => $data['delivery_mode'],
                     'pickup_type' => $data['pickup_type'] ?? null,

@@ -59,4 +59,9 @@ class Order extends Model
     {
         return $this->hasMany(Payment::class);
     }
+
+    public function paymentAdjustments(): HasMany
+    {
+        return $this->hasMany(OrderPaymentAdjustment::class)->latest('id');
+    }
 }

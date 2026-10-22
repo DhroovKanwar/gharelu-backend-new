@@ -154,6 +154,60 @@ class PaymentService
     }
 
     /**
+     * An admin marks an order paid by hand — for when the money reached the gateway
+     * (or cash was collected) but the order never updated. Always leaves an audit row
+     * with the admin, the remarks and the Razorpay payment id.
+     */
+    public function markPaidManually(Order $order, User $admin, ?string $razorpayPaymentId, string $remarks): Order
+    {
+        $order = DB::transaction(function () use ($order, $admin, $razorpayPaymentId, $remarks) {
+            $locked = Order::lockForUpdate()->findOrFail($order->id);
+
+            if ($locked->payment_status === 'paid') {
+                throw ValidationException::withMessages(['payment_status' => ['This order is already marked as paid.']]);
+            }
+
+            if ($locked->payment_method === 'online') {
+                if (! $razorpayPaymentId) {
+                    throw ValidationException::withMessages(['razorpay_payment_id' => ['Enter the Razorpay payment id for an online order.']]);
+                }
+
+                // One gateway payment can only ever settle one order.
+                $usedElsewhere = Payment::where('razorpay_payment_id', $razorpayPaymentId)->where('order_id', '!=', $locked->id)->exists()
+                    || DB::table('order_payment_adjustments')->where('razorpay_payment_id', $razorpayPaymentId)->where('order_id', '!=', $locked->id)->exists();
+                if ($usedElsewhere) {
+                    throw ValidationException::withMessages(['razorpay_payment_id' => ['This payment id is already linked to another order.']]);
+                }
+
+                // Keep the payments row in step when this order has one that is still open.
+                $payment = Payment::where('order_id', $locked->id)->whereIn('status', ['created', 'authorized', 'failed'])->latest('id')->first();
+                $payment?->update(['razorpay_payment_id' => $razorpayPaymentId, 'status' => 'captured']);
+            }
+
+            $from = $locked->payment_status;
+            $locked->update(['payment_status' => 'paid']);
+
+            DB::table('order_payment_adjustments')->insert([
+                'order_id' => $locked->id,
+                'admin_id' => $admin->id,
+                'from_status' => $from,
+                'to_status' => 'paid',
+                'razorpay_payment_id' => $razorpayPaymentId,
+                'remarks' => $remarks,
+                'created_at' => now(),
+            ]);
+
+            return $locked->refresh();
+        });
+
+        // Same follow-ups as an automatic payment; each is once-only and never throws.
+        $this->shiprocketSync->push($order);
+        SendOrderConfirmations::dispatchAfterResponse($order->id);
+
+        return $order;
+    }
+
+    /**
      * Processes a Razorpay webhook payload. Signature must already have
      * been verified by the caller before this runs — see
      * verifyWebhookSignature() below, kept separate so the controller can

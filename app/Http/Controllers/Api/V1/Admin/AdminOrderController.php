@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api\V1\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Order\AdminOrderIndexRequest;
+use App\Http\Requests\Admin\Order\MarkOrderPaidRequest;
 use App\Http\Requests\Admin\Order\UpdateOrderStatusRequest;
 use App\Http\Resources\Admin\AdminOrderResource;
 use App\Models\Order;
+use App\Services\PaymentService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 
@@ -36,9 +38,26 @@ class AdminOrderController extends Controller
         ]);
     }
 
+    public function markPaid(MarkOrderPaidRequest $request, Order $order, PaymentService $payments): JsonResponse
+    {
+        $order = $payments->markPaidManually(
+            $order,
+            $request->user(),
+            $request->validated('razorpay_payment_id'),
+            $request->validated('remarks'),
+        );
+        $order->load(['items', 'address', 'paymentAdjustments.admin']);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Payment marked as paid.',
+            'data' => new AdminOrderResource($order),
+        ]);
+    }
+
     public function show(Order $order): JsonResponse
     {
-        $order->load(['items', 'address']);
+        $order->load(['items', 'address', 'paymentAdjustments.admin']);
 
         return response()->json([
             'success' => true,

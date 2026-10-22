@@ -140,6 +140,9 @@ Route::prefix('v1')->group(function () {
                 Route::get('/dashboard', [AdminDashboardController::class, 'index']);
                 Route::get('/analytics', [AdminAnalyticsController::class, 'index']);
 
+                // Manual "mark as paid" — money actions stay with manager/super_admin, never staff.
+                Route::post('/orders/{order}/payment', [AdminOrderController::class, 'markPaid']);
+
                 Route::apiResource('products', AdminProductController::class);
                 Route::post('/products/{product}/images', [AdminProductImageController::class, 'store']);
                 Route::patch('/products/{product}/images/reorder', [AdminProductImageController::class, 'reorder']);

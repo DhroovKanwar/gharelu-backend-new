@@ -2,11 +2,18 @@
 
 return [
     // "log" writes the message to the Laravel log (safe default for local/testing),
-    // "fast2sms" or "msg91" send real SMS, "none" turns SMS off.
+    // "fast2sms_quick" (no DLT, ~Rs 5/SMS), "fast2sms" (DLT route) or "msg91" send real SMS,
+    // "none" turns SMS off.
     'driver' => env('SMS_DRIVER', 'log'),
 
     // Shop phone(s) that get a "new order" SMS. Comma-separated 10-digit numbers.
     'admin_phones' => array_values(array_filter(array_map('trim', explode(',', (string) env('SMS_ADMIN_PHONES', ''))))),
+
+    // Plain texts for the no-DLT "quick" route. {name} style placeholders are filled in per order.
+    'messages' => [
+        'customer' => 'Hi {name}, your Gharelu Bake order {order} of Rs {total} is confirmed for {date}. Thank you!',
+        'admin' => 'New order {order} from {name} ({phone}), Rs {total}, {mode} on {date}.',
+    ],
 
     'fast2sms' => [
         'api_key' => env('FAST2SMS_API_KEY'),

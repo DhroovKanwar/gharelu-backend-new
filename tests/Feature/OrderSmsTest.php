@@ -127,4 +127,17 @@ class OrderSmsTest extends TestCase
         $this->postJson('/api/v1/orders', $this->payload('cod'))->assertCreated();
         $this->assertDatabaseCount('orders', 1);
     }
+
+    public function test_fast2sms_quick_route_sends_plain_text(): void
+    {
+        config(['sms.driver' => 'fast2sms_quick', 'sms.fast2sms.api_key' => 'f2s-key']);
+        Http::fake(['www.fast2sms.com/*' => Http::response(['return' => true], 200)]);
+
+        $this->postJson('/api/v1/orders', $this->payload('cod'))->assertCreated();
+
+        Http::assertSentCount(2);
+        Http::assertSent(fn ($r) => $r['route'] === 'q' && $r['numbers'] === '9876543210'
+            && str_starts_with($r['message'], 'Hi Priya, your Gharelu Bake order GB') && str_contains($r['message'], 'Rs 499'));
+        Http::assertSent(fn ($r) => $r['route'] === 'q' && $r['numbers'] === '9811111111' && str_contains($r['message'], '(9876543210)'));
+    }
 }

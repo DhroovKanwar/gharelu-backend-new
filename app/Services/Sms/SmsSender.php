@@ -33,11 +33,55 @@ class SmsSender
         $variables = array_map(fn ($v) => mb_substr((string) $v, 0, self::MAX_VARIABLE_LENGTH), $variables);
 
         return match (config('sms.driver')) {
+            'fast2sms_quick' => $this->viaFast2smsQuick($digits, $template, $variables),
             'fast2sms' => $this->viaFast2sms($digits, $template, $variables),
             'msg91' => $this->viaMsg91($digits, $template, $variables),
             'log' => $this->viaLog($digits, $template, $variables),
             default => false,
         };
+    }
+
+    /**
+     * Fast2SMS "q" (Quick SMS) route: sends plain text with no DLT template, at a higher
+     * per-SMS price. Meant as a stop-gap until DLT is approved.
+     */
+    private function viaFast2smsQuick(string $digits, string $template, array $variables): bool
+    {
+        $apiKey = config('sms.fast2sms.api_key');
+        $text = config("sms.messages.{$template}");
+
+        if (! $apiKey || ! $text) {
+            Log::warning('SMS skipped: Fast2SMS quick route is not fully configured', ['template' => $template]);
+
+            return false;
+        }
+
+        $message = strtr($text, array_combine(
+            array_map(fn ($k) => '{'.$k.'}', array_keys($variables)),
+            array_values($variables),
+        ));
+
+        $response = Http::withHeaders(['authorization' => $apiKey])
+            ->acceptJson()
+            ->timeout(8)
+            ->post(self::FAST2SMS_URL, [
+                'route' => 'q',
+                'message' => $message,
+                'numbers' => $digits,
+                'flash' => 0,
+            ]);
+
+        if (! $response->successful() || $response->json('return') !== true) {
+            Log::warning('Fast2SMS quick route rejected an SMS', [
+                'template' => $template,
+                'status' => $response->status(),
+                'body' => mb_substr($response->body(), 0, 300),
+            ]);
+
+            return false;
+        }
+
+        return true;
     }
 
     /**

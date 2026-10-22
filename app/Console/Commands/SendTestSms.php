@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 
 class SendTestSms extends Command
 {
-    protected $signature = 'sms:test {phone : 10-digit mobile number to send the sample SMS to}';
+    protected $signature = 'sms:test {phone : 10-digit mobile number to send the sample SMS to} {name=Test : first name shown in the SMS}';
 
     protected $description = 'Send one sample order-confirmation SMS with the configured driver (costs one SMS).';
 
@@ -17,10 +17,12 @@ class SendTestSms extends Command
         $this->line("SMS driver: {$driver}");
 
         $sent = $sms->send($this->argument('phone'), 'customer', [
-            'name' => 'Test',
+            'name' => $this->argument('name'),
             'order' => 'GBTEST12345',
             'total' => '499',
-            'date' => now('Asia/Kolkata')->format('d M'),
+            'mode' => 'Delivery',
+            'when' => now('Asia/Kolkata')->format('d M'),
+            'pay' => 'Paid online',
         ]);
 
         if ($sent) {

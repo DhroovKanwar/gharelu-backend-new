@@ -18,6 +18,7 @@ class Order extends Model
         'guest_name',
         'guest_email',
         'guest_phone',
+        'guest_phone_country_code',
         'delivery_mode',
         'pickup_type',
         'address_id',
@@ -42,6 +43,15 @@ class Order extends Model
         'delivery_fee' => 'decimal:2',
         'total' => 'decimal:2',
     ];
+
+    /**
+     * The sender's phone is an Indian number (+91; also true for orders from before country codes existed).
+     * SMS and WhatsApp to customers only work for Indian numbers.
+     */
+    public function senderIsIndian(): bool
+    {
+        return ($this->guest_phone_country_code ?? '+91') === '+91';
+    }
 
     public function user(): BelongsTo
     {

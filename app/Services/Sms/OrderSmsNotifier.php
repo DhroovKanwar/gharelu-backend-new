@@ -32,20 +32,25 @@ class OrderSmsNotifier
             $when = trim($date.($order->scheduled_time ? ', '.date('h:i A', strtotime((string) $order->scheduled_time)) : ''));
             $pay = $order->payment_method === 'cod' ? 'Pay on '.strtolower($mode === 'Delivery' ? 'delivery' : 'pickup') : 'Paid online';
 
-            $this->sms->send((string) $order->guest_phone, 'customer', [
+            // The SMS provider only reaches Indian numbers; a foreign number's last 10 digits could belong to someone else.
+            if ($order->senderIsIndian()) {
+                $this->sms->send((string) $order->guest_phone, 'customer', [
                 'name' => strtok((string) $order->guest_name, ' ') ?: 'Customer',
                 'order' => $order->order_number,
                 'total' => $total,
                 'mode' => $mode,
                 'when' => $when,
                 'pay' => $pay,
-            ]);
+                ]);
+            }
 
             foreach (config('sms.admin_phones', []) as $adminPhone) {
                 $this->sms->send($adminPhone, 'admin', [
                     'order' => $order->order_number,
                     'name' => $order->guest_name,
-                    'phone' => substr(preg_replace('/\D/', '', (string) $order->guest_phone), -10),
+                    'phone' => $order->senderIsIndian()
+                        ? substr(preg_replace('/\D/', '', (string) $order->guest_phone), -10)
+                        : ($order->guest_phone_country_code.preg_replace('/\D/', '', (string) $order->guest_phone)),
                     'total' => $total,
                     'mode' => $mode,
                     'date' => $date,

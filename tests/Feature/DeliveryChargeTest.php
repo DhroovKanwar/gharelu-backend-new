@@ -79,6 +79,7 @@ class DeliveryChargeTest extends TestCase
             'last_name' => 'Sharma',
             'phone' => '9876543210',
             'delivery_mode' => 'delivery',
+            'recipient_first_name' => 'Anita', 'recipient_last_name' => 'Verma', 'recipient_phone' => '9811122233',
             'address_line_1' => '221B Baker Street',
             'city' => 'Mohali',
             'state' => 'Punjab',

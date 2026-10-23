@@ -27,20 +27,22 @@ class StoreOrderRequest extends FormRequest
     {
         $clean = [];
 
-        foreach (['first_name', 'last_name', 'address_line_1', 'address_line_2', 'city', 'state', 'landmark', 'notes'] as $field) {
+        foreach (['first_name', 'last_name', 'recipient_first_name', 'recipient_last_name', 'address_line_1', 'address_line_2', 'city', 'state', 'landmark', 'notes'] as $field) {
             if (is_string($this->input($field))) {
                 $clean[$field] = trim(strip_tags($this->input($field)));
             }
         }
 
+        // Phones come as a country code (+91 by default) plus the number without it.
+        $clean['phone_country_code'] = $this->countryCode('phone_country_code');
+        $clean['recipient_phone_country_code'] = $this->countryCode('recipient_phone_country_code');
+
         if (is_string($this->input('phone'))) {
-            $digits = preg_replace('/\D/', '', $this->input('phone'));
-            if (strlen($digits) === 12 && str_starts_with($digits, '91')) {
-                $digits = substr($digits, 2);
-            } elseif (strlen($digits) === 11 && $digits[0] === '0') {
-                $digits = substr($digits, 1);
-            }
-            $clean['phone'] = $digits;
+            $clean['phone'] = $this->nationalNumber($this->input('phone'), $clean['phone_country_code']);
+        }
+
+        if (is_string($this->input('recipient_phone'))) {
+            $clean['recipient_phone'] = $this->nationalNumber($this->input('recipient_phone'), $clean['recipient_phone_country_code']);
         }
 
         if (is_string($this->input('email'))) {
@@ -50,10 +52,49 @@ class StoreOrderRequest extends FormRequest
         $this->merge($clean);
     }
 
+    /** "+91", "91" or " +44 " become "+91" / "+44"; anything unusable falls back to +91. */
+    private function countryCode(string $field): string
+    {
+        $raw = $this->input($field);
+        $digits = is_string($raw) ? preg_replace('/\D/', '', $raw) : '';
+
+        return $digits === '' ? '+91' : '+'.$digits;
+    }
+
+    /** The number without country code or trunk "0"; for +91 a typed "+91 98765 43210" or "098765..." is cleaned too. */
+    private function nationalNumber(string $raw, string $countryCode): string
+    {
+        $digits = preg_replace('/\D/', '', $raw);
+
+        if ($countryCode === '+91') {
+            if (strlen($digits) === 12 && str_starts_with($digits, '91')) {
+                return substr($digits, 2);
+            }
+            if (strlen($digits) === 11 && $digits[0] === '0') {
+                return substr($digits, 1);
+            }
+
+            return $digits;
+        }
+
+        return preg_replace('/^0+/', '', $digits);
+    }
+
+    /** Indian numbers are exactly 10 digits starting 6-9; other countries 6-14 digits. */
+    private function phoneRule(string $countryCodeField): string
+    {
+        return $this->countryCode($countryCodeField) === '+91' ? 'regex:/^[6-9][0-9]{9}$/' : 'regex:/^[0-9]{6,14}$/';
+    }
+
     public function messages(): array
     {
         return [
-            'phone.regex' => 'Enter a valid 10-digit Indian mobile number.',
+            'phone.regex' => 'Enter a valid phone number for the selected country code.',
+            'recipient_phone.regex' => 'Enter a valid recipient phone number for the selected country code.',
+            'phone_country_code.regex' => 'Choose a valid country code.',
+            'recipient_phone_country_code.in' => 'The recipient needs an Indian (+91) mobile number.',
+            'recipient_first_name.regex' => 'Names can only contain letters, spaces, dots, apostrophes and hyphens.',
+            'recipient_last_name.regex' => 'Names can only contain letters, spaces, dots, apostrophes and hyphens.',
             'first_name.regex' => 'Names can only contain letters, spaces, dots, apostrophes and hyphens.',
             'last_name.regex' => 'Names can only contain letters, spaces, dots, apostrophes and hyphens.',
         ];
@@ -70,11 +111,11 @@ class StoreOrderRequest extends FormRequest
                 'required',
                 'string',
                 // Exactly 10 digits, starting 6-9 (prepareForValidation already removed +91, 0 and punctuation).
-                'regex:/^[6-9][0-9]{9}$/',
+                $this->phoneRule('phone_country_code'),
                 // Anti-spam: a single number can't flood the shop with orders.
                 function (string $attribute, mixed $value, \Closure $fail) {
                     // Malformed values (arrays, odd text) are rejected by the rules above; don't build a query from them.
-                    if (! is_string($value) || ! preg_match('/^[6-9][0-9]{9}$/', $value)) {
+                    if (! is_string($value) || ! preg_match('/^[0-9]{6,14}$/', $value)) {
                         return;
                     }
 
@@ -86,6 +127,15 @@ class StoreOrderRequest extends FormRequest
                     }
                 },
             ],
+
+            'phone_country_code' => ['nullable', 'regex:/^\+[1-9][0-9]{0,3}$/'],
+
+            // Who the delivery is for (the sender may be gifting): required for delivery, ignored for pickup.
+            'recipient_first_name' => ['required_if:delivery_mode,delivery', 'nullable', 'string', 'max:50', "regex:/^[\p{L}\p{M}\s.'-]+$/u"],
+            'recipient_last_name' => ['nullable', 'string', 'max:50', "regex:/^[\p{L}\p{M}\s.'-]+$/u"],
+            // A parcel is delivered inside India, so the courier needs an Indian number for the recipient.
+            'recipient_phone_country_code' => ['nullable', 'in:+91'],
+            'recipient_phone' => ['required_if:delivery_mode,delivery', 'nullable', 'string', $this->phoneRule('recipient_phone_country_code')],
 
             'delivery_mode' => ['required', 'in:delivery,pickup'],
             'pickup_type' => ['required_if:delivery_mode,pickup', 'nullable', 'in:dine_in,parcel'],

@@ -183,7 +183,7 @@ class AdminProductBoundsTest extends TestCase
     {
         return [
             'first_name' => 'Priya', 'last_name' => 'Sharma', 'email' => 'priya@example.com',
-            'phone' => '9876543210', 'delivery_mode' => 'delivery', 'pickup_type' => null,
+            'phone' => '9876543210', 'delivery_mode' => 'delivery', 'recipient_first_name' => 'Anita', 'recipient_last_name' => 'Verma', 'recipient_phone' => '9811122233', 'pickup_type' => null,
             'address_line_1' => '221B Baker Street', 'city' => 'Mohali', 'state' => 'Punjab', 'pincode' => '140603',
             'scheduled_date' => now()->addDay()->format('Y-m-d'), 'scheduled_time' => '14:30',
             'payment_method' => 'online',

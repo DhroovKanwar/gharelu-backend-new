@@ -16,7 +16,8 @@ class OrderWhatsAppNotifier
 
     public function confirmed(Order $order): void
     {
-        if (! $this->whatsapp->configured() || ! $order->guest_phone) {
+        // The sender must be an Indian number: the sender class messages +91 plus the last 10 digits.
+        if (! $this->whatsapp->configured() || ! $order->guest_phone || ! $order->senderIsIndian()) {
             return;
         }
 

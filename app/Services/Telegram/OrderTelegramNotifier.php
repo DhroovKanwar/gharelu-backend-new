@@ -56,7 +56,11 @@ class OrderTelegramNotifier
         $lines[] = '';
         $lines[] = 'Total: Rs '.number_format((float) $order->total, 0, '.', '').' ('.$paid.')';
         $lines[] = "{$mode}: {$when}";
-        $lines[] = 'Customer: '.$order->guest_name.', '.substr(preg_replace('/\D/', '', (string) $order->guest_phone), -10);
+        $lines[] = 'Customer: '.$order->guest_name.', '.($order->senderIsIndian() ? '' : $order->guest_phone_country_code.' ').preg_replace('/\D/', '', (string) $order->guest_phone);
+
+        if ($order->address?->recipient_name) {
+            $lines[] = 'Deliver to: '.$order->address->recipient_name.', '.$order->address->recipient_phone_country_code.' '.$order->address->recipient_phone;
+        }
 
         if ($order->delivery_mode === 'delivery' && $order->address) {
             $lines[] = 'Address: '.collect([$order->address->address_line_1, $order->address->address_line_2, $order->address->city, $order->address->pincode])->filter()->implode(', ');

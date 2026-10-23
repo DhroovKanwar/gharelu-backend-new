@@ -20,6 +20,9 @@ class Address extends Model
         'state',
         'pincode',
         'landmark',
+        'recipient_name',
+        'recipient_phone',
+        'recipient_phone_country_code',
         'is_default',
     ];
 

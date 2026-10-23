@@ -217,6 +217,7 @@ class OrderApiTest extends TestCase
 
         $payload = $this->basePayload($product, [
             'delivery_mode' => 'delivery',
+            'recipient_first_name' => 'Anita', 'recipient_last_name' => 'Verma', 'recipient_phone' => '9811122233',
             'pickup_type' => null,
             'address_line_1' => '221B Baker Street',
             'city' => 'Mumbai',
@@ -245,6 +246,7 @@ class OrderApiTest extends TestCase
 
         $payload = $this->basePayload($product, [
             'delivery_mode' => 'delivery',
+            'recipient_first_name' => 'Anita', 'recipient_last_name' => 'Verma', 'recipient_phone' => '9811122233',
             'pickup_type' => null,
             'address_line_1' => '221B Baker Street',
             'city' => 'Mohali',
@@ -289,6 +291,7 @@ class OrderApiTest extends TestCase
 
         $payload = $this->basePayload($product, [
             'delivery_mode' => 'delivery',
+            'recipient_first_name' => 'Anita', 'recipient_last_name' => 'Verma', 'recipient_phone' => '9811122233',
             'pickup_type' => null,
             // address fields intentionally omitted
         ]);

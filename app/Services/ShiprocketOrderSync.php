@@ -72,7 +72,11 @@ class ShiprocketOrderSync
     private function payload(Order $order): array
     {
         $address = $order->address;
-        [$firstName, $lastName] = array_pad(explode(' ', trim($order->guest_name), 2), 2, '');
+        // Gifts: the parcel goes to the recipient, so the courier gets their name and phone; the sender is noted in the comment.
+        $recipientName = $address->recipient_name;
+        $contactName = $recipientName ?: $order->guest_name;
+        $contactPhone = ($recipientName && $address->recipient_phone) ? $address->recipient_phone : $order->guest_phone;
+        [$firstName, $lastName] = array_pad(explode(' ', trim($contactName), 2), 2, '');
 
         $weights = Product::whereIn('id', $order->items->pluck('product_id'))->pluck('weight_grams', 'id');
         $defaultGrams = (int) round(config('services.shiprocket.default_item_weight_kg') * 1000);
@@ -97,7 +101,7 @@ class ShiprocketOrderSync
             // Shiprocket insists on an email; customers may not have given one.
             'billing_email' => $order->guest_email ?: config('services.shiprocket.fallback_email'),
             // Shiprocket wants a bare 10-digit number (no +91, spaces or dashes).
-            'billing_phone' => substr(preg_replace('/\D+/', '', (string) $order->guest_phone), -10),
+            'billing_phone' => substr(preg_replace('/\D+/', '', (string) $contactPhone), -10),
             'shipping_is_billing' => true,
             'order_items' => $order->items->map(fn ($i) => [
                 'name' => $i->product_name,
@@ -112,7 +116,7 @@ class ShiprocketOrderSync
             'breadth' => config('services.shiprocket.parcel_breadth_cm'),
             'height' => config('services.shiprocket.parcel_height_cm'),
             'weight' => $weightKg,
-            'comment' => $order->notes,
+            'comment' => trim(($order->notes ? $order->notes.' | ' : '').($recipientName ? 'Sender: '.$order->guest_name.' '.$order->guest_phone_country_code.' '.$order->guest_phone : '')) ?: null,
         ];
     }
 }

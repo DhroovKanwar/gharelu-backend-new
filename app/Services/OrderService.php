@@ -56,6 +56,9 @@ class OrderService
                         'state' => $data['state'],
                         'pincode' => $data['pincode'],
                         'landmark' => $data['landmark'] ?? null,
+                        'recipient_name' => trim(($data['recipient_first_name'] ?? '').' '.($data['recipient_last_name'] ?? '')) ?: null,
+                        'recipient_phone' => $data['recipient_phone'] ?? null,
+                        'recipient_phone_country_code' => isset($data['recipient_phone']) ? ($data['recipient_phone_country_code'] ?? '+91') : null,
                         'is_default' => false,
                     ])->id;
                 }
@@ -67,6 +70,7 @@ class OrderService
                     'guest_name' => trim($data['first_name'].' '.($data['last_name'] ?? '')),
                     'guest_email' => $data['email'] ?? null,
                     'guest_phone' => $data['phone'],
+                    'guest_phone_country_code' => $data['phone_country_code'] ?? '+91',
                     'delivery_mode' => $data['delivery_mode'],
                     'pickup_type' => $data['pickup_type'] ?? null,
                     'address_id' => $addressId,

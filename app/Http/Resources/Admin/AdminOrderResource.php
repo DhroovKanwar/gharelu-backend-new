@@ -26,6 +26,7 @@ class AdminOrderResource extends JsonResource
                 'name' => $this->guest_name,
                 'email' => $this->guest_email,
                 'phone' => $this->guest_phone,
+                'phoneCountryCode' => $this->guest_phone_country_code ?? '+91',
             ],
             'address' => $this->whenLoaded('address', fn () => $this->address ? [
                 'addressLine1' => $this->address->address_line_1,
@@ -34,6 +35,11 @@ class AdminOrderResource extends JsonResource
                 'state' => $this->address->state,
                 'pincode' => $this->address->pincode,
                 'landmark' => $this->address->landmark,
+                'recipient' => $this->address->recipient_name ? [
+                    'name' => $this->address->recipient_name,
+                    'phone' => $this->address->recipient_phone,
+                    'phoneCountryCode' => $this->address->recipient_phone_country_code ?? '+91',
+                ] : null,
             ] : null),
             'items' => $this->whenLoaded('items', fn () => $this->items->map(fn ($item) => [
                 'productId' => $item->product_id,

@@ -12,6 +12,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // Behind Cloudflare / a load balancer every request arrives from the proxy, so per-visitor rate
+        // limits would be shared by all customers. Set TRUSTED_PROXIES in .env (`*` or a comma-separated
+        // list of proxy IPs) so the real visitor IP is read from X-Forwarded-For. Unset = trust nobody.
+        $trusted = trim((string) env('TRUSTED_PROXIES', ''));
+        $middleware->trustProxies(at: $trusted === '' ? null : ($trusted === '*' ? '*' : array_map('trim', explode(',', $trusted))));
+
         $middleware->api(append: [
             \App\Http\Middleware\SecurityHeaders::class,
         ]);

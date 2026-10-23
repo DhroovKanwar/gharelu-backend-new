@@ -73,6 +73,11 @@ class StoreOrderRequest extends FormRequest
                 'regex:/^[6-9][0-9]{9}$/',
                 // Anti-spam: a single number can't flood the shop with orders.
                 function (string $attribute, mixed $value, \Closure $fail) {
+                    // Malformed values (arrays, odd text) are rejected by the rules above; don't build a query from them.
+                    if (! is_string($value) || ! preg_match('/^[6-9][0-9]{9}$/', $value)) {
+                        return;
+                    }
+
                     $recent = Order::where('guest_phone', 'like', '%'.$value)
                         ->where('created_at', '>=', now()->subHour())
                         ->count();
@@ -92,7 +97,8 @@ class StoreOrderRequest extends FormRequest
             'pincode' => ['required_if:delivery_mode,delivery', 'nullable', 'regex:/^[1-9][0-9]{5}$/'],
             'landmark' => ['nullable', 'string', 'max:255'],
 
-            'scheduled_date' => ['required', 'date', 'after_or_equal:today', 'before_or_equal:'.now()->addDays(90)->toDateString()],
+            // 'bail' + 'string': the date rules crash (500) on a number instead of rejecting it.
+            'scheduled_date' => ['bail', 'required', 'string', 'date', 'after_or_equal:today', 'before_or_equal:'.now()->addDays(90)->toDateString()],
             // Pickup has a time slot; delivery is scheduled by date only (the courier decides the time).
             'scheduled_time' => ['required_if:delivery_mode,pickup', 'nullable', 'date_format:H:i'],
 

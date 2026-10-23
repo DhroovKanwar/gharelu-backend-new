@@ -134,6 +134,6 @@ class AdminDashboardService
         // Storefront paths (/images/...) are served by the storefront; the admin app prefixes them.
         return str_starts_with($path, 'http://') || str_starts_with($path, 'https://') || str_starts_with($path, '/images/')
             ? $path
-            : Storage::disk('public')->url($path);
+            : '/storage/'.ltrim($path, '/'); // relative: the admin app adds the API origin, so APP_URL doesn't matter
     }
 }

@@ -2,18 +2,15 @@
 
 namespace Tests\Feature;
 
-// use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
-    /**
-     * A basic test example.
-     */
-    public function test_the_application_returns_a_successful_response(): void
+    public function test_the_api_root_shows_no_page_and_does_not_name_the_framework(): void
     {
         $response = $this->get('/');
 
-        $response->assertStatus(200);
+        $response->assertNotFound();
+        $this->assertStringNotContainsStringIgnoringCase('laravel', (string) $response->getContent());
     }
 }

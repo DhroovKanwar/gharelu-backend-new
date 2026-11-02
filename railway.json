@@ -1,0 +1,8 @@
+{
+  "$schema": "https://railway.com/railway.schema.json",
+  "deploy": {
+    "preDeployCommand": ["php artisan migrate --force", "php artisan storage:link --force"],
+    "healthcheckPath": "/up",
+    "restartPolicyType": "ON_FAILURE"
+  }
+}

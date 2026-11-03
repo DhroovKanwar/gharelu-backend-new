@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Order;
 use App\Models\Product;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Throwable;
@@ -43,6 +44,18 @@ class ShiprocketOrderSync
             $response = Http::withToken($this->shiprocket->token())
                 ->timeout(15)
                 ->post(self::URL, $payload);
+
+            // A cached token that Shiprocket has since expired or blacklisted answers 401.
+            // Drop it, log in again and retry once instead of failing every order until the
+            // 8-day cache runs out.
+            if ($response->status() === 401) {
+                Cache::forget('shiprocket.token');
+                Cache::forget('shiprocket.login_failed');
+
+                $response = Http::withToken($this->shiprocket->token())
+                    ->timeout(15)
+                    ->post(self::URL, $payload);
+            }
 
             $orderId = $response->json('order_id');
 
